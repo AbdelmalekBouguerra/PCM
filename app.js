@@ -1,7 +1,10 @@
 const express = require('express')
 const path = require('path')
-
 const db = require('./env/db')
+const hbs = require('hbs')
+
+
+
 
 const app = express();
 const port = 3000;
@@ -34,3 +37,6 @@ app.use('/',require('./routes/pages'));
 
 // Define view engine
 app.set('view engine', 'hbs');
+
+// template hbs
+hbs.registerPartials(path.join(__dirname, 'views', 'partials'))

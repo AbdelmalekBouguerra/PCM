@@ -61,6 +61,7 @@ html {
   font-family: "Poppins";
   font-weight: 400;
   line-height: 1.15;
+  overflow-x: hidden;
   -webkit-text-size-adjust: 100%;
   -ms-text-size-adjust: 100%;
   -ms-overflow-style: scrollbar;
@@ -123,6 +124,30 @@ h6 {
 p {
   margin-top: 0;
   margin-bottom: 1rem;
+}
+
+
+.hero_heading{
+  font-size: 75px !important;
+  font-weight: bold !important;
+  -webkit-text-stroke: 1px rgba(0, 0, 0, 0.582);
+  color: white;
+  text-shadow:
+      3px 3px 0 rgba(0, 0, 0, 0.582),
+    -1px -1px 0 rgba(0, 0, 0, 0.582),  
+     1px -1px 0 rgba(0, 0, 0, 0.582),
+     -1px 1px 0 rgba(0, 0, 0, 0.582),
+      1px 1px 0 rgba(0, 0, 0, 0.582);
+}
+.hero_text{
+  font-size: 20px !important;
+  font-weight: bold !important;
+  color: white !important;
+  text-shadow:
+   -1px -1px 0 #000,  
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+     1px 1px 0 #000;
 }
 
 abbr[title],

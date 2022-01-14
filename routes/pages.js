@@ -1,3 +1,4 @@
+const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
 const authController = require('../controllers/auth')
@@ -9,6 +10,15 @@ router.get("/", (req, res) => {
 router.get('/ED',(req,res) => {
     res.render('ED');
 });
+
+router.get('/info',(req,res) =>{
+    res.render('info');
+})
+
+router.get('/accueil',(req,res) =>{
+    res.render('accueil');
+})
+// TODO : add a /accueil with good route
 
 router.post('/login',authController.ldap);
 
