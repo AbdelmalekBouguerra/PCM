@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-  <title>PCM - Infos Divers</title>
+  <title>PCM - Tiers Payant</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
@@ -28,15 +28,15 @@
 </head>
 
 <body>
+  <!-- #navbar -->
 
-  <!-- Navbar from nav.hbs -->
-    {{> nav info='true'}}
-  <!-- END nav -->
+  {{> nav Prestations='true'}}
 
-  <!-- Hero section -->
+  <!-- #endnavbar -->
+
   <section class="home-slider owl-carousel">
     <div class="slider-item bread-item" style="
-          background-image: url('images/infos.jpg');
+          background-image: url('images/tp1.jpg');
           background-position: 50% 0px;
         " data-stellar-background-ratio="0.5">
       <div class="overlay"></div>
@@ -44,107 +44,109 @@
         <div class="row slider-text align-items-end">
           <div class="col-md-7 col-sm-12 ftco-animate mb-5">
             <p class="breadcrumbs" data-scrollax=" properties: { translateY: '70%', opacity: 1.6}"></p>
-            <h1 class="mb-3 " data-scrollax=" properties: { translateY: '70%', opacity: .9}">
-              <strong> Infos Divers</strong>
+            <h1 style="font-size: 90px;
+                       font-weight: bold;" class="mb-3" data-scrollax=" properties: { translateY: '70%', opacity: .9}">
+              Tiers Payant
             </h1>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <!-- END Hero section -->
-
-  <section class="ftco-section">
-    <div class="container">
-      <div class="row d-md-flex">
-        <div class="row">
-          <div class="col-md-auto nav-link-wrap mb-5">
-            <div class="nav ftco-animate nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a class="nav-link active" id="v-pills-whatwedo-tab" data-toggle="pill" href="#v-pills-whatwedo"
-                role="tab" aria-controls="v-pills-whatwedo" aria-selected="true">Circulaire d'application</a>
-
-              <a class="nav-link" id="v-pills-mission-tab" data-toggle="pill" href="#v-pills-mission" role="tab"
-                aria-controls="v-pills-mission" aria-selected="false">Decision</a>
-
-              <a class="nav-link" id="v-pills-goal-tab" data-toggle="pill" href="#v-pills-goal" role="tab"
-                aria-controls="v-pills-goal" aria-selected="false">Note d'information</a>
-
-              <a class="nav-link" id="v-pills-goal1-tab" data-toggle="pill" href="#v-pills-goal1" role="tab"
-                aria-controls="v-pills-goal" aria-selected="false">Note d'information</a>
-            </div>
+  <section class="ftco-section-parallax">
+    <div class="parallax-img d-flex align-items-center">
+      <div class="container">
+        <div class="row d-flex justify-content-center">
+          <div class="
+                col-md-10
+                text-center
+                heading-section heading-section-white
+                ftco-animate
+              ">
+            <h2 style="font-weight: bold; font-size: 40px">Description</h2>
+            <p style="font-size: 20px">
+              C'est la prise en charge d`une partie des frais engagés pour des soins médicaux au niveau des structures
+              médicales privées conventionnées implantées au territoire nationale, le fonds « tiers payant » prend en
+              charge 80% du montant global de la prestation ce montant ne peut en aucun cas excéder le plafond de 250
+              000.00 da ,et de 15 000.00 DA pour la séance de radiothérapie, le reste des frais seront à la charge de
+              l`adhérent.
+            </p>
           </div>
-          <div class="col-md-12 d-flex align-items-center">
-            <div class="tab-content ftco-animate" id="v-pills-tabContent">
-              <div class="tab-pane fade show active" id="v-pills-whatwedo" role="tabpanel"
-                aria-labelledby="v-pills-whatwedo-tab">
-                <div>
-                  <h1 class="mb-4">titre 1</h1>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus delectus odio quas corporis
-                    distinctio numquam officia similique accusamus? Nostrum ipsam dolorum nihil quibusdam? Saepe ut enim
-                    quo iure alias, sunt consectetur, voluptatibus inventore dicta tempora, dolore temporibus deleniti
-                    culpa illum! Explicabo at magni saepe maiores accusantium numquam dolorum consectetur hic?
-                  </p>
-                  <h3>titre3</h3>
-                  <h4>titre 4</h4>
-                  <h5>titre 5</h5>
-                </div>
-              </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-              <div class="tab-pane fade" id="v-pills-mission" role="tabpanel" aria-labelledby="v-pills-mission-tab">
-                <div>
-                  <h2 class="mb-4">To Accomodate All Patients</h2>
-                  <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at
-                    the coast of the Semantics, a large language ocean.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Nesciunt voluptate, quibusdam sunt iste dolores
-                    consequatur
-                  </p>
-                </div>
-              </div>
+  <section class="ftco-section testimony-section bg-light">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center heading-section ftco-animate">
+          <h2 class="mb-2">Qui peut bénéficier des prestations offertes par ce système ?</h2>
 
-              <div class="tab-pane fade" id="v-pills-goal" role="tabpanel" aria-labelledby="v-pills-goal-tab">
-                <div>
-                  <h2 class="mb-4">Help Our Customers Needs</h2>
-                  <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at
-                    the coast of the Semantics, a large language ocean.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Nesciunt voluptate, quibusdam sunt iste dolores
-                    consequatur
-                  </p>
-                </div>
-              </div>
+          <h4>Les travailleurs adhérents, leurs conjoints et leurs enfants âge de moins de 21 ans.</h4>
+          <h4>Les retraités adhérents , leurs conjoints et leurs enfants âge de moins de 21 ans.</h4>
+          <h4>Le(s) conjoint(s) des travailleurs et retraités décédés,et leurs enfants âge moins de 21 ans.</h4>
+          <h6><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+              class="bi bi-exclamation-triangle-fill" viewBox="0 0 16 16">
+              <path
+                d="M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z" />
+            </svg>
+            Les enfants des bénéficiaires quel que soit leur âge, qui sont, par suite d’infirmité, dans l’impossibilité
+            permanente d’exercer une activité rémunérée, sont également pris en charge par le système tiers payant.
+          </h6>
 
-              <div class="tab-pane fade" id="v-pills-goal1" role="tabpanel" aria-labelledby="v-pills-goal1-tab">
-                <div>
-                  <h2 class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi, ab.</h2>
-                  <p>
-                    Far far away, behind the word mountains, far from the
-                    countries Vokalia and Consonantia, there live the blind
-                    texts. Separated they live in Bookmarksgrove right at
-                    the coast of the Semantics, a large language ocean.
-                  </p>
-                  <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing
-                    elit. Nesciunt voluptate, quibusdam sunt iste dolores
-                    consequatur
-                  </p>
-                </div>
-              </div>
+        </div>
+      </div>
+      <div class="row justify-content-center ftco-animate">
+        <div class="col-md-8">
+          <div class="carousel-testimony owl-carousel ftco-owl">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="ftco-section testimony-section">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-12 text-center heading-section ftco-animate">
+          <h2 class="mb-2">Quel est le dossier à fournir ?</h2>
+          <div class="text-left">
+            <h4>Pièces communes :</h4>
+            <h5 class="ml-4">- Prescription médicale de l`acte demandé.</h5>
+            <h5 class="ml-4">- Une facture pro-forma de la prescription demandée.</h5>
+            <h5 class="ml-4">- Une demande de prise en charge.</h5>
+            <h5 class="ml-4">- Une fiche familiale ou KAFALA pour les enfants adoptifs.</h5>
+            <h5 class="ml-4">- Pour les enfants âgés de plus de 21 ans, qui sont dans l`impossibilité permanente
+              d`exercer une activité rémunérée, présenter un certificat d`handicap et une attestation de non affiliation
+              CNAS/CASNOS,</h5>
+            <div class="ml-4">
+              <h4> - Travailleur adhérent :</h4>
+              <h5 class="ml-4">- Copie du dernier bulletin de paie (Adhésion du travailleur au système tiers payant)
+              </h5>
+              <h5 class="ml-4">- Feuille de soins médicaux.</h5>
+            </div>
+            <div class="ml-4">
+              <h4> - Retraité :</h4>
+              <h5 class="ml-4">- Recenser à notre région.</h5>
+              <h5 class="ml-4">- Copie de la décision de mise à la retraite.</h5>
+              <h5 class="ml-4">- Une copie du reçu de paiement de la cotisation annuelle pour les retraités qui ont
+                une pension mensuel de retraite supérieur à 40 000.00 da.</h5>
+            </div>
+            <div class="ml-4">
+              <h4> - Veuf(ve) :</h4>
+              <h5 class="ml-4">- Recenser à notre région.</h5>
+              <h5 class="ml-4">- Une décision de cessation de la relation de travail pour cause de décès.</h5>
+              <h5 class="ml-4">- certificat de décès.</h5>
             </div>
           </div>
         </div>
-
+      </div>
+      <div class="row justify-content-center ftco-animate">
+        <div class="col-md-8">
+          <div class="carousel-testimony owl-carousel ftco-owl">
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -275,6 +277,7 @@
     </svg>
   </div>
 
+
   <script src="js/jquery.min.js"></script>
   <script src="js/jquery-migrate-3.0.1.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -285,6 +288,9 @@
   <script src="js/owl.carousel.min.js"></script>
   <script src="js/jquery.magnific-popup.min.js"></script>
   <script src="js/aos.js"></script>
+  <script src="js/jquery.animateNumber.min.js"></script>
+  <script src="js/bootstrap-datepicker.js"></script>
+  <script src="js/jquery.timepicker.min.js"></script>
   <script src="js/scrollax.min.js"></script>
   <script src="js/main.js"></script>
 </body>

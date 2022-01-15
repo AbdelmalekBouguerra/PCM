@@ -68,6 +68,32 @@
  				}
  			}
  		});
+ 		$('.page-slider').owlCarousel({
+			loop: true,
+			autoplay: true,
+			margin: 0,
+			animateOut: 'fadeOut',
+			animateIn: 'fadeIn',
+			nav: false,
+			autoplayHoverPause: true,
+			items: 1,
+			navText: ["<span class='ion-md-arrow-back'></span>", "<span class='ion-chevron-right'></span>"],
+			responsive: {
+				0: {
+					items: 1,
+					nav: false
+				},
+				600: {
+					items: 1,
+					nav: false
+				},
+				1000: {
+					items: 1,
+					nav: false
+				}
+			}
+		});
+
  		$('.carousel-testimony').owlCarousel({
  			center: true,
  			loop: true,

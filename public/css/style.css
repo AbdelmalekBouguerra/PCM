@@ -128,7 +128,7 @@ p {
 
 
 .hero_heading{
-  font-size: 75px !important;
+  font-size: 40px  !important;
   font-weight: bold !important;
   -webkit-text-stroke: 1px rgba(0, 0, 0, 0.582);
   color: white;
@@ -11242,7 +11242,7 @@ textarea.form-control {
 }
 
 .heading-section.heading-section-white p {
-  color: rgba(255, 255, 255, 0.9);
+  color:white;
 }
 
 .img,

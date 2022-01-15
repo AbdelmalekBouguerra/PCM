@@ -18,6 +18,11 @@ router.get('/info',(req,res) =>{
 router.get('/accueil',(req,res) =>{
     res.render('accueil');
 })
+
+router.get('/TiersPayant',(req,res) =>{
+    res.render('TiersPayant');
+})
+
 // TODO : add a /accueil with good route
 
 router.post('/login',authController.ldap);
