@@ -31,6 +31,10 @@ router.get('/PrisesEnCharge100',(req,res) =>{
     res.render('PrisesEnCharge100');
 })
 
+router.get('/CMS',(req,res) =>{
+    res.render('CMS');
+})
+
 // TODO : add a /accueil with good route
 
 router.post('/login',authController.ldap);
