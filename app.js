@@ -3,9 +3,6 @@ const path = require('path')
 const db = require('./env/db')
 const hbs = require('hbs')
 
-
-
-
 const app = express();
 const port = 3000;
 
@@ -39,4 +36,4 @@ app.use('/',require('./routes/pages'));
 app.set('view engine', 'hbs');
 
 // template hbs
-hbs.registerPartials(path.join(__dirname, 'views', 'partials'))
+hbs.registerPartials(path.join(__dirname, 'views', 'templates'))

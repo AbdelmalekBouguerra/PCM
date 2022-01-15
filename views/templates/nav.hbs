@@ -140,7 +140,8 @@
     }
 
     .site-navbar .site-navigation .site-menu .has-children .dropdown .active>a {
-        color: #ff9100; !important;
+        color: #ff9100;
+         !important;
     }
 
     .site-navbar .site-navigation .site-menu .has-children .dropdown>li {
@@ -413,70 +414,67 @@
     .site-mobile-menu .site-nav-wrap[data-class="social"]>li:first-child a {
         padding-left: 15px !important;
     }
-
 </style>
-    <div class="site-mobile-menu">
-      <div class="site-mobile-menu-header">
+
+<div class="site-mobile-menu">
+    <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
-          <span class="icon-close2 js-menu-toggle"></span>
+            <span class="icon-close2 js-menu-toggle"></span>
         </div>
-      </div>
-      <div class="site-mobile-menu-body"></div>
     </div>
-    
-    <header class="site-navbar" role="banner">
+    <div class="site-mobile-menu-body"></div>
+</div>
 
-      <div class="container">
+<header class="site-navbar" role="banner">
+
+    <div class="container">
         <div class="row align-items-center">
-          
-          <div class="col-11 col-xl-2">
-            <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0">Brand</a></h1>
-          </div>
-          <div class="col-12 col-md-10 d-none d-xl-block">
-            <nav class="site-navigation position-relative text-right" role="navigation">
 
-              <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li {{#if accueil}}class="active"{{/if}}><a href="/accueil"><span>Home</span></a></li>
-                <li class="has-children">
-                  <a href="about.html"><span>Dropdown</span></a>
-                  <ul class="dropdown arrow-top">
-                    <li><a href="#">Menu One</a></li>
-                    <li><a href="#">Menu Two</a></li>
-                    <li><a href="#">Menu Three</a></li>
-                    <li class="has-children">
-                      <a href="#">Dropdown</a>
-                      <ul class="dropdown">
-                        <li><a href="#">Menu One</a></li>
-                        <li><a href="#">Menu Two</a></li>
-                        <li><a href="#">Menu Three</a></li>
-                        <li><a href="#">Menu Four</a></li>
-                      </ul>
-                    </li>
-                  </ul>
-                </li>
-                <li {{#if info}}class="active"{{/if}}><a  href="/info"><span>info</span></a></li>
-                <li><a href="about.html"><span>About</span></a></li>
-                <li><a href="blog.html"><span>Blog</span></a></li>
-                <li><a href="contact.html"><span>Contact</span></a></li>
-              </ul>
-            </nav>
-          </div>
+            <div class="col-11 col-xl-2">
+                <h1 class="mb-0 site-logo"><a href="index.html" class="text-white mb-0"><img
+                            src="/images/logo.png" /></a></h1>
+            </div>
+            <div class="col-12 col-md-10 d-none d-xl-block">
+                <nav class="site-navigation position-relative text-right" role="navigation">
+
+                    <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
+                        <li {{#if accueil}}class="active" {{/if}}><a href="/accueil"><span>Accueil</span></a></li>
+                        <li {{#if info}}class="active" {{/if}}><a href="/info"><span>info</span></a></li>
+                        <li class=" {{#if Prestations}} active {{/if}} has-children">
+                            <a href="about.html"><span>Prestations</span></a>
+                            <ul class="dropdown arrow-top">
+                                <li><a href="#">Tiers payant</a></li>
+                                <li><a href="#">Médecines de soins</a></li>
+                                <li><a href="#">Prises en charge 100%</a></li>
+                                <li><a href="#">CMS</a></li>
+                            </ul>
+                        </li>
+                        <li class=" {{#if Structures}} active {{/if}} has-children">
+                            <a href="about.html"><span>Structures</span></a>
+                            <ul class="dropdown arrow-top">
+                                <li><a href="#">Tiers payant</a></li>
+                                <li><a href="#">Médecines de soins</a></li>
+                                <li><a href="#">Prises en charge 100%</a></li>
+                            </ul>
+                        </li>
+                        <li {{#if EspaceDemandeur}}class="active" {{/if}}><a href="/info"><span>Espace Demandeur</span></a></li>
+                        <li><a href="contact.html"><span>Contact</span></a></li>
+                    </ul>
+                </nav>
+            </div>
 
 
-          <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#" class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
-
-          </div>
-
+            <div class="d-inline-block d-xl-none ml-md-0 mr-auto py-3" style="position: relative; top: 3px;"><a href="#"
+                    class="site-menu-toggle js-menu-toggle text-white"><span class="icon-menu h3"></span></a></div>
         </div>
-      </div>
-      
-    </header>
 
-  
+    </div>
+    </div>
 
+</header>
 
-    <script src="/js/jquery-3.2.1.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.sticky.js"></script>
-    <script src="/js/navbar.js"></script>
+<script src="/js/jquery-3.2.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.sticky.js"></script>
+<script src="/js/navbar.js"></script>
