@@ -23,6 +23,10 @@ router.get('/TiersPayant',(req,res) =>{
     res.render('TiersPayant');
 })
 
+router.get('/MedecinesDeSoins',(req,res) =>{
+    res.render('MedecinesDeSoins');
+})
+
 // TODO : add a /accueil with good route
 
 router.post('/login',authController.ldap);
