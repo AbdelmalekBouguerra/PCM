@@ -438,15 +438,23 @@
                 <nav class="site-navigation position-relative text-right" role="navigation">
 
                     <ul class="site-menu js-clone-nav mr-auto d-none d-lg-block">
-                        <li {{#if accueil}}class="active" {{/if}}><a href="/accueil"><span>Accueil</span></a></li>
+                        <li {{#if accueil}}class="active" {{/if}}>
+                            <a href="/accueil"><span>Accueil</span></a>
+                        </li>
                         <li {{#if info}}class="active" {{/if}}><a href="/info"><span>info</span></a></li>
                         <li class=" {{#if Prestations}} active {{/if}} has-children">
                             <a href="#"><span>Prestations</span></a>
                             <ul class="dropdown arrow-top">
-                                <li><a href="Prestation/TiersPayant">Tiers payant</a></li>
-                                <li><a href="Prestation/MedecinesDeSoins">Médecines de soins</a></li>
-                                <li><a href="Prestation/PrisesEnCharge100">Prises en charge 100%</a></li>
-                                <li><a href="#">CMS</a></li>
+                                <li>
+                                    <a {{#if Prestations}} href="tiersPayant"
+                                     {{else}} href="prestation/tiersPayant"{{/if}}>Tiers payant</a>
+                                </li>
+                                <li><a {{#if Prestations}} href="medecinesDeSoins"
+                                     {{else}} href="prestation/medecinesDeSoins"{{/if}}>Médecines de soins</a></li>
+                                <li><a {{#if Prestations}} href="prisesEnCharge100"
+                                     {{else}} href="prestation/prisesEnCharge100"{{/if}}>Prises en charge 100%</a></li>
+                                <li><a {{#if Prestations}} href="CMS"
+                                     {{else}} href="prestation/CMS"{{/if}}>CMS</a></li>
                             </ul>
                         </li>
                         <li class=" {{#if Structures}} active {{/if}} has-children">
