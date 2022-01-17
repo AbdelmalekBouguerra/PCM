@@ -69,30 +69,30 @@
  			}
  		});
  		$('.page-slider').owlCarousel({
-			loop: true,
-			autoplay: true,
-			margin: 0,
-			animateOut: 'fadeOut',
-			animateIn: 'fadeIn',
-			nav: false,
-			autoplayHoverPause: true,
-			items: 1,
-			navText: ["<span class='ion-md-arrow-back'></span>", "<span class='ion-chevron-right'></span>"],
-			responsive: {
-				0: {
-					items: 1,
-					nav: false
-				},
-				600: {
-					items: 1,
-					nav: false
-				},
-				1000: {
-					items: 1,
-					nav: false
-				}
-			}
-		});
+ 			loop: true,
+ 			autoplay: true,
+ 			margin: 0,
+ 			animateOut: 'fadeOut',
+ 			animateIn: 'fadeIn',
+ 			nav: false,
+ 			autoplayHoverPause: true,
+ 			items: 1,
+ 			navText: ["<span class='ion-md-arrow-back'></span>", "<span class='ion-chevron-right'></span>"],
+ 			responsive: {
+ 				0: {
+ 					items: 1,
+ 					nav: false
+ 				},
+ 				600: {
+ 					items: 1,
+ 					nav: false
+ 				},
+ 				1000: {
+ 					items: 1,
+ 					nav: false
+ 				}
+ 			}
+ 		});
 
  		$('.carousel-testimony').owlCarousel({
  			center: true,
@@ -586,70 +586,3 @@
  		}
  	}
  }
- 	//document.getElementById("lienParentie").onchange = AddFils();
- 	/* function AddFils() {
-		 var ddl = document.getElementById("lienParentie");
-
-		 var val = ddl.options[ddl.selectIndex].value;
-		 
-		 if (val == "fils") {
-			var fils = document.getElementById("fils");
-			fils.innerHTML = "<h3>"+
-              "Pour les enfants âgés de plus de 21 ans, qui sont dans"+
-              "l’impossibilité permanente d’exercer une activité rémunérée :"+
-            "</h3>"+
-            '<div class="row block-9">'+
-              '<div class="rowDPC d-flex mb-5 contact-info">'+
-                '<div class="form-group">'+
-                  '<label>Attestation de non affiliation CNAS/CASNOS</label>'+
-                  '<input'+
-                    'type="file"'+
-                    'class="form-control-file"'+
-                    'id="exampleFormControlFile1"'+
-                  '/>'+
-                '</div>'+
-              '</div>'+
-              '<div class="rowDPC d-flex mb-5 contact-info">'+
-                '<div class="form-group">'+
-                  '<label>Certificat d’handicap</label>'+
-                 ' <input'+
-                    'type="file"'+
-                    'class="form-control-file"'+
-                    'id="exampleFormControlFile1"'+
-                  '/>'+
-                '</div>'+
-              '</div>'+
-            '</div>';
-		 }
-		 
-	 }
- }*/
- 	/*          <div>
- 	           <h3>
- 	             Pour les enfants âgés de plus de 21 ans, qui sont dans
- 	             l’impossibilité permanente d’exercer une activité rémunérée :
- 	           </h3>
- 	           <div class="row block-9">
- 	             <div class="rowDPC d-flex mb-5 contact-info">
- 	               <div class="form-group">
- 	                 <label>Attestation de non affiliation CNAS/CASNOS</label>
- 	                 <input
- 	                   type="file"
- 	                   class="form-control-file"
- 	                   id="exampleFormControlFile1"
- 	                 />
- 	               </div>
- 	             </div>
- 	             <div class="rowDPC d-flex mb-5 contact-info">
- 	               <div class="form-group">
- 	                 <label>Certificat d’handicap</label>
- 	                 <input
- 	                   type="file"
- 	                   class="form-control-file"
- 	                   id="exampleFormControlFile1"
- 	                 />
- 	               </div>
- 	             </div>
- 	           </div>
- 	         </div> */
- 
