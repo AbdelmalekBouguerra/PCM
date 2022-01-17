@@ -1,5 +1,6 @@
 const { Router } = require('express');
 const express = require('express');
+
 const router = express.Router();
 const authController = require('../controllers/auth')
 
@@ -32,8 +33,9 @@ router.get('/PrisesEnCharge100',(req,res) =>{
 })
 
 router.get('/CMS',(req,res) =>{
-    res.render('CMS');
+    res.render('Prestations/CMS');
 })
+
 
 // TODO : add a /accueil with good route
 
