@@ -14,6 +14,7 @@ router.get('/prisesEnCharge100',(req,res) =>{
 })
 
 router.get('/CMS',(req,res) =>{
+    var err = 1/0;
     res.render('prestation/CMS');
 })
 

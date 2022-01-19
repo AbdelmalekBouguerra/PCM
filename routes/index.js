@@ -10,25 +10,20 @@ router.get("/", (req, res) => {
     
 });
 
-router.get('/ED',(req,res) => {
+router.get('/EspaceDemandeur',(req,res) => {
     res.render('ED');
 });
 
 router.get('/info',(req,res) =>{
+    console.log("i am in info");
     res.render('info');
     
 })
 
 router.get('/accueil',(req,res) =>{
+    
     res.render('accueil');
 })
-
-
-
-router.get('/CMS',(req,res) =>{
-    res.render('Prestations/CMS');
-})
-
 
 // TODO : add a /accueil with good route
 
