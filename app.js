@@ -45,3 +45,4 @@ app.set('view engine', 'hbs');
 
 // template hbs
 hbs.registerPartials(path.join(__dirname, 'views', 'templates'))
+
