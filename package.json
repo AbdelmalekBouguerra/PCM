@@ -18,6 +18,7 @@
   "homepage": "https://github.com/AbdelmalekBouguerra/PCM#readme",
   "dependencies": {
     "express": "^4.17.2",
+    "express-session": "^1.17.2",
     "hbs": "^4.2.0",
     "ldapjs": "^2.3.1",
     "mysql2": "^2.3.3",
