@@ -1,82 +1,78 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+  <!-- head -->
+  <head>
+    <!-- title -->
     <title>Plateforme de prise en charge medicale</title>
-    <meta charset="utf-8"/>
+
+    <!-- meta data -->
+    <meta charset="utf-8" />
     <meta
-            name="viewport"
-            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
+
+    <!-- css cors loading  -->
     <link
-            rel="stylesheet"
-            href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+      rel="stylesheet"
+      href="/fontawesome/css/all.min.css"
     />
-    <link rel="stylesheet" href="/assetsLogin/css/styleLogin.css"/>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-</head>
-<body class="img js-fullheight">
-<div class="SILDE_BG">
-    <section class="ftco-section">
+    <link rel="stylesheet" href="/assetsLogin/css/styleLogin1.css" />
+
+    <!-- fav icon -->
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+    
+  </head>
+
+  <!-- body -->
+  <body class="img js-fullheight">
+    <div class="SILDE_BG">
+      <section class="ftco-section">
         <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-6 text-center mb-5">
-                    <img
-                            src="assetsLogin/images/logo.png"
-                            width="150"
-                            height="217"
-                            alt="logo"
-                    />
-                    <h2 class="heading-section">Direction Affaires Sociales</h2>
-                </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 text-center mb-5">
+              <img
+                src="assetsLogin/images/logo.png"
+                width="150"
+                height="217"
+                alt="logo"
+              />
+              <h2 class="heading-section">Direction Affaires Sociales</h2>
             </div>
-            <div class="row justify-content-center">
-                <div class="col-md-6 col-lg-4">
-                    <div class="login-wrap p-0">
-                        <h3 class="mb-4 text-center">
-                            Plateforme de prise en charge medicale
-                        </h3>
-                        <form action="/accueil" class="signin-form" method="post">
-                            <div class="form-group">
-                                <input
-                                        name="username"
-                                        type="text"
-                                        class="form-control"
-                                        placeholder="Son"
-                                    {{#if username}}
-                                        value={{username}}
-                                    {{/if}}
-                                        required
-                                />
-                            </div>
-                            <div class="form-group">
-                                <input
-                                        name="password"
-                                        id="password-field"
-                                        type="password"
-                                        class="form-control"
-                                        placeholder="Mot de passe"
-                                    {{#if password}}
-                                        value={{password}}
-                                    {{/if}}
-                                        required
-                                />
-                                <span
-                                        toggle="#password-field"
-                                        class="fa fa-fw fa-eye field-icon toggle-password"
-                                ></span>
-                            </div>
-                            <div class="form-group">
-                                {{#if invalid}}
-                                    <p style="color: rgb(200, 0, 0)">{{invalid}}</p>
-                                {{/if}}
-                                <button
-                                        type="submit"
-                                        class="form-control btn btn-primary submit px-3"
-                                >
-                                    CONNEXION
-                                </button>
-                            </div>
-                            <!--<div class="form-group d-md-flex">
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-6 col-lg-4">
+              <div class="login-wrap p-0">
+                <h3 class="mb-4 text-center">
+                  Plateforme de prise en charge medicale
+                </h3>
+                <form action="/accueil" class="signin-form" method="post">
+                  <div class="form-group">
+                    <input name="username" type="text" class="form-control"
+                    placeholder="Son" {{#if username}} value={{username}}
+                    {{/if}} required />
+                  </div>
+                  <div class="form-group">
+                    <input name="password" id="password-field" type="password"
+                    class="form-control" placeholder="Mot de passe" {{#if
+                    password}} value={{password}} {{/if}} required />
+                    <span
+                      toggle="#password-field"
+                      class="fa fa-fw fa-eye field-icon toggle-password"
+                    ></span>
+                  </div>
+                  <div class="form-group">
+                    {{#if invalid}}
+                    <p style="color: rgb(200, 0, 0)">{{invalid}}</p>
+                    {{/if}}
+                    <button
+                      type="submit"
+                      class="form-control btn btn-primary submit px-3"
+                    >
+                      CONNEXION
+                    </button>
+                  </div>
+                  <!--<div class="form-group d-md-flex">
                                         <div class="w-50">
                                           <label class="checkbox-wrap checkbox-primary"
                                             >Remember Me
@@ -88,17 +84,15 @@
                                           <a href="#" style="color: #fff">Forgot Password</a>
                                         </div>
                                       </div>-->
-                        </form>
-                    </div>
-                </div>
+                </form>
+              </div>
             </div>
+          </div>
         </div>
-    </section>
-</div>
-<!------------------------------------------------------------------------>
-<script src="/assetsLogin/js/jquery.min.js"></script>
-<script src="/assetsLogin/js/popper.js"></script>
-<script src="/assetsLogin/js/bootstrap.min.js"></script>
-<script src="/assetsLogin/js/main.js"></script>
-</body>
+      </section>
+    </div>
+    <script src="/assetsLogin/js/jquery.min.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="/assetsLogin/js/main.js"></script>
+  </body>
 </html>
