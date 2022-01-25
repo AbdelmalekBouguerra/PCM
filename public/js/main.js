@@ -316,7 +316,7 @@
 
  //this script to only check one checkbox
  function myFun(checkbox) {
- 	var checkboxes = document.getElementsByName("statuAdh");
+ 	var checkboxes = document.getElementsByName("typeDemande");
  	checkboxes.forEach((item) => {
  		if (item !== checkbox) item.checked = false;
  	});
@@ -328,6 +328,13 @@
  		if (item !== checkbox) item.checked = false;
  	});
  };
+
+ function myFun3(checkbox) {
+	var checkboxes = document.getElementsByName("statuAdh");
+	checkboxes.forEach((item) => {
+		if (item !== checkbox) item.checked = false;
+	});
+};
 
  // Copying value from one input field to another input field
 
@@ -375,214 +382,4 @@
  		document.getElementById('benFirstName').value = benFirstName;
  	}
 
- }
-
- function addFieldsAgent() {
- 	var left = document.getElementById("leftAdh");
- 	var right = document.getElementById("rightAdh");
- 	if (document.getElementById("AgentCheck").checked) {
- 		// Container <div> where dynamic content will be placed
-
- 		// Clear previous contents of the container
- 		while (left.hasChildNodes()) {
- 			left.removeChild(left.lastChild);
- 		}
-
- 		// Clear previous contents of the container
- 		while (right.hasChildNodes()) {
- 			right.removeChild(right.lastChild);
- 		}
- 		// Create an <input> element, set its type and name attributes
- 		var label = document.createElement("label");
- 		label.textContent = "Copie du dernier bulletin de paie (Adhésion du travailleur au système tiers payant)";
-
- 		var label2 = document.createElement("label");
- 		label2.textContent = "Feuille de soins médicaux"
-
- 		var input = document.createElement("input");
- 		input.type = "file";
- 		input.className = "form-control-file";
-
- 		var input2 = document.createElement("input");
- 		input2.type = "file";
- 		input2.className = "form-control-file";
-
- 		left.appendChild(label);
- 		right.appendChild(label2);
- 		left.appendChild(input);
- 		right.appendChild(input2);
- 		// Append a line break
- 	} else {
- 		while (left.hasChildNodes()) {
- 			left.removeChild(left.lastChild);
- 		}
- 		while (right.hasChildNodes()) {
- 			right.removeChild(right.lastChild);
- 		}
- 	}
- }
-
- function addFieldsRet() {
- 	var left = document.getElementById("leftAdh");
- 	var right = document.getElementById("rightAdh");
- 	if (document.getElementById("RetCheck").checked) {
- 		// Container <div> where dynamic content will be placed
-
- 		// Clear previous contents of the container
- 		while (left.hasChildNodes()) {
- 			left.removeChild(left.lastChild);
- 		}
-
- 		// Clear previous contents of the container
- 		while (right.hasChildNodes()) {
- 			right.removeChild(right.lastChild);
- 		}
- 		// Create an <input> element, set its type and name attributes
- 		var label = document.createElement("label");
- 		label.textContent = "Copie de la décision de mise à la retraite";
-
- 		var label2 = document.createElement("label");
- 		label2.textContent = "Copie du reçu de paiement de la cotisation annuelle pour les retraités qui ont une pension mensuel de retraite supérieur à 40 000.00 da"
-
- 		var input = document.createElement("input");
- 		input.type = "file";
- 		input.className = "form-control-file";
-
- 		var input2 = document.createElement("input");
- 		input2.type = "file";
- 		input2.className = "form-control-file";
-
- 		left.appendChild(label);
- 		right.appendChild(label2);
- 		left.appendChild(input);
- 		right.appendChild(input2);
- 		// Append a line break
- 	} else {
- 		while (left.hasChildNodes()) {
- 			left.removeChild(left.lastChild);
- 		}
- 		while (right.hasChildNodes()) {
- 			right.removeChild(right.lastChild);
- 		}
- 	}
- }
-
- function addFieldsVeuf() {
- 	var left = document.getElementById("leftAdh");
- 	var right = document.getElementById("rightAdh");
- 	if (document.getElementById("VeufCheck").checked) {
- 		// Container <div> where dynamic content will be placed
-
- 		// Clear previous contents of the container
- 		while (left.hasChildNodes()) {
- 			left.removeChild(left.lastChild);
- 		}
-
- 		// Clear previous contents of the container
- 		while (right.hasChildNodes()) {
- 			right.removeChild(right.lastChild);
- 		}
- 		// Create an <input> element, set its type and name attributes
- 		var label = document.createElement("label");
- 		label.textContent = "Décision de cessation de la relation de travail pour cause de décès";
-
- 		var label2 = document.createElement("label");
- 		label2.textContent = "Certificat de décès."
-
- 		var input = document.createElement("input");
- 		input.type = "file";
- 		input.className = "form-control-file";
-
- 		var input2 = document.createElement("input");
- 		input2.type = "file";
- 		input2.className = "form-control-file";
-
- 		left.appendChild(label);
- 		right.appendChild(label2);
- 		left.appendChild(input);
- 		right.appendChild(input2);
- 		// Append a line break
- 	} else {
- 		while (left.hasChildNodes()) {
- 			left.removeChild(left.lastChild);
- 		}
- 		while (right.hasChildNodes()) {
- 			right.removeChild(right.lastChild);
- 		}
- 	}
- }
-
- function removeAd() {
- 	var left = document.getElementById("leftBen");
- 	var fils = document.getElementById("fils");
-
- 	while (left.hasChildNodes()) {
- 		left.removeChild(left.lastChild);
- 	}
- 	while (fils.hasChildNodes()) {
- 		fils.removeChild(fils.lastChild);
- 	}
-
- }
-
- function addFieldsAd() {
- 	var left = document.getElementById("leftBen");
- 	var fils = document.getElementById("fils");
- 	if (document.getElementById("check2").checked) {
- 		// Container <div> where dynamic content will be placed
-
- 		// Clear previous contents of the container
- 		while (left.hasChildNodes()) {
- 			left.removeChild(left.lastChild);
- 		}
- 		while (fils.hasChildNodes()) {
- 			fils.removeChild(fils.lastChild);
- 		}
-
- 		// Create an <input> element, set its type and name attributes
- 		var label = document.createElement("label");
- 		label.textContent = "Une fiche familiale ou KAFALA pour les enfants adoptifs";
-
- 		var input = document.createElement("input");
- 		input.type = "file";
- 		input.className = "form-control-file";
-
- 		left.appendChild(label);
- 		left.appendChild(input);
-
- 		fils.innerHTML = "<h3>" +
- 			"Pour les enfants âgés de plus de 21 ans, qui sont dans" +
- 			"l’impossibilité permanente d’exercer une activité rémunérée :" +
- 			"</h3>" +
- 			'<div class="row block-9">' +
- 			'<div class="rowDPC d-flex mb-5 contact-info">' +
- 			'<div class="form-group">' +
- 			'<label>Attestation de non affiliation CNAS/CASNOS</label>' +
- 			'<input' +
- 			' type="file"' +
- 			' class="form-control-file"' +
- 			' id="exampleFormControlFile1"' +
- 			'/>' +
- 			'</div>' +
- 			'</div>' +
- 			'<div class="rowDPC d-flex mb-5 contact-info">' +
- 			'<div class="form-group">' +
- 			'<label>Certificat d’handicap</label>' +
- 			' <input' +
- 			' type="file"' +
- 			' class="form-control-file"' +
- 			' id="exampleFormControlFile1"' +
- 			'/>' +
- 			'</div>' +
- 			'</div>' +
- 			'</div>';
- 		// Append a line break
- 	} else {
- 		while (left.hasChildNodes()) {
- 			left.removeChild(left.lastChild);
- 		}
- 		while (fils.hasChildNodes()) {
- 			fils.removeChild(fils.lastChild);
- 		}
- 	}
  }
