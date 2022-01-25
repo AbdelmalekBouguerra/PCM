@@ -5,6 +5,13 @@ const path = require('path')
 const db = require('./env/db')
 const hbs = require('hbs')
 const session = require('express-session');
+const chalk = require('chalk');
+
+// chalk styling 
+const error = chalk.bold.redBright.inverse;
+const success = chalk.bold.greenBright;
+const warning = chalk.keyword('orange').bold;
+
 
 const fs = require('fs');
 
@@ -21,11 +28,11 @@ var httpsServer = https.createServer(credentials, app);
 const http_port = 3000;
 const https_port = 3030;
 
-httpServer.listen(http_port, () => {
-    console.log(`Server started on http://localhost:${http_port}`);
-});
+// httpServer.listen(http_port, () => {
+//     console.log(success('Server started on http://localhost:'+http_port));
+// });
 httpsServer.listen(https_port, () => {
-    console.log(`Server started on https://localhost:${https_port}`);
+    console.log(success('Server started :'),'https://localhost:'+https_port);
 });
 
 
@@ -52,7 +59,7 @@ db.connect((err) => {
     if (err) {
         console.log("error db connction" + err);
     } else {
-        console.log("MySQL connected ...");
+        console.log(success("MySQL connected"));
     }
 })
 

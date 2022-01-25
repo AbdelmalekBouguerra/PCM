@@ -4,7 +4,8 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "kill-port 3030;nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,7 @@
   },
   "homepage": "https://github.com/AbdelmalekBouguerra/PCM#readme",
   "dependencies": {
+    "chalk": "^2.0.0",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
