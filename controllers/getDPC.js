@@ -16,11 +16,11 @@ function getDemandeTable(userId,callback){
     )
 }
 exports.espaceDemandeur = (req,res) => {
-    if (req.session.isAuth && req.session.user) {
-        getDemandeTable(req.session.user[0].ID,(results)=>{
-            table = results;
-            res.render('ED',{table : table});  
-        })
-    } else 
-        res.render('index');    
+    // if (req.session.isAuth && req.session.user) {
+    //     getDemandeTable(req.session.user[0].ID,(results)=>{
+    //         table = results;
+    //         res.render('ED',{table : table});  
+    //     })
+    // } else 
+        res.render('ED');    
 }
