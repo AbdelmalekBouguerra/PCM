@@ -25,7 +25,8 @@
     "hbs": "^4.2.0",
     "ldapjs": "^2.3.1",
     "mysql2": "^2.3.3",
-    "pm2": "^5.1.2"
+    "pm2": "^5.1.2",
+    "validator": "^13.7.0"
   },
   "devDependencies": {
     "kill-port": "^1.6.1",

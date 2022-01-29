@@ -102,51 +102,59 @@
         <div class="container heading-section">
           <h2 class="text-capitalize text-center">Envoyer un demande :</h2>
           <div class="container">
-            <form action="#">
+            <form action="/EspaceDemandeur" method="post" onsubmit="return validateForm()";>
               <h2 class="text-center">Remplissez le formulaire suivant :</h2>
               <div class="form-check-inline ali">
                 <h6 class="mr-2 text-black">Type de demande :</h6>
                 <input
                   id="AgentCheck"
                   onclick="myFun(this)"
-                  name="statuAdh"
+                  name="typePrestation"
                   style="margin-bottom: 5px"
-                  type="checkbox"
+                  type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
+                  value="Tiers payant"
+                  required
                 />
                 <label class="mr-2">Tiers payant</label>
                 <div class="mr-2"></div>
                 <input
                   class="form-check-inline"
                   id="RetCheck"
-                  name="statuAdh"
+                  name="typePrestation"
                   onclick="myFun(this)"
                   placeholder="Agent"
                   style="margin-bottom: 5px"
-                  type="checkbox"
+                  type="radio"
+                  value="Médecines de soins"
+                  required
                 />
                 <label class="mr-2">Médecines de soins</label>
                 <div class="mr-2"></div>
                 <input
                   id="VeufCheck"
                   onclick="myFun(this)"
-                  name="statuAdh"
+                  name="typePrestation"
                   style="margin-bottom: 5px"
-                  type="checkbox"
+                  type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
+                  value="Prises en charge 100 %"
+                  required
                 />
                 <label class="mr-2">Prises en charge 100 %</label>
                 <div class="mr-2"></div>
                 <input
                   id="VeufCheck"
                   onclick="myFun(this)"
-                  name="statuAdh"
+                  name="typePrestation"
                   style="margin-bottom: 5px"
-                  type="checkbox"
+                  type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
+                  value="Randevou CMS"
+                  required
                 />
                 <label class="mr-2">Randevou CMS</label>
               </div>
@@ -158,10 +166,12 @@
                   onclick="myFun(this)"
                   name="statuAdh"
                   style="margin-bottom: 5px"
-                  type="checkbox"
+                  type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
                   onchange="addFieldsAgent()"
+                  value="Agent"
+                  required
                 />
                 <label class="mr-2">Agent</label>
                 <div class="mr-2"></div>
@@ -170,10 +180,12 @@
                   onclick="myFun(this);addAgent()"
                   name="statuAdh"
                   style="margin-bottom: 5px"
-                  type="checkbox"
+                  type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
                   onchange="addFieldsRet()"
+                  value="Retraité(e)"
+                  required
                 />
                 <label class="mr-2">Retraité(e)</label>
                 <div class="mr-2"></div>
@@ -182,12 +194,14 @@
                   onclick="myFun(this)"
                   name="statuAdh"
                   style="margin-bottom: 5px"
-                  type="checkbox"
+                  type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
                   onchange="addFieldsVeuf()"
+                  value="veuf(ve)"
+                  required
                 />
-                <label class="mr-2">veuf(ve) </label>
+                <label class="mr-2">veuf(ve)</label>
               </div>
               <div class="row block-9">
                 <div class="rowDPC d-flex mb-5 contact-info">
@@ -198,6 +212,11 @@
                       type="text"
                       class="form-control"
                       placeholder="Nom"
+                      name="nom"
+                      required
+                      oninvalid="this.setCustomValidity('veuillez entrer votre nom')"
+                      oninput="setCustomValidity('')"    
+                      value={{request.nom}}                  
                     />
                   </div>
                   <div class="form-group">
@@ -206,6 +225,11 @@
                       type="text"
                       class="form-control"
                       placeholder="Prenom"
+                      name="prenom"
+                      required
+                      oninvalid="this.setCustomValidity('veuillez entrer votre prenom')"
+                      oninput="setCustomValidity('')"
+                      value={{request.prenom}}
                     />
                   </div>
                   <div class="form-group">
@@ -213,6 +237,8 @@
                       type="text"
                       class="form-control"
                       placeholder="Matricule"
+                      name="matricule"
+                      value={{request.matricule}}
                     />
                   </div>
                 </div>
@@ -224,6 +250,11 @@
                       type="text"
                       class="form-control"
                       placeholder="Téléphone"
+                      name="tele"
+                      required
+                      oninvalid="this.setCustomValidity('veuillez entrer votre Téléphone')"
+                      oninput="setCustomValidity('')"
+                      value={{request.tele}}
                     />
                   </div>
                   <div class="form-group">
@@ -231,6 +262,11 @@
                       type="text"
                       class="form-control"
                       placeholder="E-mail"
+                      name="email"
+                      required
+                      oninvalid="this.setCustomValidity('veuillez entrer votre E-mail')"
+                      oninput="setCustomValidity('')"
+                      value={{request.email}}                      
                     />
                   </div>
                   <div style="margin-top: 20px">
@@ -238,21 +274,27 @@
                       class="selectpicker form-control"
                       data-live-search="true"
                       title="Employeur"
+                      name="Employeur"  
+                      required
                     >
                       <optgroup label="Sonatrach">
-                        <option data-tokens="iap">
+                        <option
+                          data-tokens="iap"
+                          value="Institut algérien du pétrole">
                           Institut algérien du pétrole
                         </option>
-                        <option data-tokens="asl">
+                        <option data-tokens="asl"
+                        value="Direction des œuvres sociale">
                           Direction des œuvres sociale
                         </option>
-                        <option data-tokens="dp">
+                        <option data-tokens="dp"
+                        value="Division Production Sonatrach">
                           Division Production Sonatrach
                         </option>
                       </optgroup>
                       <optgroup label="extra">
-                        <option>ENAFOR</option>
-                        <option>GCB</option>
+                        <option value="ENAFOR">ENAFOR</option>
+                        <option value="GCB">GCB</option>
                         <option>ENAGEO</option>
                       </optgroup>
                     </select>
@@ -265,10 +307,12 @@
                   id="check1"
                   name="bene"
                   style="margin-bottom: 5px"
-                  type="checkbox"
+                  type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
                   onclick="myFun2(this);copyTextValue();"
+                  value="L’adhérent"
+                  required
                 />
                 <label class="mr-2">L’adhérent</label>
                 <div class="mr-2"></div>
@@ -277,10 +321,12 @@
                   onclick="myFun2(this);getLastTextValue(this);"
                   name="bene"
                   style="margin-bottom: 5px"
-                  type="checkbox"
+                  type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
                   onchange="addFieldsAd();"
+                  value="Ayant droit"
+                  required
                 />
                 <label class="mr-2">Ayant droit*</label>
               </div>
@@ -293,6 +339,11 @@
                       type="text"
                       class="form-control"
                       placeholder="Nom"
+                      name="benenom"
+                      required
+                      oninvalid="this.setCustomValidity('veuillez entrer le nom')"
+                      oninput="setCustomValidity('')"
+                      value={{request.benenom}}
                     />
                   </div>
                   <div style="margin-top: 20px">
@@ -300,8 +351,10 @@
                       id="lienParentie"
                       class="selectpicker form-control"
                       title="lien de parenté avec l’adhérent"
+                      name="lienparentie"
+                      required
                     >
-                      <option>Conjointe / Conjoint</option>
+                      <option value="C">Conjointe / Conjoint</option>
                       <option value="fils">Fille / fils</option>
                     </select>
                   </div>
@@ -309,6 +362,7 @@
                     <select
                       class="selectpicker form-control"
                       title="Type d’acte demandé"
+                      required
                     >
                       <option>Ophtalmologie</option>
                       <option>Oncologie</option>
@@ -319,8 +373,6 @@
                         <option>Autres Chirurgies</option>
                       </optgroup>
                     </select>
-                    <div id="leftAdh" class="form-group"></div>
-                    <div id="leftBen" class="form-group"></div>
                   </div>
                 </div>
                 <div class="rowDPC d-flex mb-5 contact-info">
@@ -331,6 +383,11 @@
                       type="text"
                       class="form-control"
                       placeholder="Prenom"
+                      name="beneprenom"
+                      required
+                      oninvalid="this.setCustomValidity('veuillez entrer le prenom')"
+                      oninput="setCustomValidity('')"
+                      value={{request.beneprenom}}
                     />
                   </div>
                   <div class="form-group">
@@ -339,6 +396,8 @@
                       type="date"
                       class="form-control"
                       placeholder="Date"
+                      required
+                      name="date"
                     />
                   </div>
                   <div style="margin-top: 20px">
@@ -346,14 +405,21 @@
                       data-live-search="true"
                       class="selectpicker form-control"
                       title="Structure médicale conventionnée souhaitée"
+                      name="Structure"
+                      required
                     >
-                      <option>EL SALAM</option>
-                      <option>EL HILAL</option>
-                      <option>SARL CLINIQUE NOUR EL DOUNIA</option>
+                      <option value="EL SALAM">EL SALAM</option>
+                      <option value="EL HILAL">EL HILAL</option>
+                      <option value="SARL CLINIQUE NOUR EL DOUNIA">
+                        SARL CLINIQUE NOUR EL DOUNIA
+                      </option>
                     </select>
                   </div>
                 </div>
               </div>
+                {{#if invalidTel}}
+                  <span class="text-danger">{{invalidTel}}</span>
+                {{/if}}
               <div class="form-group">
                 <input
                   class="btn btn-primary py-3 px-5"
@@ -361,7 +427,6 @@
                   value="visualise"
                 />
               </div>
-
             </form>
           </div>
         </div>

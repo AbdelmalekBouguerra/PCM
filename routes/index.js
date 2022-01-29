@@ -1,7 +1,7 @@
 const { Router } = require('express');
 const express = require('express');
 const router = express.Router();
-const DPC = require('../controllers/getDPC');
+const DPC = require('../controllers/DPC');
 
 
 const authController = require('../controllers/auth')
@@ -11,7 +11,10 @@ router.get("/", (req, res) => {
     else res.render('index');
 });
 
-router.get('/EspaceDemandeur',DPC.espaceDemandeur);
+
+router.route('/EspaceDemandeur')
+    .get(DPC.get)
+    .post(DPC.post)
 
 router.get('/info',(req,res) =>{
     if (req.session.isAuth) res.render('info');   
