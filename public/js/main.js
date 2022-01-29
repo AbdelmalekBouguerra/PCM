@@ -344,10 +344,12 @@
  function copyTextValue() {
 
  	if (document.getElementById('check1').checked) {
+
  		benLastName = document.getElementById('benLastName').value;
  		benFirstName = document.getElementById('benFirstName').value;
  		let Agentlastname = document.getElementById('Agentlastname').value;
  		let Agentfirstname = document.getElementById('Agentfirstname').value;
+
  		document.getElementById('benLastName').value = Agentlastname;
  		document.getElementById('benFirstName').value = Agentfirstname;
  		document.getElementById('date').type = "text";
@@ -355,9 +357,6 @@
  		document.getElementById('benLastName').disabled = true;
  		document.getElementById('benFirstName').disabled = true;
  		document.getElementById('date').disabled = true;
-
- 		document.getElementById('lienParentie').option.selectIndex = 0;
- 		document.getElementById('lienParentie').disabled = true;
 
  	} else {
  		document.getElementById('benLastName').value = benLastName;
@@ -381,6 +380,13 @@
 
  		document.getElementById('benLastName').value = benLastName;
  		document.getElementById('benFirstName').value = benFirstName;
+		
+		document.getElementById('benLastName').disabled = false;
+		document.getElementById('benFirstName').disabled = false;
+
+		document.getElementById('date').disabled = false;
+		document.getElementById('date').type = "date";
+
  	}
 
  }

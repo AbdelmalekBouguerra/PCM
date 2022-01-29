@@ -269,7 +269,6 @@
                   class="form-check-inline"
                   placeholder="Agent"
                   onclick="myFun2(this);copyTextValue();"
-                  onchange="removeAd()"
                 />
                 <label class="mr-2">L’adhérent</label>
                 <div class="mr-2"></div>
@@ -320,10 +319,6 @@
                         <option>Autres Chirurgies</option>
                       </optgroup>
                     </select>
-                    <div class="form-group">
-                      <label>Prescription Médicale de l’acte demandé</label>
-                      <input type="file" class="form-control-file" />
-                    </div>
                     <div id="leftAdh" class="form-group"></div>
                     <div id="leftBen" class="form-group"></div>
                   </div>
@@ -357,20 +352,8 @@
                       <option>SARL CLINIQUE NOUR EL DOUNIA</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <label>
-                      facture pro-forma de la prescription demandée
-                    </label>
-                    <input
-                      type="file"
-                      class="form-control-file"
-                      id="exampleFormControlFile1"
-                    />
-                  </div>
-                  <div id="rightAdh" class="form-group"></div>
                 </div>
               </div>
-              <div id="fils"></div>
               <div class="form-group">
                 <input
                   class="btn btn-primary py-3 px-5"
@@ -378,16 +361,12 @@
                   value="visualise"
                 />
               </div>
-              <!-- Add here-->
-              <div id="drag-drop-area"></div>
-              <p>am here</p>
+
             </form>
           </div>
         </div>
       </div>
     </section>
-
-    <section class="ftco-section contact-section ftco-degree-bg"></section>
 
     {{>footer}}
 
