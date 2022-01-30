@@ -1,6 +1,7 @@
 {
     "todo-tree.tree.scanMode": "current file",
     "cSpell.words": [
+        "accueil",
         "Ayant",
         "BENEFICIAIRE",
         "BÉNÉFICIAIRE",
@@ -9,7 +10,9 @@
         "DEMA",
         "DEMANDE",
         "DEMANDEUR",
+        "Employeur",
         "L’adhérent",
+        "ldapjs",
         "lienparentie",
         "MATRICULE",
         "NAIS",
@@ -17,6 +20,9 @@
         "PARENTE",
         "PRENOM",
         "Prestation",
+        "retrive",
+        "SONATRACH",
+        "statu",
         "tele",
         "votre"
     ]

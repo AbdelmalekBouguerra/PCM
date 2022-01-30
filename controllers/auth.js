@@ -50,7 +50,7 @@ exports.login = (req, res) => {
             username: username,
         })
     } else {
-        req.session.isAuth = true; // bool value to check if user loged in
+        req.session.isAuth = true; // bool value to check if user logged in
         getUser(username,(user)=>{
             req.session.user = user; // save user information in session value
         })
