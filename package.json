@@ -19,7 +19,7 @@
   "homepage": "https://github.com/AbdelmalekBouguerra/PCM#readme",
   "dependencies": {
     "bootstrap-select": "^1.13.18",
-    "chalk": "^2.0.0",
+    "chalk": "^2.4.2",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
