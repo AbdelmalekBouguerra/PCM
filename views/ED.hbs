@@ -216,7 +216,7 @@
                       required
                       oninvalid="this.setCustomValidity('veuillez entrer votre nom')"
                       oninput="setCustomValidity('')"    
-                      value={{request.nom}}                  
+                      {{#if request}} value={{request.nom}} {{/if}}               
                     />
                   </div>
                   <div class="form-group">
@@ -229,7 +229,7 @@
                       required
                       oninvalid="this.setCustomValidity('veuillez entrer votre prenom')"
                       oninput="setCustomValidity('')"
-                      value={{request.prenom}}
+                      {{#if request}} value={{request.prenom}} {{/if}}
                     />
                   </div>
                   <div class="form-group">
@@ -238,7 +238,7 @@
                       class="form-control"
                       placeholder="Matricule"
                       name="matricule"
-                      value={{request.matricule}}
+                      {{#if request}} value={{request.matricule}} {{/if}}
                     />
                   </div>
                 </div>
@@ -254,7 +254,7 @@
                       required
                       oninvalid="this.setCustomValidity('veuillez entrer votre Téléphone')"
                       oninput="setCustomValidity('')"
-                      value={{request.tele}}
+                      {{#if request}} value={{request.tele}} {{/if}}
                     />
                   </div>
                   <div class="form-group">
@@ -266,7 +266,7 @@
                       required
                       oninvalid="this.setCustomValidity('veuillez entrer votre E-mail')"
                       oninput="setCustomValidity('')"
-                      value={{request.email}}                      
+                      {{#if request}} value={{request.email}} {{/if}}                      
                     />
                   </div>
                   <div style="margin-top: 20px">
@@ -343,7 +343,7 @@
                       required
                       oninvalid="this.setCustomValidity('veuillez entrer le nom')"
                       oninput="setCustomValidity('')"
-                      value={{request.benenom}}
+                      {{#if request}} value= {{request.benenom}} {{/if}}
                     />
                   </div>
                   <div style="margin-top: 20px">
@@ -387,7 +387,7 @@
                       required
                       oninvalid="this.setCustomValidity('veuillez entrer le prenom')"
                       oninput="setCustomValidity('')"
-                      value={{request.beneprenom}}
+                      {{#if request}} value={{request.beneprenom}} {{/if}}
                     />
                   </div>
                   <div class="form-group">
