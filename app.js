@@ -6,6 +6,8 @@ const db = require('./env/db')
 const hbs = require('hbs')
 const session = require('cookie-session');
 const chalk = require('chalk');
+const compression = require('compression');
+
 
 // chalk styling 
 const error = chalk.bold.redBright.inverse;
@@ -20,6 +22,7 @@ const cert = fs.readFileSync('./cert/CA/localhost/localhost.crt');
 
 
 const app = express();
+app.use(compression());
 var credentials = {key: key, cert: cert};
 
 // express server
