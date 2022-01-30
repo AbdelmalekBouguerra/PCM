@@ -19,11 +19,14 @@
   "homepage": "https://github.com/AbdelmalekBouguerra/PCM#readme",
   "dependencies": {
     "bootstrap-select": "^1.13.18",
+    "chai": "^4.3.6",
     "chalk": "^2.0.0",
+    "cookie-session": "^2.0.0",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
     "ldapjs": "^2.3.1",
+    "mocha": "^9.2.0",
     "mysql2": "^2.3.3",
     "pm2": "^5.1.2",
     "validator": "^13.7.0"

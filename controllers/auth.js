@@ -54,6 +54,7 @@ exports.login = (req, res) => {
         getUser(username,(user)=>{
             req.session.user = user; // save user information in session value
         })
+        req.session.username = username;
         res.render('accueil')
     }
     // authLDAP(username,password,res);

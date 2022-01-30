@@ -4,7 +4,7 @@ const https = require('https');
 const path = require('path')
 const db = require('./env/db')
 const hbs = require('hbs')
-const session = require('express-session');
+const session = require('cookie-session');
 const chalk = require('chalk');
 
 // chalk styling 
@@ -32,6 +32,7 @@ const https_port = 3030;
 //     console.log(success('Server started on http://localhost:'+http_port));
 // });
 httpsServer.listen(https_port, () => {
+
     console.log(success('Server started :'),'https://localhost:'+https_port);
 });
 
@@ -43,9 +44,11 @@ app.use(express.json())
 
 // Session
 app.use(session({
-    secret: 'secret key',
-    resave: false,
-    saveUninitialized: false
+    name:'session',
+    secret:'key1',
+    key: ['key1','key2'],
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+
 }))
 // Routers
 const indexRouter = require('./routes/index');
