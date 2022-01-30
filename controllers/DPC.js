@@ -78,27 +78,34 @@ function setDEMA(username, nom, prenom, matricule, tele, email) {
     }
   );
 }
-
-function setDPC(userID, benenom, beneprenom,dateNais,typePrestation, callback) {
-  
-  db.execute(
-    "INSERT INTO DPC(ID_DEMANDEUR,ID_BENEFICIAIRE,TYPE_DEMANDE,DATE_DEM) VALUES(?,(SELECT ID FROM BÉNÉFICIAIRE WHERE ID_DEMANDEUR = ? AND NOM = ? AND PRENOM = ? AND DATE_NAIS = ?),?,?)",
-    [
-      userID,
-
-      userID,
-      benenom,
-      beneprenom,
-      dateNais,
-
-      typePrestation,
-      date()
-    ],
-    (err, results) => {
-      if (err) console.log("setDPC ~ DPC.js SQL error :", err);
-      else callback(results);
-    }
-  );
+function setDPC(
+  userID,
+  benenom,
+  beneprenom,
+  dateNais,
+  typePrestation,
+  callback
+) {
+  //check if benenom is not undefined
+  if (typeof benenom !== "undefined") {
+    db.execute(
+      "INSERT INTO DPC(ID_DEMANDEUR,ID_BENEFICIAIRE,TYPE_DEMANDE,DATE_DEM) VALUES(?,(SELECT ID FROM BÉNÉFICIAIRE WHERE ID_DEMANDEUR = ? AND NOM = ? AND PRENOM = ? AND DATE_NAIS = ?),?,?)",
+      [userID, userID, benenom, beneprenom, dateNais, typePrestation, date()],
+      (err, results) => {
+        if (err) console.log("setDPC ~ DPC.js SQL error :", err);
+        else callback(results);
+      }
+    );
+  } else {
+    db.execute(
+      "INSERT INTO DPC(ID_DEMANDEUR,TYPE_DEMANDE,DATE_DEM) VALUES(?,?,?)",
+      [userID,typePrestation, date()],
+      (err, results) => {
+        if (err) console.log("setDPC ~ DPC.js SQL error :", err);
+        else callback(results);
+      }
+    );
+  }
 }
 
 function getBENE(benenom, beneprenom, dateNais, userID, callback) {
@@ -160,13 +167,19 @@ module.exports = {
       date,
       lienparentie,
       req.session.user[0].ID,
-      (results)=>{}
+      (results) => {}
     );
     // setting the DPC
-    setDPC(req.session.user[0].ID,benenom,beneprenom,date,typePrestation,()=>{
-      console.log('setting DPC done ty :-)');
-
-    })
+    setDPC(
+      req.session.user[0].ID,
+      benenom,
+      beneprenom,
+      date,
+      typePrestation,
+      () => {
+        console.log("setting DPC done ty :-)");
+      }
+    );
     getDemandeTable(req.session.user[0].ID, (results) => {
       res.render("ED", { table: results });
     });
