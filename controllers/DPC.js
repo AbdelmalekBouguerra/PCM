@@ -128,9 +128,11 @@ module.exports = {
     } else res.render("ED");
   },
   post: (req, res) => {
-    let userID =  req.session.user[0].ID;
-    console.log("🚀 ~ file: DPC.js ~ line 132 ~ userID", userID)
-    
+    try {
+      //throw new Error('BROKEN');
+      let userID =  req.session.user[0].ID;
+      console.log("🚀 ~ file: DPC.js ~ line 132 ~ userID", userID)
+      
     const {
       typePrestation,
       statuAdh,
@@ -150,40 +152,46 @@ module.exports = {
     var request = req.body;
     // validating the input
     if (!validator.isMobilePhone(tele, ["ar-DZ", "fr-FR"]))
-      res.render("ED", {
+    res.render("ED", {
         invalidTel: "votre numero de telephone est incorrect",
         request,
       });
-    if (!validator.isEmail(email, ["ar-DZ", "fr-FR"]))
+      if (!validator.isEmail(email, ["ar-DZ", "fr-FR"]))
       res.render("ED", {
         invalidTel: "votre Email est incorrect",
         request,
       });
-    // setting demandeur
-    setDEMA(req.session.username, nom, prenom, matricule, tele, email);
-    // setting the beneficiaire
-    setBENE(
-      bene,
-      benenom,
-      beneprenom,
-      date,
-      lienparentie,
-      req.session.user[0].ID,
-      (results) => {}
-    );
-    // setting the DPC
-    setDPC(
-      req.session.user[0].ID,
-      benenom,
+      // setting demandeur
+      setDEMA(req.session.username, nom, prenom, matricule, tele, email);
+      // setting the beneficiaire
+      setBENE(
+        bene,
+        benenom,
+        beneprenom,
+        date,
+        lienparentie,
+        req.session.user[0].ID,
+        (results) => {}
+        );
+        // setting the DPC
+        setDPC(
+          req.session.user[0].ID,
+          benenom,
       beneprenom,
       date,
       typePrestation,
       () => {
         console.log("setting DPC done ty :-)");
       }
-    );
-    getDemandeTable(req.session.user[0].ID, (results) => {
-      res.render("ED", { table: results,success: 'done' });
-    });
-  },
-};
+      );
+      getDemandeTable(req.session.user[0].ID, (results) => {
+        res.render("ED", { table: results,success: 'done' });
+      });
+    } catch (error) {
+      console.log(error);
+      getDemandeTable(req.session.user[0].ID, (results) => {
+        res.render("ED", { table: results,error: 'done' });
+      });    }
+    },
+  };
+  
