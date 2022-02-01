@@ -7,14 +7,18 @@
         "BÉNÉFICIAIRE",
         "benenom",
         "beneprenom",
+        "cette",
         "DEMA",
         "DEMANDE",
         "DEMANDEUR",
         "Employeur",
+        "envoyée",
+        "Espace",
         "L’adhérent",
         "ldapjs",
         "lienparentie",
         "MATRICULE",
+        "mises",
         "NAIS",
         "numero",
         "PARENTE",
@@ -24,6 +28,9 @@
         "SONATRACH",
         "statu",
         "tele",
-        "votre"
+        "toutes",
+        "verrez",
+        "votre",
+        "vous"
     ]
 }

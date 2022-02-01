@@ -53,9 +53,10 @@ exports.login = (req, res) => {
         req.session.isAuth = true; // bool value to check if user logged in
         getUser(username,(user)=>{
             req.session.user = user; // save user information in session value
+            req.session.username = username;
+            res.render('accueil')
         })
-        req.session.username = username;
-        res.render('accueil')
+
     }
     // authLDAP(username,password,res);
 };

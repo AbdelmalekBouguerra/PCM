@@ -128,6 +128,9 @@ module.exports = {
     } else res.render("ED");
   },
   post: (req, res) => {
+    let userID =  req.session.user[0].ID;
+    console.log("🚀 ~ file: DPC.js ~ line 132 ~ userID", userID)
+    
     const {
       typePrestation,
       statuAdh,
@@ -180,7 +183,7 @@ module.exports = {
       }
     );
     getDemandeTable(req.session.user[0].ID, (results) => {
-      res.render("ED", { table: results });
+      res.render("ED", { table: results,success: 'done' });
     });
   },
 };
