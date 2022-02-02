@@ -53,9 +53,14 @@ app.use(session({
     maxAge: 24 * 60 * 60 * 1000 // 24 hours
 
 }))
+
+
+
 // Routers
 const indexRouter = require('./routes/index');
 const prestationRouter = require('./routes/prestation');
+
+
 
 app.use('/',indexRouter);
 app.use('/prestation',prestationRouter);
