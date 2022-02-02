@@ -123,6 +123,7 @@ module.exports = {
     if (req.session.isAuth && req.session.user) {
       getDemandeTable(req.session.user[0].ID, (results) => {
         table = results;
+        console.log("🚀 ~ file: DPC.js ~ line 126 ~ getDemandeTable ~ results", results)
         res.render("ED", { table: table });
       });
     } else res.render("ED");
