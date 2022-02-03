@@ -86,15 +86,19 @@
             {{#each table }}
             <tr>
               <th scope="row">{{this.ID}}</th>
+              {{#if this.ID_BENEFICIAIRE}}
               <td>{{this.ID_BENEFICIAIRE}}</td>
-              <td>{{this}}</td>
-              <td>{{this}}</td>
-              <td>{{this}}</td>
-              <td>{{this}}</td>
+              {{else}}
+              <td>L'adhérent</td>
+              {{/if}}
+              <td>{{this.STRUCTURE}}</td>
+              <td>{{this.ACT}}</td>
+              <td>{{this.DATE_DEM}}</td>
+              <td>{{this.TYPE_DEMANDE}}</td>
+              <td>{{this.STATU_DPC}}</td>
               <td>
                 <label class="badge badge-warning">En cour</label>
               </td>
-              <td>#</td>
             </tr>
             {{/each}}
           </tbody>

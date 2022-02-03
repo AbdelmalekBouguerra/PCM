@@ -1,7 +1,7 @@
 const db = require("../env/db");
 const validator = require("validator");
 const date = require("./date");
-
+const moment = require("moment");
 var table = [];
 function getDemandeTable(userId, callback) {
   db.execute(
@@ -11,7 +11,22 @@ function getDemandeTable(userId, callback) {
       if (err) {
         console.log(err);
       } else {
+        for (let i = 0; i < results.length; i++) {
+          // if beneficiaire pas null
+          if (results[i].ID_BENEFICIAIRE == null) {
+            delete results[i].ID_BENEFICIAIRE;
+          }
+          // formate date to DD-MM-YYYY
+          results[i].DATE_DEM = moment(results[i].DATE_DEM).format(
+            "DD-MM-YYYY"
+          );
+        }
+
         callback(results);
+        console.log(
+          "🚀 ~ file: DPC.js ~ line 22 ~ getDemandeTable ~ results",
+          results
+        );
       }
     }
   );
@@ -83,6 +98,7 @@ function setDPC(
   beneprenom,
   dateNais,
   typePrestation,
+
   callback
 ) {
   //check if benenom is not undefined
@@ -98,7 +114,7 @@ function setDPC(
   } else {
     db.execute(
       "INSERT INTO DPC(ID_DEMANDEUR,TYPE_DEMANDE,DATE_DEM) VALUES(?,?,?)",
-      [userID,typePrestation, date()],
+      [userID, typePrestation, date()],
       (err, results) => {
         if (err) console.log("setDPC ~ DPC.js SQL error :", err);
         else callback(results);
@@ -123,45 +139,52 @@ module.exports = {
     if (req.session.isAuth && req.session.user) {
       getDemandeTable(req.session.user[0].ID, (results) => {
         table = results;
-        console.log("🚀 ~ file: DPC.js ~ line 126 ~ getDemandeTable ~ results", results)
+        console.log(
+          "🚀 ~ file: DPC.js ~ line 126 ~ getDemandeTable ~ results",
+          results
+        );
+        if (table.ID) {
+        }
         res.render("ED", { table: table });
       });
     } else res.render("ED");
   },
   post: (req, res) => {
     try {
-      //throw new Error('BROKEN');
-      let userID =  req.session.user[0].ID;
-      console.log("🚀 ~ file: DPC.js ~ line 132 ~ userID", userID)
       
-    const {
-      typePrestation,
-      statuAdh,
-      nom,
-      prenom,
-      matricule,
-      tele,
-      email,
-      Employeur,
-      bene,
-      benenom,
-      beneprenom,
-      lienparentie,
-      date,
-      Structure,
-    } = req.body;
-    var request = req.body;
-    // validating the input
-    if (!validator.isMobilePhone(tele, ["ar-DZ", "fr-FR"]))
-    res.render("ED", {
-        invalidTel: "votre numero de telephone est incorrect",
-        request,
-      });
+      // console.log("🚀 ~ file: DPC.js ~ line 155 ~ req.body", req.body)
+      // throw new Error('BROKEN');
+      let userID = req.session.user[0].ID;
+      console.log("🚀 ~ file: DPC.js ~ line 132 ~ userID", userID);
+
+      const {
+        typePrestation,
+        statuAdh,
+        nom,
+        prenom,
+        matricule,
+        tele,
+        email,
+        Employeur,
+        bene,
+        benenom,
+        beneprenom,
+        lienparentie,
+        date,
+        Structure,
+      } = req.body;
+      var request = req.body;
+      // validating the input
+      if (!validator.isMobilePhone(tele, ["ar-DZ", "fr-FR"]))
+        res.render("ED", {
+          invalidTel: "votre numero de telephone est incorrect",
+          request,
+        });
       if (!validator.isEmail(email, ["ar-DZ", "fr-FR"]))
-      res.render("ED", {
-        invalidTel: "votre Email est incorrect",
-        request,
-      });
+        res.render("ED", {
+          invalidTel: "votre Email est incorrect",
+          request,
+        });
       // setting demandeur
       setDEMA(req.session.username, nom, prenom, matricule, tele, email);
       // setting the beneficiaire
@@ -173,26 +196,26 @@ module.exports = {
         lienparentie,
         req.session.user[0].ID,
         (results) => {}
-        );
-        // setting the DPC
-        setDPC(
-          req.session.user[0].ID,
-          benenom,
-      beneprenom,
-      date,
-      typePrestation,
-      () => {
-        console.log("setting DPC done ty :-)");
-      }
+      );
+      // setting the DPC
+      setDPC(
+        req.session.user[0].ID,
+        benenom,
+        beneprenom,
+        date,
+        typePrestation,
+        () => {
+          console.log("setting DPC done ty :-)");
+        }
       );
       getDemandeTable(req.session.user[0].ID, (results) => {
-        res.render("ED", { table: results,success: 'done' });
+        res.render("ED", { table: results, success: "done" });
       });
     } catch (error) {
       console.log(error);
       getDemandeTable(req.session.user[0].ID, (results) => {
-        res.render("ED", { table: results,error: 'done' });
-      });    }
-    },
-  };
-  
+        res.render("ED", { table: results, error: "done" });
+      });
+    }
+  },
+};
