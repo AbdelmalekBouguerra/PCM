@@ -128,8 +128,8 @@ function setDPC(
     );
   } else {
     db.execute(
-      "INSERT INTO DPC(ID_DEMANDEUR,TYPE_DEMANDE,DATE_DEM) VALUES(?,?,?)",
-      [userID, typePrestation, date()],
+      "INSERT INTO DPC(ID_DEMANDEUR,TYPE_DEMANDE,DATE_DEM,STRUCTURE,ACT) VALUES(?,?,?,?,?)",
+      [userID, typePrestation, date(),structure,act],
       (err, results) => {
         if (err) console.log("setDPC ~ DPC.js SQL error :", err);
         else callback(results);
@@ -230,7 +230,7 @@ module.exports = {
         typePrestation,
         structure,
         act,
-        
+
         () => {
           console.log("setting DPC done ty :-)");
         }
