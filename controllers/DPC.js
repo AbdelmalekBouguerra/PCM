@@ -70,19 +70,21 @@ function setBENE(
   );
 }
 
-function setDEMA(username, nom, prenom, matricule, tele, email) {
+function setDEMA(username, nom, prenom,statuAdh, matricule, tele, email) {
   db.query(
-    "INSERT INTO DEMANDEUR(USERNAME,NOM,PRENOM,MATRICULE,TEL,MAIL) VALUES(?,?,?,?,?,?) ON DUPLICATE KEY UPDATE USERNAME = ?,NOM = ?,PRENOM = ?,MATRICULE = ?,TEL = ?,MAIL = ?",
+    "INSERT INTO DEMANDEUR(USERNAME,NOM,PRENOM,STATU_DEMA,MATRICULE,TEL,MAIL) VALUES(?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE USERNAME = ?,NOM = ?,PRENOM = ?,STATU_DEMA = ?,MATRICULE = ?,TEL = ?,MAIL = ?",
     [
       username,
       nom,
       prenom,
+      statuAdh,
       matricule,
       tele,
       email,
       username,
       nom,
       prenom,
+      statuAdh,
       matricule,
       tele,
       email,
@@ -186,7 +188,7 @@ module.exports = {
           request,
         });
       // setting demandeur
-      setDEMA(req.session.username, nom, prenom, matricule, tele, email);
+      setDEMA(req.session.username, nom, prenom,statuAdh, matricule, tele, email);
       // setting the beneficiaire
       setBENE(
         bene,
