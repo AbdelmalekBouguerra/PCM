@@ -70,15 +70,25 @@ function setBENE(
   );
 }
 
-function setDEMA(username, nom, prenom,statuAdh, matricule, tele, email) {
+function setDEMA(
+  username,
+  nom,
+  prenom,
+  statuAdh,
+  matricule,
+  employeur,
+  tele,
+  email
+) {
   db.query(
-    "INSERT INTO DEMANDEUR(USERNAME,NOM,PRENOM,STATU_DEMA,MATRICULE,TEL,MAIL) VALUES(?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE USERNAME = ?,NOM = ?,PRENOM = ?,STATU_DEMA = ?,MATRICULE = ?,TEL = ?,MAIL = ?",
+    "INSERT INTO DEMANDEUR(USERNAME,NOM,PRENOM,STATU_DEMA,MATRICULE,EMPLOYEUR,TEL,MAIL) VALUES(?,?,?,?,?,?,?,?) ON DUPLICATE KEY UPDATE USERNAME = ?,NOM = ?,PRENOM = ?,STATU_DEMA = ?,MATRICULE = ?,EMPLOYEUR = ?,TEL = ?,MAIL = ?",
     [
       username,
       nom,
       prenom,
       statuAdh,
       matricule,
+      employeur,
       tele,
       email,
       username,
@@ -86,6 +96,7 @@ function setDEMA(username, nom, prenom,statuAdh, matricule, tele, email) {
       prenom,
       statuAdh,
       matricule,
+      employeur,
       tele,
       email,
     ],
@@ -100,6 +111,8 @@ function setDPC(
   beneprenom,
   dateNais,
   typePrestation,
+  structure,
+  act,
 
   callback
 ) {
@@ -153,7 +166,6 @@ module.exports = {
   },
   post: (req, res) => {
     try {
-      
       // console.log("🚀 ~ file: DPC.js ~ line 155 ~ req.body", req.body)
       // throw new Error('BROKEN');
       let userID = req.session.user[0].ID;
@@ -167,13 +179,14 @@ module.exports = {
         matricule,
         tele,
         email,
-        Employeur,
+        employeur,
         bene,
         benenom,
         beneprenom,
         lienparentie,
         date,
-        Structure,
+        structure,
+        act,
       } = req.body;
       var request = req.body;
       // validating the input
@@ -188,7 +201,16 @@ module.exports = {
           request,
         });
       // setting demandeur
-      setDEMA(req.session.username, nom, prenom,statuAdh, matricule, tele, email);
+      setDEMA(
+        req.session.username,
+        nom,
+        prenom,
+        statuAdh,
+        matricule,
+        employeur,
+        tele,
+        email
+      );
       // setting the beneficiaire
       setBENE(
         bene,
