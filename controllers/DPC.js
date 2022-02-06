@@ -119,8 +119,8 @@ function setDPC(
   //check if benenom is not undefined
   if (typeof benenom !== "undefined") {
     db.execute(
-      "INSERT INTO DPC(ID_DEMANDEUR,ID_BENEFICIAIRE,TYPE_DEMANDE,DATE_DEM) VALUES(?,(SELECT ID FROM BÉNÉFICIAIRE WHERE ID_DEMANDEUR = ? AND NOM = ? AND PRENOM = ? AND DATE_NAIS = ?),?,?)",
-      [userID, userID, benenom, beneprenom, dateNais, typePrestation, date()],
+      "INSERT INTO DPC(ID_DEMANDEUR,ID_BENEFICIAIRE,TYPE_DEMANDE,DATE_DEM,STRUCTURE,ACT) VALUES(?,(SELECT ID FROM BÉNÉFICIAIRE WHERE ID_DEMANDEUR = ? AND NOM = ? AND PRENOM = ? AND DATE_NAIS = ?),?,?,?,?)",
+      [userID, userID, benenom, beneprenom, dateNais, typePrestation, date(),structure,act],
       (err, results) => {
         if (err) console.log("setDPC ~ DPC.js SQL error :", err);
         else callback(results);
@@ -228,6 +228,9 @@ module.exports = {
         beneprenom,
         date,
         typePrestation,
+        structure,
+        act,
+        
         () => {
           console.log("setting DPC done ty :-)");
         }
