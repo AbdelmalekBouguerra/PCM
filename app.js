@@ -29,7 +29,7 @@ var credentials = {key: key, cert: cert};
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 const http_port = 3000;
-const https_port = 3030;
+const https_port = 3031;
 
 // httpServer.listen(http_port, () => {
 //     console.log(success('Server started on http://localhost:'+http_port));
