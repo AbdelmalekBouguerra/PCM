@@ -1,33 +1,29 @@
-const express = require('express')
-var http = require('http');
-const https = require('https');
-const path = require('path')
-const db = require('./env/db')
-const hbs = require('hbs')
-const session = require('cookie-session');
-const chalk = require('chalk');
-const compression = require('compression');
-const fileUpload = require('express-fileupload');
+const express = require("express");
+var http = require("http");
+const https = require("https");
+const path = require("path");
+const db = require("./env/db");
+const hbs = require("hbs");
+const session = require("cookie-session");
+const chalk = require("chalk");
+const compression = require("compression");
+const fileUpload = require("express-fileupload");
 
-var fs = require('fs');
+var fs = require("fs");
 
-
-// chalk styling 
+// chalk styling
 const error = chalk.bold.redBright.inverse;
 const success = chalk.bold.greenBright;
-const warning = chalk.keyword('orange').bold;
+const warning = chalk.keyword("orange").bold;
 
-
-
-const key = fs.readFileSync('./cert/CA/localhost/localhost.decrypted.key');
-const cert = fs.readFileSync('./cert/CA/localhost/localhost.crt');
-
+const key = fs.readFileSync("./cert/CA/localhost/localhost.decrypted.key");
+const cert = fs.readFileSync("./cert/CA/localhost/localhost.crt");
 
 const app = express();
 app.use(fileUpload());
 
 app.use(compression());
-var credentials = {key: key, cert: cert};
+var credentials = { key: key, cert: cert };
 
 // express server
 var httpServer = http.createServer(app);
@@ -39,93 +35,85 @@ const https_port = 5454;
 //     console.log(success('Server started on http://localhost:'+http_port));
 // });
 httpsServer.listen(https_port, () => {
-
-    console.log(success('Server started :'),'https://localhost:'+https_port);
+  console.log(success("Server started :"), "https://localhost:" + https_port);
 });
 
-
 // Parse URL encoded bodies sent by forms
-app.use(express.urlencoded({ extended:false}))
+app.use(express.urlencoded({ extended: false }));
 // Parse JSON bodies as sent by API clients
-app.use(express.json())
+app.use(express.json());
 
 // Session
-app.use(session({
-    name:'session',
-    secret:'key1',
-    key: ['key1','key2'],
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
-
-}))
-
-
+app.use(
+  session({
+    name: "session",
+    secret: "key1",
+    key: ["key1", "key2"],
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+  })
+);
 
 // Routers
-const indexRouter = require('./routes/index');
-const prestationRouter = require('./routes/prestation');
+const indexRouter = require("./routes/index");
+const prestationRouter = require("./routes/prestation");
 
-
-
-app.use('/',indexRouter);
-app.use('/prestation',prestationRouter);
+app.use("/", indexRouter);
+app.use("/prestation", prestationRouter);
 
 // db MySQL
 db.connect((err) => {
-    if (err) {
-        console.log("error db connction" + err);
-    } else {
-        console.log(success("MySQL connected"));
-    }
-})
+  if (err) {
+    console.log("error db connction" + err);
+  } else {
+    console.log(success("MySQL connected"));
+  }
+});
 
 // define public directory
-const publicDirectory = path.join(__dirname,'./public')
-app.use(express.static(publicDirectory))
+const publicDirectory = path.join(__dirname, "./public");
+app.use(express.static(publicDirectory));
 
 // Define view engine
-app.set('view engine', 'hbs');
-app.post('/log',(req,res) => {
+app.set("view engine", "hbs");
+app.post("/log", (req, res) => {});
 
-});
-
-app.post('/upload-avatar', (req, res) => {
-    console.log(req.body);
-    try {
-        if(req.session.uploading){
-            delete req.session.uploading;
-            res.render('up',{
-                success: 'file uploaded',
-            })
-            return;
-        }
-        if((!req.files)) {
-            res.send({
-                status: false,
-                message: 'No file uploaded'
-            });
-        } else {
-            const {Lastname} = req.body;
-            req.session.uploading = Lastname;
-            console.log(req.body);
-            // use the name of the input field (i.e. "avatar") 
-            // to retrieve the uploaded file
-            let docs = req.files.docs;
-            
-            // use the mv() method to place the file in 
-            // upload directory (i.e. "uploads")
-            docs.mv('./uploads/' + docs.name);
-
-            //send response
-            res.send({
-                status: true,
-                message: 'File is uploaded'
-            });
-        }
-    } catch (err) {
-        res.status(500).send(err);
+app.post("/upload-avatar", (req, res) => {
+  console.log(req.body);
+  try {
+    if (req.session.uploading) {
+      delete req.session.uploading;
+      res.render("up", {
+        success: "file uploaded",
+      });
+      return;
     }
+    if (!req.files) {
+      res.render("up", {
+        error: "no file uploaded pls upload a file",
+      });
+    } else {
+      const { Lastname } = req.body;
+      req.session.uploading = Lastname;
+      console.log(req.body);
+      // use the name of the input field (i.e. "avatar")
+      // to retrieve the uploaded file
+      let docs = req.files.docs;
+
+      // use the mv() method to place the file in
+      // upload directory (i.e. "uploads")
+      docs.mv("./uploads/" + docs.name);
+
+      //send response
+      res.send({
+        status: true,
+        message: "File is uploaded",
+      });
+    }
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 // template hbs
-hbs.registerPartials(path.join(__dirname, 'views', 'templates'))
+hbs.registerPartials(path.join(__dirname, "views", "templates"));
 
 module.exports = app;

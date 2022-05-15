@@ -15,16 +15,17 @@
         <input type="text" name="FirstName" id="fname" value="Mike"><br><br>
         <label for="lname">Last name:</label><br>
         <input type="text" name="Lastname" id="lname" value="Walker"><br><br>
-        <input type="submit" value="Submit">
+        <div id="drag-drop-area"></div>
         {{#if error}}
         <p style="color: rgb(200, 0, 0)">{{error}}</p>
         {{/if}}
         {{#if success}}
         <p style="color: rgb(27, 200, 0)">{{success}}</p>
         {{/if}}
+        <input type="submit" value="Submit">
+
 
     </form>
-        <div id="drag-drop-area"></div>
 
     <script src="https://releases.transloadit.com/uppy/v2.10.0/uppy.min.js"></script>
     <script src="https://releases.transloadit.com/uppy/locales/v2.1.0/fr_FR.min.js"></script>
