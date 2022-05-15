@@ -85,16 +85,28 @@ app.use(express.static(publicDirectory))
 // Define view engine
 app.set('view engine', 'hbs');
 app.post('/log',(req,res) => {
+
 });
 
-app.post('/upload-avatar', async (req, res) => {
+app.post('/upload-avatar', (req, res) => {
+    console.log(req.body);
     try {
-        if(!req.files) {
+        if(req.session.uploading){
+            delete req.session.uploading;
+            res.render('up',{
+                success: 'file uploaded',
+            })
+            return;
+        }
+        if((!req.files)) {
             res.send({
                 status: false,
                 message: 'No file uploaded'
             });
         } else {
+            const {Lastname} = req.body;
+            req.session.uploading = Lastname;
+            console.log(req.body);
             // use the name of the input field (i.e. "avatar") 
             // to retrieve the uploaded file
             let docs = req.files.docs;

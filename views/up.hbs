@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    {{!-- <form action="/log" id="dpc" method="post">
+    <form action="/upload-avatar" id="dpc" method="post">
         <label for="fname">First name:</label><br>
         <input type="text" name="FirstName" id="fname" value="Mike"><br><br>
         <label for="lname">Last name:</label><br>
@@ -23,7 +23,7 @@
         <p style="color: rgb(27, 200, 0)">{{success}}</p>
         {{/if}}
 
-    </form> --}}
+    </form>
         <div id="drag-drop-area"></div>
 
     <script src="https://releases.transloadit.com/uppy/v2.10.0/uppy.min.js"></script>
@@ -37,7 +37,7 @@
             .use(Uppy.Dashboard, {
                 inline: true,
                 target: '#drag-drop-area',
-                hideUploadButton: false,
+                hideUploadButton: true,
                 showProgressDetails: true,
                 proudlyDisplayPoweredByUppy: false,
             })
@@ -46,14 +46,14 @@
                 formData: true,
                 fieldName: 'docs',
             })
-            /*.use(Uppy.Form, {
+            .use(Uppy.Form, {
                 target: dpc,
                 resultName: 'uppyResult',
                 getMetaFromForm: true,
                 addResultToForm: true,
                 submitOnSuccess: true,
                 triggerUploadOnSubmit: true,
-            })*/
+            })
             .use(Uppy.ImageEditor, {
                 target: Uppy.Dashboard,
                 quality: 0.8,
