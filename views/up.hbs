@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Uppy</title>
+    <link href="https://releases.transloadit.com/uppy/v2.10.0/uppy.min.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    {{!-- <form action="/log" id="dpc" method="post">
+        <label for="fname">First name:</label><br>
+        <input type="text" name="FirstName" id="fname" value="Mike"><br><br>
+        <label for="lname">Last name:</label><br>
+        <input type="text" name="Lastname" id="lname" value="Walker"><br><br>
+        <input type="submit" value="Submit">
+        {{#if error}}
+        <p style="color: rgb(200, 0, 0)">{{error}}</p>
+        {{/if}}
+        {{#if success}}
+        <p style="color: rgb(27, 200, 0)">{{success}}</p>
+        {{/if}}
+
+    </form> --}}
+        <div id="drag-drop-area"></div>
+
+    <script src="https://releases.transloadit.com/uppy/v2.10.0/uppy.min.js"></script>
+    <script src="https://releases.transloadit.com/uppy/locales/v2.1.0/fr_FR.min.js"></script>
+
+    <script>
+        var uppy = new Uppy.Core({
+            debug: true,
+            locale: Uppy.locales.fr_FR,
+        })
+            .use(Uppy.Dashboard, {
+                inline: true,
+                target: '#drag-drop-area',
+                hideUploadButton: false,
+                showProgressDetails: true,
+                proudlyDisplayPoweredByUppy: false,
+            })
+            .use(Uppy.XHRUpload, {
+                endpoint: 'https://localhost:5454/upload-avatar',
+                formData: true,
+                fieldName: 'docs',
+            })
+            /*.use(Uppy.Form, {
+                target: dpc,
+                resultName: 'uppyResult',
+                getMetaFromForm: true,
+                addResultToForm: true,
+                submitOnSuccess: true,
+                triggerUploadOnSubmit: true,
+            })*/
+            .use(Uppy.ImageEditor, {
+                target: Uppy.Dashboard,
+                quality: 0.8,
+            })
+    </script>
+</body>
+
+</html>

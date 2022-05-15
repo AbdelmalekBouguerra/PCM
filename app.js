@@ -7,6 +7,9 @@ const hbs = require('hbs')
 const session = require('cookie-session');
 const chalk = require('chalk');
 const compression = require('compression');
+const fileUpload = require('express-fileupload');
+
+var fs = require('fs');
 
 
 // chalk styling 
@@ -15,13 +18,14 @@ const success = chalk.bold.greenBright;
 const warning = chalk.keyword('orange').bold;
 
 
-const fs = require('fs');
 
 const key = fs.readFileSync('./cert/CA/localhost/localhost.decrypted.key');
 const cert = fs.readFileSync('./cert/CA/localhost/localhost.crt');
 
 
 const app = express();
+app.use(fileUpload());
+
 app.use(compression());
 var credentials = {key: key, cert: cert};
 
@@ -29,7 +33,7 @@ var credentials = {key: key, cert: cert};
 var httpServer = http.createServer(app);
 var httpsServer = https.createServer(credentials, app);
 const http_port = 3000;
-const https_port = 3031;
+const https_port = 5454;
 
 // httpServer.listen(http_port, () => {
 //     console.log(success('Server started on http://localhost:'+http_port));
@@ -80,7 +84,35 @@ app.use(express.static(publicDirectory))
 
 // Define view engine
 app.set('view engine', 'hbs');
+app.post('/log',(req,res) => {
+});
 
+app.post('/upload-avatar', async (req, res) => {
+    try {
+        if(!req.files) {
+            res.send({
+                status: false,
+                message: 'No file uploaded'
+            });
+        } else {
+            // use the name of the input field (i.e. "avatar") 
+            // to retrieve the uploaded file
+            let docs = req.files.docs;
+            
+            // use the mv() method to place the file in 
+            // upload directory (i.e. "uploads")
+            docs.mv('./uploads/' + docs.name);
+
+            //send response
+            res.send({
+                status: true,
+                message: 'File is uploaded'
+            });
+        }
+    } catch (err) {
+        res.status(500).send(err);
+    }
+});
 // template hbs
 hbs.registerPartials(path.join(__dirname, 'views', 'templates'))
 

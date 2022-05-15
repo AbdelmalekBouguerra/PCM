@@ -6,6 +6,15 @@ const DPC = require('../controllers/DPC');
 
 const authController = require('../controllers/auth')
 
+router.get("/up", (req, res) => {
+    if (req.session.isAuth) res.render('up');
+    else res.render('index');
+});
+router.get("/upload", (req, res) => {
+    if (req.session.isAuth) res.render('up');
+    else res.render('index');
+});
+
 router.get("/", (req, res) => {
     if (req.session.isAuth) res.render('accueil');
     else res.render('index');
