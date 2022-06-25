@@ -100,6 +100,13 @@ body {
   background-color: #fff;
 }
 
+
+.inCenter{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 [tabindex="-1"]:focus {
   outline: 0 !important;
 }
