@@ -2,11 +2,16 @@ const db = require("../env/db");
 const validator = require("validator");
 const date = require("./date");
 const moment = require("moment");
+const session = require("express-session");
+const fs = require("fs");
+
 var table = [];
+var NUMDEM = 0;
+
 function getDemandeTable(userId, callback) {
   db.execute(
-    "SELECT * FROM DPC WHERE ID_DEMANDEUR = ?;",
-    [userId],
+    "SELECT *,(SELECT COUNT(*) FROM `DPC` WHERE ID_DEMANDEUR = ?) as NUMDEM FROM `DPC` WHERE ID_DEMANDEUR = ? GROUP BY ID",
+    [userId, userId],
     (err, results) => {
       if (err) {
         console.log(err);
@@ -20,13 +25,10 @@ function getDemandeTable(userId, callback) {
           results[i].DATE_DEM = moment(results[i].DATE_DEM).format(
             "DD-MM-YYYY"
           );
+          NUMDEM = results[i].NUMDEM.toString().padStart(4, "0");
         }
 
         callback(results);
-        console.log(
-          "🚀 ~ file: DPC.js ~ line 22 ~ getDemandeTable ~ results",
-          results
-        );
       }
     }
   );
@@ -44,7 +46,6 @@ function setBENE(
   if (bene == "L’adhérent") return false;
   console.log("starting setBENE");
   const parm = [userID, benenom, beneprenom, dateNais, lienparentie];
-  console.log("🚀 ~ file: DPC.js ~ line 25 ~ setBENE ~ parm", parm);
 
   db.execute(
     "INSERT INTO BÉNÉFICIAIRE(ID_DEMANDEUR,NOM,PRENOM,DATE_NAIS,LIEN_PARENTE) VALUES(?,?,?,?,?) ON DUPLICATE KEY UPDATE NOM = ?, PRENOM = ?, DATE_NAIS = ? , LIEN_PARENTE = ? ;",
@@ -63,13 +64,11 @@ function setBENE(
       if (err) console.log("setBENE ~ DPC.js SQL error :", err);
       else {
         callback(results);
-        console.log("🚀 ~ file: DPC.js ~ line 52 ~ results", results);
         console.log("am done inserting to db");
       }
     }
   );
 }
-
 function setDEMA(
   username,
   nom,
@@ -107,6 +106,7 @@ function setDEMA(
 }
 function setDPC(
   userID,
+  idDem,
   benenom,
   beneprenom,
   dateNais,
@@ -118,9 +118,24 @@ function setDPC(
 ) {
   //check if benenom is not undefined
   if (typeof benenom !== "undefined") {
-    db.execute(
-      "INSERT INTO DPC(ID_DEMANDEUR,ID_BENEFICIAIRE,TYPE_DEMANDE,DATE_DEM,STRUCTURE,ACT) VALUES(?,(SELECT ID FROM BÉNÉFICIAIRE WHERE ID_DEMANDEUR = ? AND NOM = ? AND PRENOM = ? AND DATE_NAIS = ?),?,?,?,?)",
-      [userID, userID, benenom, beneprenom, dateNais, typePrestation, date(),structure,act],
+    db.query(
+      `
+      INSERT INTO DPC(ID_DEMANDEUR,NUM_DPC,ID_BENEFICIAIRE,TYPE_DEMANDE,DATE_DEM,STRUCTURE,ACT)
+      VALUES(?,
+        (SELECT ID FROM BÉNÉFICIAIRE WHERE ID_DEMANDEUR = ? AND NOM = ? AND PRENOM = ? AND DATE_NAIS = ?)
+        ,?,?,?,?,?)`,
+      [
+        userID,
+        userID,
+        benenom,
+        beneprenom,
+        dateNais,
+        idDem,
+        typePrestation,
+        date(),
+        structure,
+        act,
+      ],
       (err, results) => {
         if (err) console.log("setDPC ~ DPC.js SQL error :", err);
         else callback(results);
@@ -128,8 +143,8 @@ function setDPC(
     );
   } else {
     db.execute(
-      "INSERT INTO DPC(ID_DEMANDEUR,TYPE_DEMANDE,DATE_DEM,STRUCTURE,ACT) VALUES(?,?,?,?,?)",
-      [userID, typePrestation, date(),structure,act],
+      "INSERT INTO DPC(ID_DEMANDEUR,NUM_DPC,TYPE_DEMANDE,DATE_DEM,STRUCTURE,ACT) VALUES(?,?,?,?,?,?)",
+      [userID,idDem, typePrestation, date(), structure, act],
       (err, results) => {
         if (err) console.log("setDPC ~ DPC.js SQL error :", err);
         else callback(results);
@@ -137,7 +152,6 @@ function setDPC(
     );
   }
 }
-
 function getBENE(benenom, beneprenom, dateNais, userID, callback) {
   db.execute(
     "SELECT * FROM BÉNÉFICIAIRE WHERE ID_DEMANDEUR = ? AND NOM = ? AND PRENOM = ? AND DATE_NAIS = ?",
@@ -154,22 +168,23 @@ module.exports = {
     if (req.session.isAuth && req.session.user) {
       getDemandeTable(req.session.user[0].ID, (results) => {
         table = results;
-        console.log(
-          "🚀 ~ file: DPC.js ~ line 126 ~ getDemandeTable ~ results",
-          results
-        );
+        console.log(req.session.user);
         if (table.ID) {
         }
-        res.render("ED", { table: table });
+        // get the id of the user  and transform '1' -> '0001'
+        const id = req.session.user[0].ID.toString().padStart(4, "0");
+        // getting the number of demande and add 1.
+        NUMDEM = parseInt(NUMDEM) + 1;
+        NUMDEM = NUMDEM.toString().padStart(4, "0");
+        // assemble the number and the id and add '-' between them.
+        NUMDEM = req.session.idDem = id + "-" + NUMDEM;
+        res.render("ED", { table: table, id: id });
       });
     } else res.render("ED");
   },
   post: (req, res) => {
     try {
-      // console.log("🚀 ~ file: DPC.js ~ line 155 ~ req.body", req.body)
-      // throw new Error('BROKEN');
       let userID = req.session.user[0].ID;
-      console.log("🚀 ~ file: DPC.js ~ line 132 ~ userID", userID);
 
       const {
         typePrestation,
@@ -224,6 +239,7 @@ module.exports = {
       // setting the DPC
       setDPC(
         req.session.user[0].ID,
+        req.session.idDem,
         benenom,
         beneprenom,
         date,

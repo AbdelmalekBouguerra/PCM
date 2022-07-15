@@ -7,6 +7,8 @@ const hbs = require('hbs')
 const session = require('cookie-session');
 const chalk = require('chalk');
 const compression = require('compression');
+const serveIndex = require('serve-index')
+
 
 
 // chalk styling 
@@ -77,6 +79,9 @@ db.connect((err) => {
 // define public directory
 const publicDirectory = path.join(__dirname,'./public')
 app.use(express.static(publicDirectory))
+
+app.use('/demande', serveIndex(path.join(__dirname,'./public/demande'),{'icons': true, 'view':'details'}));
+
 
 // Define view engine
 app.set('view engine', 'hbs');
