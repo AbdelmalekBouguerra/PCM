@@ -8,6 +8,7 @@ const session = require('cookie-session');
 const chalk = require('chalk');
 const compression = require('compression');
 const serveIndex = require('serve-index')
+var cors = require('cors');
 
 
 
@@ -24,6 +25,7 @@ const cert = fs.readFileSync('./cert/CA/localhost/localhost.crt');
 
 
 const app = express();
+app.use(cors()) //and this
 app.use(compression());
 var credentials = {key: key, cert: cert};
 
