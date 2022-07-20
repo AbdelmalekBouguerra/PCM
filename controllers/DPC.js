@@ -177,10 +177,6 @@ module.exports = {
         NUMDEM = NUMDEM.toString().padStart(4, "0");
         // assemble the number and the id and add '-' between them.
         NUMDEM = req.session.idDem = id + "-" + NUMDEM;
-        console.log(
-          "🚀 ~ file: DPC.js ~ line 181 ~ getDemandeTable ~ NUMDEM",
-          NUMDEM
-        );
         res.render("ED", { table: table, id: id });
       });
     } else res.render("ED");
@@ -263,10 +259,6 @@ module.exports = {
         NUMDEM = NUMDEM.toString().padStart(4, "0");
         // assemble the number and the id and add '-' between them.
         NUMDEM = req.session.idDem = id + "-" + NUMDEM;
-        console.log(
-          "🚀 ~ file: DPC.js ~ line 181 ~ getDemandeTable ~ NUMDEM",
-          NUMDEM
-        );
         res.render("ED", { table: table, id: id, success: "done" });
       });
     } catch (error) {
