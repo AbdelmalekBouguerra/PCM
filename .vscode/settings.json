@@ -36,6 +36,7 @@
         "réessayer",
         "répondre",
         "retrive",
+        "selectpicker",
         "sommes",
         "SONATRACH",
         "statu",
@@ -46,5 +47,6 @@
         "verrez",
         "votre",
         "vous"
-    ]
+    ],
+    "docwriter.language": "French"
 }
