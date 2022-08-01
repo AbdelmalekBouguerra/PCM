@@ -1,4 +1,4 @@
-const db = require("../env/db");
+const db = require("../config/mysql");
 const validator = require("validator");
 const date = require("./date");
 const moment = require("moment");
@@ -120,7 +120,17 @@ function setDPC(
   if (typeof benenom !== "undefined") {
     db.execute(
       "INSERT INTO DPC(ID_DEMANDEUR,ID_BENEFICIAIRE,TYPE_DEMANDE,DATE_DEM,STRUCTURE,ACT) VALUES(?,(SELECT ID FROM BÉNÉFICIAIRE WHERE ID_DEMANDEUR = ? AND NOM = ? AND PRENOM = ? AND DATE_NAIS = ?),?,?,?,?)",
-      [userID, userID, benenom, beneprenom, dateNais, typePrestation, date(),structure,act],
+      [
+        userID,
+        userID,
+        benenom,
+        beneprenom,
+        dateNais,
+        typePrestation,
+        date(),
+        structure,
+        act,
+      ],
       (err, results) => {
         if (err) console.log("setDPC ~ DPC.js SQL error :", err);
         else callback(results);
@@ -129,7 +139,7 @@ function setDPC(
   } else {
     db.execute(
       "INSERT INTO DPC(ID_DEMANDEUR,TYPE_DEMANDE,DATE_DEM,STRUCTURE,ACT) VALUES(?,?,?,?,?)",
-      [userID, typePrestation, date(),structure,act],
+      [userID, typePrestation, date(), structure, act],
       (err, results) => {
         if (err) console.log("setDPC ~ DPC.js SQL error :", err);
         else callback(results);

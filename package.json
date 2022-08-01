@@ -4,8 +4,9 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "dev": "kill-port 3030;nodemon app.js"
+    "dev": "nodemon app.js",
+    "prod:start": "pm2 start app.js && pm2 monit",
+    "prod:stop": "pm2 stop app.js"
   },
   "repository": {
     "type": "git",
@@ -18,16 +19,15 @@
   },
   "homepage": "https://github.com/AbdelmalekBouguerra/PCM#readme",
   "dependencies": {
-    "bootstrap-select": "^1.13.18",
-    "chai": "^4.3.6",
     "chalk": "^2.0.0",
     "compression": "^1.7.4",
     "cookie-session": "^2.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.17.2",
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
     "ldapjs": "^2.3.1",
-    "mocha": "^9.2.0",
     "moment": "^2.29.1",
     "mysql2": "^2.3.3",
     "pm2": "^5.1.2",

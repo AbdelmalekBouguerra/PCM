@@ -1,6 +1,6 @@
 {
-    "ext": "js,json,hbs,css",
-    "events": {
-        "start": "echo -ne '\\ec'"
-      }
+  "ext": "js,json,hbs,css",
+  "events": {
+    "start": "clear"
+  }
 }
