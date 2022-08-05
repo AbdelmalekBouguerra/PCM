@@ -59,7 +59,8 @@ exports.login = async (req, res) => {
       /* Création d'un jwt jeton pour l'utilisateur. */
       const token = jwt.sign(
         {
-          user_id: user.id,
+          user_id: user.dataValues.user_id,
+          user_ip: req.ip,
         },
         config.TOKEN_KEY,
         {
@@ -69,7 +70,8 @@ exports.login = async (req, res) => {
 
       /* Définition du jeton sur l'objet utilisateur. */
       user.token = token;
-
+      console.log(user.token);
+      req.session.token = token;
       /* Rendu de la page d'accueil. */
       res.status(200).render("accueil");
     } else {
