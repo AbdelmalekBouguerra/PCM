@@ -21,6 +21,6 @@ router
     if (req.session.isAuth) res.render("accueil");
     else res.render("index");
   })
-  .post(auth, authController.login);
+  .post(authController.login);
 
 module.exports = router;

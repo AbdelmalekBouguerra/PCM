@@ -21,19 +21,17 @@ function authLDAP(username, password, res) {
 
   client.bind("SONATRACH\\" + username, password, (err) => {
     if (err) {
-      console.log(
-        "Error in LDAP connection : " + err + "for user : " + username
-      );
-    } else {
-      console.log(`Success LDAP connection for user ${username}`);
-      res.render("index", {
-        invalid: "password is incorrect",
-        password: password,
-        username: username,
+      res.status(400).render("index", {
+        invalid: "Mot de passe ou sona invalide",
+        password,
+        username,
       });
+    } else {
+      return true;
     }
   });
 }
+
 exports.login = async (req, res) => {
   try {
     /* Déstructuration de l'objet `req.body`. et recuperer username et password */
@@ -41,17 +39,22 @@ exports.login = async (req, res) => {
 
     /* Vérifier si le nom d'utilisateur et le mot de passe ne sont pas vides. */
     if (!(username && password)) {
+      /* Affichage de la page d'index avec le message d'erreur. */
       res.status(400).render("index", {
-        invalid: "tous les champs doit etre rempli",
+        invalid: "Tous les champs doivent être remplis",
         password,
         username,
       });
     }
 
     /* Recherche d'un utilisateur avec le nom d'utilisateur dans la base de données. */
-    const user = await userModel.findOne({ username });
+    const user = await userModel.findOne({ where: { son: username } });
 
     // am using 0000 cause cnx is LDAP we dont need pass
+
+    /* Vérifier si l'utilisateur existe dans la base de données et si l'utilisateur est authentifié
+    dans le serveur LDAP. */
+    // if (user && authLDAP(username,password,res)) {
     if (user && password === "0000") {
       /* Création d'un jwt jeton pour l'utilisateur. */
       const token = jwt.sign(
@@ -66,9 +69,19 @@ exports.login = async (req, res) => {
 
       /* Définition du jeton sur l'objet utilisateur. */
       user.token = token;
+
+      /* Rendu de la page d'accueil. */
       res.status(200).render("accueil");
+    } else {
+      /* Affichage de la page d'index avec le message d'erreur. */
+      res.status(400).render("index", {
+        invalid: "Mot de passe ou sona invalide",
+        password,
+        username,
+      });
     }
   } catch (error) {
     console.log(error);
+    res.status(500).send("500");
   }
 };
