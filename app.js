@@ -1,7 +1,7 @@
 const express = require("express");
 var http = require("http");
 const path = require("path");
-const db = require("./config/mysql");
+const db = require("./config/sequelize");
 const hbs = require("hbs");
 const session = require("cookie-session");
 const compression = require("compression");
@@ -40,13 +40,17 @@ app.use("/", indexRouter);
 app.use("/prestation", prestationRouter);
 
 /* Connexion à la base de données MySQL. */
-db.connect((err) => {
-  if (err) {
-    console.log("error db connction" + err);
-  } else {
-    console.log("MySQL connected");
-  }
-});
+db.authenticate()
+  .then(() => console.log("Database connection established ..."))
+  .catch((err) => console.log("Error connecting to Database : " + err));
+
+// db.connect((err) => {
+//   if (err) {
+//     console.log("error db connction" + err);
+//   } else {
+//     console.log("MySQL connected");
+//   }
+// });
 
 /* Dire à express d'utiliser le répertoire public comme répertoire statique. public directory */
 const publicDirectory = path.join(__dirname, "./public");
