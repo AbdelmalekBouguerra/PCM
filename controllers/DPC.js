@@ -162,12 +162,8 @@ function getBENE(benenom, beneprenom, dateNais, userID, callback) {
 module.exports = {
   get: (req, res) => {
     if (req.session.isAuth && req.session.user) {
-      getDemandeTable(req.session.user[0].ID, (results) => {
+      getDemandeTable(req.session.user[0].admin_id, (results) => {
         table = results;
-        console.log(
-          "🚀 ~ file: DPC.js ~ line 126 ~ getDemandeTable ~ results",
-          results
-        );
         if (table.ID) {
         }
         res.render("ED", { table: table });
