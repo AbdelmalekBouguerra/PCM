@@ -1,36 +1,13 @@
-const db = require("../config/mysql");
+const db = require("../config/sequelize");
 const validator = require("validator");
 const date = require("./date");
 const moment = require("moment");
-var table = [];
-function getDemandeTable(userId, callback) {
-  db.execute(
-    "SELECT * FROM DPC WHERE ID_DEMANDEUR = ?;",
-    [userId],
-    (err, results) => {
-      if (err) {
-        console.log(err);
-      } else {
-        for (let i = 0; i < results.length; i++) {
-          // if beneficiaire pas null
-          if (results[i].ID_BENEFICIAIRE == null) {
-            delete results[i].ID_BENEFICIAIRE;
-          }
-          // formate date to DD-MM-YYYY
-          results[i].DATE_DEM = moment(results[i].DATE_DEM).format(
-            "DD-MM-YYYY"
-          );
-        }
+const { DataTypes } = require("sequelize");
+const { error } = require("winston");
 
-        callback(results);
-        console.log(
-          "🚀 ~ file: DPC.js ~ line 22 ~ getDemandeTable ~ results",
-          results
-        );
-      }
-    }
-  );
-}
+const dpc = require("../models/dpc")(db, DataTypes);
+/*
+
 function setBENE(
   bene,
   benenom,
@@ -159,23 +136,36 @@ function getBENE(benenom, beneprenom, dateNais, userID, callback) {
   );
 }
 
+*/
 module.exports = {
-  get: (req, res) => {
-    if (req.session.isAuth && req.session.user) {
-      getDemandeTable(req.session.user[0].admin_id, (results) => {
-        table = results;
-        if (table.ID) {
-        }
-        res.render("ED", { table: table });
-      });
-    } else res.render("ED");
+  get: async (req, res, next) => {
+    /* Obtenir le user_id de la session. */
+    try {
+      const user_id = req.session.user_PCM.user_id;
+      /* Vérifier si l'user_id est un nombre ou undefined. S'il ne s'agit pas d'un nombre ou si ce n'est
+    pas défini, il affichera la page d'index. */
+      if (typeof user_id !== "number" || user_id === undefined)
+        res.status(401).render("index");
+
+      const dpcTable = await dpc.findAll({ where: { user_id } });
+
+      /* Vérifier si le dpcTable est vide ou non. S'il est vide, il affichera la page ED sans le tableau.
+        S'il n'est pas vide, il affichera la page ED avec le tableau. */
+      if (dpcTable.length === 0) {
+        res.status(200).render("ED");
+      } else {
+        res.status(200).render("ED", { table: dpcTable });
+      }
+    } catch (error) {
+      // todo replace console.log with winston logger
+      console.log(error);
+      next(error);
+    }
   },
   post: (req, res) => {
     try {
-      // console.log("🚀 ~ file: DPC.js ~ line 155 ~ req.body", req.body)
-      // throw new Error('BROKEN');
-      let userID = req.session.user[0].ID;
-      console.log("🚀 ~ file: DPC.js ~ line 132 ~ userID", userID);
+      // let userID = req.session.user[0].ID;
+      const user_id = req.session.user_PCM.user_id;
 
       const {
         typePrestation,
