@@ -113,8 +113,6 @@
               <div class="form-check-inline ali">
                 <h6 class="mr-2 text-black">Type de demande :</h6>
                 <input
-                  id="AgentCheck"
-                  onclick="myFun(this)"
                   name="typePrestation"
                   style="margin-bottom: 5px"
                   type="radio"
@@ -127,9 +125,7 @@
                 <div class="mr-2"></div>
                 <input
                   class="form-check-inline"
-                  id="RetCheck"
                   name="typePrestation"
-                  onclick="myFun(this)"
                   placeholder="Agent"
                   style="margin-bottom: 5px"
                   type="radio"
@@ -139,8 +135,6 @@
                 <label class="mr-2">Médecines de soins</label>
                 <div class="mr-2"></div>
                 <input
-                  id="VeufCheck"
-                  onclick="myFun(this)"
                   name="typePrestation"
                   style="margin-bottom: 5px"
                   type="radio"
@@ -152,8 +146,6 @@
                 <label class="mr-2">Prises en charge 100 %</label>
                 <div class="mr-2"></div>
                 <input
-                  id="VeufCheck"
-                  onclick="myFun(this)"
                   name="typePrestation"
                   style="margin-bottom: 5px"
                   type="radio"
@@ -168,42 +160,33 @@
               <div class="form-check-inline ali">
                 <h6 class="mr-2 text-black">Statut de l’adhérent :</h6>
                 <input
-                  id="AgentCheck"
-                  onclick="myFun(this)"
                   name="statuAdh"
                   style="margin-bottom: 5px"
                   type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
-                  onchange="addFieldsAgent()"
                   value="Agent"
                   required
                 />
                 <label class="mr-2">Agent</label>
                 <div class="mr-2"></div>
                 <input
-                  id="RetCheck"
-                  onclick="myFun(this);addAgent()"
                   name="statuAdh"
                   style="margin-bottom: 5px"
                   type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
-                  onchange="addFieldsRet()"
                   value="Retraité(e)"
                   required
                 />
                 <label class="mr-2">Retraité(e)</label>
                 <div class="mr-2"></div>
                 <input
-                  id="VeufCheck"
-                  onclick="myFun(this)"
                   name="statuAdh"
                   style="margin-bottom: 5px"
                   type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
-                  onchange="addFieldsVeuf()"
                   value="veuf(ve)"
                   required
                 />
@@ -214,27 +197,21 @@
                   <div class="w-100"></div>
                   <div class="form-group">
                     <input
-                      id="Agentlastname"
                       type="text"
                       class="form-control"
                       placeholder="Nom"
                       name="nom"
                       required
-                      oninvalid="this.setCustomValidity('veuillez entrer votre nom')"
-                      oninput="setCustomValidity('')"    
                       {{#if request}} value={{request.nom}} {{/if}}               
                     />
                   </div>
                   <div class="form-group">
                     <input
-                      id="Agentfirstname"
                       type="text"
                       class="form-control"
                       placeholder="Prenom"
                       name="prenom"
                       required
-                      oninvalid="this.setCustomValidity('veuillez entrer votre prenom')"
-                      oninput="setCustomValidity('')"
                       {{#if request}} value={{request.prenom}} {{/if}}
                     />
                   </div>
@@ -252,14 +229,11 @@
                   <div class="w-100"></div>
                   <div class="form-group">
                     <input
-                      id="agent"
                       type="text"
                       class="form-control"
                       placeholder="Téléphone"
                       name="tele"
                       required
-                      oninvalid="this.setCustomValidity('veuillez entrer votre Téléphone')"
-                      oninput="setCustomValidity('')"
                       {{#if request}} value={{request.tele}} {{/if}}
                     />
                   </div>
@@ -270,8 +244,6 @@
                       placeholder="E-mail"
                       name="email"
                       required
-                      oninvalid="this.setCustomValidity('veuillez entrer votre E-mail')"
-                      oninput="setCustomValidity('')"
                       {{#if request}} value={{request.email}} {{/if}}                      
                     />
                   </div>
@@ -310,34 +282,34 @@
               <div class="form-check-inline ali">
                 <h6 class="mr-2 text-black">Bénéficiaire de la prestation :</h6>
                 <input
-                  id="check1"
+                  id="adherent"
                   name="bene"
                   style="margin-bottom: 5px"
                   type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
-                  onclick="myFun2(this);copyTextValue();"
                   value="L’adhérent"
+                  checked
                   required
                 />
                 <label class="mr-2">L’adhérent</label>
                 <div class="mr-2"></div>
                 <input
-                  id="check2"
-                  onclick="myFun2(this);getLastTextValue(this);"
+                  id="ayantDroit"
                   name="bene"
                   style="margin-bottom: 5px"
                   type="radio"
                   class="form-check-inline"
                   placeholder="Agent"
-                  onchange="addFieldsAd();"
                   value="Ayant droit"
+                  
                   required
                 />
                 <label class="mr-2">Ayant droit*</label>
               </div>
               <div class="row block-9">
-                <div class="rowDPC d-flex mb-5 contact-info">
+                <div class="row block-9" id="ayantDroitArea" style="display: none;">
+                <div class="rowDPC d-flex mb-5 contact-info" >
                   <div class="w-100"></div>
                   <div class="form-group">
                     <input
@@ -364,23 +336,7 @@
                       <option value="fils">Fille / fils</option>
                     </select>
                   </div>
-                  <div style="margin-top: 20px">
-                    <select
-                      class="selectpicker form-control"
-                      title="Type d’acte demandé"
-                      name="act"
-                      required
-                    >
-                      <option value="Ophtalmologie">Ophtalmologie</option>
-                      <option>Oncologie</option>
-                      <option>Imagerie</option>
-                      <optgroup label="Chirurgie">
-                        <option>Obstétrique</option>
-                        <option>Cancérologie</option>
-                        <option>Autres Chirurgies</option>
-                      </optgroup>
-                    </select>
-                  </div>
+
                 </div>
                 <div class="rowDPC d-flex mb-5 contact-info">
                   <div class="w-100"></div>
@@ -407,8 +363,75 @@
                       name="date"
                     />
                   </div>
-                  <div style="margin-top: 20px">
+
+                </div>
+                </div>
+              </div>
+              <div class="form-check-inline ali">
+                <br>
+                <h6 class="mr-2 text-black">Méthode de recherche d'acte : </h6>
+                <input
+                  id="type"
+                  name="methode"
+                  style="margin-bottom: 5px"
+                  type="radio"
+                  class="form-check-inline"
+                  placeholder="Agent"
+                  value="L’adhérent"
+                  checked
+                  required
+                />
+                <label class="mr-2">Type</label>
+                <div class="mr-2"></div>
+                <input
+                  id="code"
+                  name="methode"
+                  style="margin-bottom: 5px"
+                  type="radio"
+                  class="form-check-inline"
+                  placeholder="Agent"
+                  value="Ayant droit"
+                  
+                  required
+                />
+                <label class="mr-2">Code</label>
+              </div>
+              <div class="row block-9">
+                <div class="rowDPC d-flex mb-5 contact-info">
+                  <div style="margin-top: 20px" id="">
+                    <div class="form-group" id="codeMethode" style="display: none;">
+                    <input
+                      type="text"
+                      class="form-control"
+                      placeholder="Code d'acte"
+                      name="code"
+                      required
+                      oninvalid="this.setCustomValidity('veuillez entrer le code')"
+                      oninput="setCustomValidity('')"
+                    />
+                  </div>
                     <select
+                      id="typeMethode"
+                      class="selectpicker form-control"
+                      title="Type d’acte demandé"
+                      name="act"
+                      required
+                    >
+                      <option value="Ophtalmologie">Ophtalmologie</option>
+                      <option>Oncologie</option>
+                      <option>Imagerie</option>
+                      <optgroup label="Chirurgie">
+                        <option>Obstétrique</option>
+                        <option>Cancérologie</option>
+                        <option>Autres Chirurgies</option>
+                      </optgroup>
+                    </select>
+                  </div>
+                </div>
+                <div class="rowDPC d-flex mb-5 contact-info">
+                  <div style="margin-top: 20px" id="structure">
+                    <select
+                      style="width: 360px !important;"
                       data-live-search="true"
                       class="selectpicker form-control"
                       title="Structure médicale conventionnée souhaitée"
@@ -424,6 +447,8 @@
                   </div>
                 </div>
               </div>
+
+
                 {{#if invalidTel}}
                   <span class="text-danger">{{invalidTel}}</span>
                 {{/if}}
@@ -574,9 +599,10 @@
     <script src="/js/jquery.timepicker.min.js"></script>
     <script src="/js/scrollax.min.js"></script>
     <script src="/js/main.js"></script>
-    <script src="/js/navbar.js"></script>
+    {{!-- <script src="/js/navbar.js"></script> --}}
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+    <script src="/js/custom/form-validation.js"></script>
 {{#if success }}
 <!-- success Modal  -->
 <div id="success" class="modal fade">
@@ -601,7 +627,7 @@
 	$(document).ready(function(){
 		$("#success").modal('show');
 	});
-</script>
+</sc>
 {{/if}}
 {{#if error}}
   <!-- error Modal  -->

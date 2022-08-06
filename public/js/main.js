@@ -329,94 +329,93 @@ AOS.init({
   $(".appointment_time").timepicker();
 })(jQuery);
 
-//this script to only check one checkbox
-function myFun(checkbox) {
-  var checkboxes = document.getElementsByName("typeDemande");
-  checkboxes.forEach((item) => {
-    if (item !== checkbox) item.checked = false;
-  });
-}
+// //this script to only check one checkbox
+// function myFun(checkbox) {
+//   var checkboxes = document.getElementsByName("typeDemande");
+//   checkboxes.forEach((item) => {
+//     if (item !== checkbox) item.checked = false;
+//   });
+// }
 
-function myFun2(checkbox) {
-  var checkboxes = document.getElementsByName("bene");
-  checkboxes.forEach((item) => {
-    if (item !== checkbox) item.checked = false;
-  });
-}
+// function myFun2(checkbox) {
+//   var checkboxes = document.getElementsByName("bene");
+//   checkboxes.forEach((item) => {
+//     if (item !== checkbox) item.checked = false;
+//   });
+// }
 
-function myFun3(checkbox) {
-  var checkboxes = document.getElementsByName("statuAdh");
-  checkboxes.forEach((item) => {
-    if (item !== checkbox) item.checked = false;
-  });
-}
+// function myFun3(checkbox) {
+//   var checkboxes = document.getElementsByName("statuAdh");
+//   checkboxes.forEach((item) => {
+//     if (item !== checkbox) item.checked = false;
+//   });
+// }
 
-// Copying value from one input field to another input field
+// // Copying value from one input field to another input field
 
-var benFirstName, benLastName;
+// var benFirstName, benLastName;
 
-function copyTextValue() {
-  if (document.getElementById("check1").checked) {
-    benLastName = document.getElementById("benLastName").value;
-    benFirstName = document.getElementById("benFirstName").value;
-    let Agentlastname = document.getElementById("Agentlastname").value;
-    let Agentfirstname = document.getElementById("Agentfirstname").value;
+// function copyTextValue() {
+//   if (document.getElementById("check1").checked) {
+//     benLastName = document.getElementById("benLastName").value;
+//     benFirstName = document.getElementById("benFirstName").value;
+//     let Agentlastname = document.getElementById("Agentlastname").value;
+//     let Agentfirstname = document.getElementById("Agentfirstname").value;
 
-    document.getElementById("benLastName").value = Agentlastname;
-    document.getElementById("benFirstName").value = Agentfirstname;
-    document.getElementById("date").type = "text";
-    document.getElementById("date").value = "pas besoin";
-    document.getElementById("benLastName").disabled = true;
-    document.getElementById("benFirstName").disabled = true;
-    document.getElementById("date").disabled = true;
-  } else {
-    document.getElementById("benLastName").value = benLastName;
-    document.getElementById("benFirstName").value = benFirstName;
+//     document.getElementById("benLastName").value = Agentlastname;
+//     document.getElementById("benFirstName").value = Agentfirstname;
+//     document.getElementById("date").type = "text";
+//     document.getElementById("date").value = "pas besoin";
+//     document.getElementById("benLastName").disabled = true;
+//     document.getElementById("benFirstName").disabled = true;
+//     document.getElementById("date").disabled = true;
+//   } else {
+//     document.getElementById("benLastName").value = benLastName;
+//     document.getElementById("benFirstName").value = benFirstName;
 
-    document.getElementById("benLastName").disabled = false;
-    document.getElementById("benFirstName").disabled = false;
+//     document.getElementById("benLastName").disabled = false;
+//     document.getElementById("benFirstName").disabled = false;
 
-    document.getElementById("date").disabled = false;
-    document.getElementById("date").type = "date";
+//     document.getElementById("date").disabled = false;
+//     document.getElementById("date").type = "date";
 
-    document.getElementById("lienParentie").disabled = false;
-  }
-}
+//     document.getElementById("lienParentie").disabled = false;
+//   }
+// }
 
-function getLastTextValue() {
-  if (document.getElementById("check2").checked) {
-    document.getElementById("benLastName").value = benLastName;
-    document.getElementById("benFirstName").value = benFirstName;
+// function getLastTextValue() {
+//   if (document.getElementById("check2").checked) {
+//     document.getElementById("benLastName").value = benLastName;
+//     document.getElementById("benFirstName").value = benFirstName;
 
-    document.getElementById("benLastName").disabled = false;
-    document.getElementById("benFirstName").disabled = false;
+//     document.getElementById("benLastName").disabled = false;
+//     document.getElementById("benFirstName").disabled = false;
 
-    document.getElementById("date").disabled = false;
-    document.getElementById("date").type = "date";
-  }
-}
+//     document.getElementById("date").disabled = false;
+//     document.getElementById("date").type = "date";
+//   }
+// }
 
-// this function will validate the DPC forum before sending.
-function validateForm() {
-  // declaring booleans to determine where is the invalid information
-  var statuAdhState = false,
-    typeDemandeState = false,
-	beneState = false;
+// // this function will validate the DPC forum before sending.
+// function validateForm() {
+//   // declaring booleans to determine where is the invalid information
+//   var statuAdhState = false,
+//     typeDemandeState = false,
+// 	beneState = false;
 
-  // getting the elements
-  var statuAdh = document.getElementsByName("statuAdh");
-  var typeDemande = document.getElementsByName("typeDemande");
-  var bene = document.getElementsByName("bene");
-  // checking if one of the at least get checked
-  statuAdh.forEach((item) => {
-    if (item.checked) statuAdhState = true;
-  });
-  typeDemande.forEach((item) => {
-    if (item.checked) typeDemandeState = true;
-  });
-  bene.forEach((item) => {
-    if (item.checked)  beneState = true;
-  });
-  
+//   // getting the elements
+//   var statuAdh = document.getElementsByName("statuAdh");
+//   var typeDemande = document.getElementsByName("typeDemande");
+//   var bene = document.getElementsByName("bene");
+//   // checking if one of the at least get checked
+//   statuAdh.forEach((item) => {
+//     if (item.checked) statuAdhState = true;
+//   });
+//   typeDemande.forEach((item) => {
+//     if (item.checked) typeDemandeState = true;
+//   });
+//   bene.forEach((item) => {
+//     if (item.checked)  beneState = true;
+//   });
 
-}
+// }
