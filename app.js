@@ -1,5 +1,4 @@
 const express = require("express");
-var http = require("http");
 const path = require("path");
 const db = require("./config/sequelize");
 const hbs = require("hbs");
@@ -9,13 +8,7 @@ const cors = require("cors");
 const app = express();
 app.use(compression());
 
-// express http server
-var httpServer = http.createServer(app);
 const http_port = process.env.PORT || 3031;
-
-httpServer.listen(http_port, () => {
-  console.log(`Server started : http://localhost:${http_port}`);
-});
 
 /* Un middleware qui permet de faire des requêtes cross-origin. */
 app.use(cors());
@@ -27,8 +20,8 @@ app.use(express.json());
 /* Mise en place d'une session cookie. */
 app.use(
   session({
-    secret: process.env.SESSION_SECRET || "ep]jhd%oe&f7p|(+6(w|id(4.>5b.f",
-    maxAge: 24 * 60 * 60 * 1000, // 24 hours
+    secret: process.env.SESSION_SECRET,
+    maxAge: 2 * 60 * 60 * 1000, // 2 hours
   })
 );
 
@@ -61,6 +54,30 @@ app.set("view engine", "hbs");
 
 /* Dire à hbs de rechercher des partiels dans le répertoire views/templates. */
 hbs.registerPartials(path.join(__dirname, "views", "templates"));
+
+if (app.get("env") === "development") {
+  app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.render("error/500", {
+      message: err.message,
+      error: err,
+    });
+  });
+}
+
+// production error handler
+// no stacktraces leaked to user
+app.use(function (err, req, res, next) {
+  res.status(err.status || 500);
+  res.render("error", {
+    message: err.message,
+    error: {},
+  });
+});
+
+app.listen(http_port, () => {
+  console.log(`Server started : http://localhost:${http_port}`);
+});
 
 /* Exportation de l'objet d'application afin qu'il puisse être utilisé dans d'autres fichiers. */
 module.exports = app;

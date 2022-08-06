@@ -4,7 +4,7 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "dev": "nodemon app.js",
+    "dev": "SET NODE_ENV=development&& nodemon app.js",
     "prod:start": "pm2 start app.js && pm2 monit",
     "prod:stop": "pm2 stop app.js"
   },
@@ -31,9 +31,12 @@
     "ldapjs": "^2.3.1",
     "moment": "^2.29.1",
     "mysql2": "^2.3.3",
+    "node-localstorage": "^2.2.1",
     "pm2": "^5.1.2",
     "sequelize": "^6.21.3",
-    "validator": "^13.7.0"
+    "sequelize-auto": "^0.8.8",
+    "validator": "^13.7.0",
+    "winston": "^3.8.1"
   },
   "devDependencies": {
     "kill-port": "^1.6.1",

@@ -21,4 +21,6 @@ router
   })
   .post(authController.login);
 
+router.get("/disconnect", authController.disconnect);
+
 module.exports = router;

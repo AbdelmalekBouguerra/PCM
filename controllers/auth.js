@@ -32,6 +32,11 @@ function authLDAP(username, password, res) {
   });
 }
 
+exports.disconnect = (req, res) => {
+  req.session.token = "";
+  req.session.user_PCM = "";
+  res.render("index");
+};
 exports.login = async (req, res) => {
   try {
     /* Déstructuration de l'objet `req.body`. et recuperer username et password */
@@ -70,8 +75,8 @@ exports.login = async (req, res) => {
 
       /* Définition du jeton sur l'objet utilisateur. */
       user.token = token;
-      console.log(user.token);
       req.session.token = token;
+      req.session.user_PCM = user;
       /* Rendu de la page d'accueil. */
       res.status(200).render("accueil");
     } else {
