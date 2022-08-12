@@ -46,12 +46,12 @@
                   <div class="form-group">
                     <input name="username" type="text" class="form-control"
                     placeholder="Son" {{#if username}} value={{username}}
-                    {{/if}} required />
+                    {{/if}} autocomplete="username" required />
                   </div>
                   <div class="form-group">
                     <input name="password" id="password-field" type="password"
                     class="form-control" placeholder="Mot de passe" {{#if
-                    password}} value={{password}} {{/if}} required />
+                    password}} value={{password}} {{/if}} required autocomplete="current-password" />
                     <span
                       toggle="#password-field"
                       class="fa fa-fw fa-eye field-icon toggle-password"
