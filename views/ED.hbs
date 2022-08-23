@@ -1,317 +1,186 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>PCM - Espace Demandeur</title>
-    <meta charset="utf-8" />
-    <meta
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-      name="viewport"
-    />
-    <link
-      href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700"
-      rel="stylesheet"
-    />
-    <!-- Latest compiled and minified CSS -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css"
-    />
 
-    <!-- essential css -->
-    {{> css_ess layer1='true'}}
-  </head>
-  <body>
-    <!-- News ticker -->
+<head>
+  <title>PCM - Espace Demandeur</title>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,500,600,700" rel="stylesheet" />
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css" />
 
-    {{> news}}
+  <!-- essential css -->
+  {{> css_ess layer1='true'}}
+</head>
 
-    <!-- End News Ticker -->
+<body>
+  <!-- News ticker -->
 
-    <!-- nav -->
+  {{> news}}
 
-    {{> nav EspaceDemandeur='true'}}
+  <!-- End News Ticker -->
 
-    <!-- END nav -->
+  <!-- nav -->
 
-    <section class="home-slider owl-carousel">
-      <div
-        class="slider-item bread-item"
-        style="
+  {{> nav EspaceDemandeur='true'}}
+
+  <!-- END nav -->
+
+  <section class="home-slider owl-carousel">
+    <div class="slider-item bread-item" style="
           background-image: url('/images/son4.jpg');
           background-position: 50% -10px;
-        "
-        data-stellar-background-ratio="0.8"
-      >
-        <div class="overlay"></div>
-        <div class="container" data-scrollax-parent="true">
-          <div class="row slider-text align-items-end">
-            <div class="col-md-7 col-sm-12 ftco-animate mb-5">
-              <h1
-                style="font-weight: 900; font-size: 70px; margin-left: 250px"
-                class="mb-3"
-                data-scrollax=" properties: { translateY: '70%', opacity: .9}"
-              >
-                Espace
-              </h1>
-              <h1
-                style="font-weight: 900; font-size: 70px; margin-left: 171px"
-                class="mb-3"
-                data-scrollax=" properties: { translateY: '70%', opacity: .9}"
-              >
-                Demandeur
-              </h1>
-            </div>
+        " data-stellar-background-ratio="0.8">
+      <div class="overlay"></div>
+      <div class="container" data-scrollax-parent="true">
+        <div class="row slider-text align-items-end">
+          <div class="col-md-7 col-sm-12 ftco-animate mb-5">
+            <h1 style="font-weight: 900; font-size: 70px; margin-left: 250px" class="mb-3"
+              data-scrollax=" properties: { translateY: '70%', opacity: .9}">
+              Espace
+            </h1>
+            <h1 style="font-weight: 900; font-size: 70px; margin-left: 171px" class="mb-3"
+              data-scrollax=" properties: { translateY: '70%', opacity: .9}">
+              Demandeur
+            </h1>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <section class="ftco-section contact-section ftco-degree-bg">
-      <div class="container heading-section">
-        {{#if table}}
-        <h2 class="text-capitalize">Vos demandes :</h2>
-        <table class="table table-bordered table-hover">
-          <thead>
-            <tr>
-              <th scope="col">Num</th>
-              <th scope="col">Bénéficier</th>
-              <th scope="col">Etablissements</th>
-              <th scope="col">Act médicale</th>
-              <th scope="col">date</th>
-              <th scope="col">type</th>
-              <th scope="col">etat</th>
-              <th scope="col">Engager</th>
-            </tr>
-          </thead>
-          <tbody>
-            {{#each table }}
-            <tr>
-              <th scope="row">{{this.dpc_id}}</th>
-              {{#if this.beneficiaire_id}}
-              <td>{{this.beneficiaire_id}}</td>
-              {{else}}
-              <td>L'adhérent</td>
-              {{/if}}
-              <td>{{this.type_demande}}</td>
-              <td>{{this.type_demande}}</td>
-              <td>{{this.date_creation}}</td>
-              <td>{{this.TYPE_DEMANDE}}</td>
-              <td>{{this.STATU_DPC}}</td>
-              <td>
-                <label class="badge badge-warning">En cour</label>
-              </td>
-            </tr>
-            {{/each}}
+  <section class="ftco-section contact-section ftco-degree-bg">
+    <div class="container heading-section">
+      {{#if table}}
+      <h2 class="text-capitalize">Vos demandes :</h2>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th scope="col">Num</th>
+            <th scope="col">Bénéficier</th>
+            <th scope="col">Etablissements</th>
+            <th scope="col">Act médicale</th>
+            <th scope="col">date</th>
+            <th scope="col">type</th>
+            <th scope="col">etat</th>
+            <th scope="col">Engager</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each table }}
+          <tr>
+            <th scope="row">{{this.dpc_id}}</th>
+            {{#if this.beneficiaire_id}}
+            <td>{{this.beneficiaire_id}}</td>
+            {{else}}
+            <td>L'adhérent</td>
             {{/if}}
-          </tbody>
-        </table>
-        <div class="container heading-section">
-          <h2 class="text-capitalize text-center">Envoyer un demande :</h2>
-          <div class="container">
-            <form id="dpcForm" action="/EspaceDemandeur" method="post">
-              <h2 class="text-center">Remplissez le formulaire suivant :</h2>
-              <div class="form-check-inline ali">
-                <h6 class="mr-2 text-black">Type de demande :</h6>
-                <input
-                  name="typePrestation"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="Tiers payant"
-                  required
-                />
-                <label class="mr-2">Tiers payant</label>
-                <div class="mr-2"></div>
-                <input
-                  class="form-check-inline"
-                  name="typePrestation"
-                  placeholder="Agent"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  value="Médecines de soins"
-                  required
-                />
-                <label class="mr-2">Médecines de soins</label>
-                <div class="mr-2"></div>
-                <input
-                  name="typePrestation"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="Prises en charge 100 %"
-                  required
-                />
-                <label class="mr-2">Prises en charge 100 %</label>
-                <div class="mr-2"></div>
-                <input
-                  name="typePrestation"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="Randevou CMS"
-                  required
-                />
-                <label class="mr-2">Randevou CMS</label>
+            <td>{{this.type_demande}}</td>
+            <td>{{this.type_demande}}</td>
+            <td>{{this.date_creation}}</td>
+            <td>{{this.TYPE_DEMANDE}}</td>
+            <td>{{this.STATU_DPC}}</td>
+            <td>
+              <label class="badge badge-warning">En cour</label>
+            </td>
+          </tr>
+          {{/each}}
+          {{/if}}
+        </tbody>
+      </table>
+      <div class="container heading-section">
+        <h2 class="text-capitalize text-center">Envoyer un demande :</h2>
+        <div class="container">
+          <form id="dpcForm" action="/EspaceDemandeur" method="post">
+            <h2 class="text-center">Remplissez le formulaire suivant :</h2>
+            <div class="form-check-inline ali">
+              <h6 class="mr-2 text-black">Type de demande :</h6>
+              <input name="typePrestation" id="TiersPayant" style="margin-bottom: 5px" type="radio"
+                class="form-check-inline" placeholder="Agent" value="Tiers payant" required />
+              <label class="mr-2">Tiers payant</label>
+              <div class="mr-2"></div>
+              <input id="MedecinesDeSoins" class="form-check-inline" name="typePrestation" placeholder="Agent"
+                style="margin-bottom: 5px" type="radio" value="Médecines de soins" required />
+              <label class="mr-2">Médecines de soins</label>
+              <div class="mr-2"></div>
+              <input id="PrisesEnCharge100" name="typePrestation" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+                placeholder="Agent" value="Prises en charge 100 %" required />
+              <label class="mr-2">Prises en charge 100 %</label>
+              <div class="mr-2"></div>
+              <input name="typePrestation" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+                placeholder="Agent" value="Randevou CMS" required />
+              <label class="mr-2">Randevou CMS</label>
+            </div>
+            <br />
+            <div class="form-check-inline ali">
+              <h6 class="mr-2 text-black">Statut de l’adhérent :</h6>
+              <input name="statuAdh" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+                placeholder="Agent" value="Agent" required />
+              <label class="mr-2">Agent</label>
+              <div class="mr-2"></div>
+              <input name="statuAdh" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+                placeholder="Agent" value="Retraité(e)" required />
+              <label class="mr-2">Retraité(e)</label>
+              <div class="mr-2"></div>
+              <input name="statuAdh" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+                placeholder="Agent" value="veuf(ve)" required />
+              <label class="mr-2">veuf(ve)</label>
+            </div>
+            <div class="row block-9">
+              <div class="rowDPC d-flex mb-5 contact-info">
+                <div class="w-100"></div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Nom" name="nom" required {{#if request}}
+                    value={{request.nom}} {{/if}} />
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Prenom" name="prenom" required {{#if request}}
+                    value={{request.prenom}} {{/if}} />
+                </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Matricule" name="matricule" {{#if request}}
+                    value={{request.matricule}} {{/if}} required />
+                </div>
               </div>
-              <br />
-              <div class="form-check-inline ali">
-                <h6 class="mr-2 text-black">Statut de l’adhérent :</h6>
-                <input
-                  name="statuAdh"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="Agent"
-                  required
-                />
-                <label class="mr-2">Agent</label>
-                <div class="mr-2"></div>
-                <input
-                  name="statuAdh"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="Retraité(e)"
-                  required
-                />
-                <label class="mr-2">Retraité(e)</label>
-                <div class="mr-2"></div>
-                <input
-                  name="statuAdh"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="veuf(ve)"
-                  required
-                />
-                <label class="mr-2">veuf(ve)</label>
+              <div class="rowDPC d-flex mb-5 contact-info">
+                <div class="w-100"></div>
+                <div id="teleWarp" class="form-group">
+                  <input type="text" class="form-control" placeholder="Téléphone" name="tele" id="tele" {{#if request}}
+                    value={{request.tele}} {{/if}} required />
+                </div>
+                <div id="emailWarp" class="form-group">
+                  <input type="text" class="form-control" placeholder="E-mail" name="email" id="email" {{#if request}}
+                    value={{request.email}} {{/if}} required />
+                </div>
+                <div style="margin-top: 20px">
+                  <select id="Employeur" class="selectpicker form-control" data-live-search="true" title="Employeur"
+                    name="Employeur" required>
+                  </select>
+                </div>
               </div>
-              <div class="row block-9">
+            </div>
+            <div class="form-check-inline ali">
+              <h6 class="mr-2 text-black">Bénéficiaire de la prestation :</h6>
+              <input id="adherent" name="bene" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+                placeholder="Agent" value="L’adhérent" checked required />
+              <label class="mr-2">L’adhérent</label>
+              <div class="mr-2"></div>
+              <input id="ayantDroit" name="bene" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+                placeholder="Agent" value="Ayant droit" required />
+              <label class="mr-2">Ayant droit*</label>
+            </div>
+            <div class="row block-9">
+              <div class="row block-9" id="ayantDroitArea" style="display: none;">
                 <div class="rowDPC d-flex mb-5 contact-info">
                   <div class="w-100"></div>
                   <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Nom"
-                      name="nom"
-                      required
-                      {{#if request}} value={{request.nom}} {{/if}}               
-                    />
-                  </div>
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Prenom"
-                      name="prenom"
-                      required
-                      {{#if request}} value={{request.prenom}} {{/if}}
-                    />
-                  </div>
-                  <div class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Matricule"
-                      name="matricule"
-                      {{#if request}} value={{request.matricule}} {{/if}}
-                      required
-                    />
-                  </div>
-                </div>
-                <div class="rowDPC d-flex mb-5 contact-info">
-                  <div class="w-100"></div>
-                  <div id="teleWarp" class="form-group">
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="Téléphone"
-                      name="tele"
-                      id = "tele"
-                      {{#if request}} value={{request.tele}} {{/if}}
-                      required
-                    />
-                  </div>
-                  <div id="emailWarp" class="form-group" >
-                    <input
-                      type="text"
-                      class="form-control"
-                      placeholder="E-mail"
-                      name="email"
-                      id = "email"
-                      {{#if request}} value={{request.email}} {{/if}}                      
-                      required
-                    />
+                    <input id="benLastName" type="text" class="form-control" placeholder="Nom" name="benenom"
+                      {{#if request}} value={{request.benenom}} {{/if}} />
                   </div>
                   <div style="margin-top: 20px">
-                    <select
-                      id="Employeur"
-                      class="selectpicker form-control"
-                      data-live-search="true"
-                      title="Employeur"
-                      name="Employeur"  
-                      required
-                    >
-                    </select>
-                  </div>
-                </div>
-              </div>
-              <div class="form-check-inline ali">
-                <h6 class="mr-2 text-black">Bénéficiaire de la prestation :</h6>
-                <input
-                  id="adherent"
-                  name="bene"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="L’adhérent"
-                  checked
-                  required
-                />
-                <label class="mr-2">L’adhérent</label>
-                <div class="mr-2"></div>
-                <input
-                  id="ayantDroit"
-                  name="bene"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="Ayant droit"
-                  
-                  required
-                />
-                <label class="mr-2">Ayant droit*</label>
-              </div>
-              <div class="row block-9">
-                <div class="row block-9" id="ayantDroitArea" style="display: none;">
-                <div class="rowDPC d-flex mb-5 contact-info" >
-                  <div class="w-100"></div>
-                  <div class="form-group">
-                    <input
-                      id="benLastName"
-                      type="text"
-                      class="form-control"
-                      placeholder="Nom"
-                      name="benenom"
-                      {{#if request}} value= {{request.benenom}} {{/if}}
-                    />
-                  </div>
-                  <div style="margin-top: 20px">
-                    <select
-                      id="lienParentie"
-                      class="selectpicker form-control"
-                      title="lien de parenté avec l’adhérent"
-                      name="lienparentie"
-                    >
+                    <select id="lienParentie" class="selectpicker form-control" title="lien de parenté avec l’adhérent"
+                      name="lienparentie">
                       <option value="C">Conjointe / Conjoint</option>
                       <option value="fils">Fille / fils</option>
                     </select>
@@ -321,164 +190,80 @@
                 <div class="rowDPC d-flex mb-5 contact-info">
                   <div class="w-100"></div>
                   <div class="form-group">
-                    <input
-                      id="benFirstName"
-                      type="text"
-                      class="form-control"
-                      placeholder="Prenom"
-                      name="beneprenom"
-                      {{#if request}} value={{request.beneprenom}} {{/if}}
-                    />
+                    <input id="benFirstName" type="text" class="form-control" placeholder="Prenom" name="beneprenom"
+                      {{#if request}} value={{request.beneprenom}} {{/if}} />
                   </div>
                   <div class="form-group">
-                    <input
-                      id="date"
-                      type="date"
-                      class="form-control"
-                      placeholder="Date"
-                      name="date"
-                    />
+                    <input id="date" type="date" class="form-control" placeholder="Date" name="date" />
                   </div>
 
                 </div>
-                </div>
               </div>
+            </div>
+            <div id="tpWrapper">
               <div class="form-check-inline ali">
                 <br>
                 <h6 class="mr-2 text-black">Méthode de recherche d'acte : </h6>
-                <input
-                  id="type"
-                  name="methode"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="L’adhérent"
-                  checked
-                  required
-                />
+                <input id="type" name="methode" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+                  placeholder="Agent" value="L’adhérent" checked required />
                 <label class="mr-2">Type</label>
                 <div class="mr-2"></div>
-                <input
-                  id="code"
-                  name="methode"
-                  style="margin-bottom: 5px"
-                  type="radio"
-                  class="form-check-inline"
-                  placeholder="Agent"
-                  value="Ayant droit"
-                  required
-                />
-                <label class="mr-2">Code</label>
+                <div id="codeWrapper">
+                  <input id="code" name="methode" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+                    placeholder="Agent" value="Ayant droit" required />
+                  <label class="mr-2">Code</label>
+                </div>
               </div>
               <div class="row block-9">
                 <div class="rowDPC d-flex mb-5 contact-info">
                   <div style="margin-top: 20px" id="">
                     <div class="form-group" id="codeMethode" style="display: none;">
-                    <input
-                      type="text"
-                      class="form-control"
-                      id="codeInput"
-                      placeholder="Code d'acte"
-                      name="code"
-                      maxlength = "13"
-                    />
-                  </div>
-                    <select
-                      id="typeMethode"
-                      class="selectpicker form-control"
-                      data-live-search="true"
-                      title="Type d’acte demandé"
-                      name="act"
-                      required
-                    >
-                      <option value="Ophtalmologie">Ophtalmologie</option>
-                      <option>Oncologie</option>
-                      <option>Imagerie</option>
-                      <optgroup label="Chirurgie">
-                        <option>Obstétrique</option>
-                        <option>Cancérologie</option>
-                        <option>Autres Chirurgies</option>
-                      </optgroup>
+                      <input type="text" class="form-control" id="codeInput" placeholder="Code d'acte" name="code"
+                        maxlength="13" />
+                    </div>
+                    <select id="typeMethode" class="selectpicker form-control" data-live-search="true"
+                      title="Type d’acte demandé" name="act" required>
                     </select>
                   </div>
                 </div>
                 <div class="rowDPC d-flex mb-5 contact-info">
                   <div style="margin-top: 20px" id="structure">
-                    <select
-                      id = "structure_select"
-                      style="width: 360px !important;"
-                      data-live-search="true"
-                      class="selectpicker form-control"
-                      title="Structure médicale conventionnée souhaitée"
-                      name="structure"
-                      required
-                    >
-                      <option value="EL SALAM">EL SALAM</option>
-                      <option value="EL HILAL">EL HILAL</option>
-                      <option value="SARL CLINIQUE NOUR EL DOUNIA">
-                        SARL CLINIQUE NOUR EL DOUNIA
-                      </option>
+                    <select id="structure_select" style="width: 360px !important;" data-live-search="true"
+                      class="selectpicker form-control" title="Structure médicale conventionnée souhaitée"
+                      name="structure" required>
                     </select>
                   </div>
                 </div>
               </div>
+            </div>
 
-
-                {{#if invalidTel}}
-                  <span class="text-danger">{{invalidTel}}</span>
-                {{/if}}
-              <div class="form-group">
-                <input
-                id="dpcFormSubmit"
-                  class="btn btn-primary py-3 px-5"
-                  type="submit"
-                  value="Envoyer"
-                />
-              </div>
-            </form>
-          </div>
+            {{#if invalidTel}}
+            <span class="text-danger">{{invalidTel}}</span>
+            {{/if}}
+            <div class="form-group">
+              <input class="btn btn-primary py-3 px-5" type="submit" value="Envoyer" />
+            </div>
+          </form>
         </div>
       </div>
-    </section>
-
-    {{>footer}}
-
-    <!-- loader -->
-    <div id="ftco-loader" class="show fullscreen">
-      <svg class="circular" width="48px" height="48px">
-        <circle
-          class="path-bg"
-          cx="24"
-          cy="24"
-          r="22"
-          fill="none"
-          stroke-width="4"
-          stroke="#eeeeee"
-        />
-        <circle
-          class="path"
-          cx="24"
-          cy="24"
-          r="22"
-          fill="none"
-          stroke-width="4"
-          stroke-miterlimit="10"
-          stroke="#F96D00"
-        />
-      </svg>
     </div>
+  </section>
 
-    <!-- Modal -->
-    <div
-      class="modal fade"
-      id="modalRequest"
-      tabindex="-1"
-      role="dialog"
-      aria-labelledby="modalRequestLabel"
-      aria-hidden="true"
-    >
-     {{!-- <div class="modal-dialog" role="document">
+  {{>footer}}
+
+  <!-- loader -->
+  <div id="ftco-loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+      <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" />
+      <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+        stroke="#F96D00" />
+    </svg>
+  </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel"
+    aria-hidden="true">
+    {{!-- <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <h5 class="modal-title" id="modalRequestLabel">
@@ -558,82 +343,112 @@
           </div>
         </div>
       </div> --}}
+  </div>
+
+
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/jquery-ui.min.js"></script>
+  <script src="/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="/js/popper.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jquery.easing.1.3.js"></script>
+  <script src="/js/jquery.waypoints.min.js"></script>
+  <script src="/js/jquery.stellar.min.js"></script>
+  <script src="/js/owl.carousel.min.js"></script>
+  <script src="/js/jquery.magnific-popup.min.js"></script>
+  <script src="/js/aos.js"></script>
+  <script src="/js/jquery.animateNumber.min.js"></script>
+  <script src="/js/bootstrap-datepicker.js"></script>
+  <script src="/js/jquery.timepicker.min.js"></script>
+  <script src="/js/scrollax.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/validator.min.js"></script>
+  {{!-- <script src="/js/navbar.js"></script> --}}
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+  <script src="/js/custom/form-validation.js"></script>
+  {{#if success }}
+  <!-- success Modal  -->
+  <div id="success" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center">
+          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#ffffff" class="bi bi-check2-circle"
+            viewBox="0 0 16 16">
+            <path
+              d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z" />
+            <path
+              d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z" />
+          </svg>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body text-center">
+          <h4>Super!</h4>
+          <p>votre demande a été envoyée, vous verrez toutes les mises à jour sur cette page.
+          </p>
+        </div>
+      </div>
     </div>
+  </div>
+  <script>
+    $(document).ready(function () {
+      $("#success").modal('show');
+    }); <
+    /sc> { {
+      /if}} { {
+        #
+        if error
+      }
+    } <
+    !--error Modal-- >
+    <
+    div id = "error"
+    class = "modal fade" >
+      <
+      div class = "modal-dialog modal-error modal-confirm " >
+      <
+      div class = "modal-content" >
+      <
+      div class = "modal-header justify-content-center"
+    style = "background:  #c94747 !important;" >
+      <
+      svg xmlns = "http://www.w3.org/2000/svg"
+    width = "60"
+    height = "60"
+    fill = "#ffffff"
+    class = "bi bi-x-square"
+    viewBox = "0 0 16 16" >
+      <
+      path d =
+      "M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" /
+      >
+      <
+      path d =
+      "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" /
+      >
+      <
+      /svg> <
+    button type = "button"
+    class = "close"
+    data - dismiss = "modal"
+    aria - hidden = "true" > & times; < /button> < /
+    div > <
+      div class = "modal-body text-center" >
+      <
+      h4 > Oops! < /h4>	 <
+    p > Quelque chose s 'est mal passé réessayer plus tard < /
+      p > <
+      /div> < /
+      div > <
+      /div> < /
+      div > <
+      script >
+      $(document).ready(function () {
+        $("#error").modal('show');
+      });
+  </script>
+  {{/if}}
 
+</body>
 
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/jquery-ui.min.js"></script>
-    <script src="/js/jquery-migrate-3.0.1.min.js"></script>
-    <script src="/js/popper.min.js"></script>
-    <script src="/js/bootstrap.min.js"></script>
-    <script src="/js/jquery.easing.1.3.js"></script>
-    <script src="/js/jquery.waypoints.min.js"></script>
-    <script src="/js/jquery.stellar.min.js"></script>
-    <script src="/js/owl.carousel.min.js"></script>
-    <script src="/js/jquery.magnific-popup.min.js"></script>
-    <script src="/js/aos.js"></script>
-    <script src="/js/jquery.animateNumber.min.js"></script>
-    <script src="/js/bootstrap-datepicker.js"></script>
-    <script src="/js/jquery.timepicker.min.js"></script>
-    <script src="/js/scrollax.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/validator.min.js"></script>
-    {{!-- <script src="/js/navbar.js"></script> --}}
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-    <script src="/js/custom/form-validation.js"></script>
-{{#if success }}
-<!-- success Modal  -->
-<div id="success" class="modal fade">
-	<div class="modal-dialog modal-confirm">
-		<div class="modal-content">
-			<div class="modal-header justify-content-center">
-<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#ffffff" class="bi bi-check2-circle" viewBox="0 0 16 16">
-  <path d="M2.5 8a5.5 5.5 0 0 1 8.25-4.764.5.5 0 0 0 .5-.866A6.5 6.5 0 1 0 14.5 8a.5.5 0 0 0-1 0 5.5 5.5 0 1 1-11 0z"/>
-  <path d="M15.354 3.354a.5.5 0 0 0-.708-.708L8 9.293 5.354 6.646a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l7-7z"/>
-</svg>
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body text-center">
-				<h4>Super!</h4>	
-				<p>votre demande a été envoyée, vous verrez toutes les mises à jour sur cette page.
-        </p>
-			</div>
-		</div>
-	</div>
-</div>     
-    <script>
-	$(document).ready(function(){
-		$("#success").modal('show');
-	});
-</sc>
-{{/if}}
-{{#if error}}
-  <!-- error Modal  -->
-<div id="error" class="modal fade">
-	<div class="modal-dialog modal-error modal-confirm " >
-		<div class="modal-content">
-			<div class="modal-header justify-content-center" style="background:  #c94747 !important;">
-<svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#ffffff" class="bi bi-x-square" viewBox="0 0 16 16">
-  <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
-  <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z"/>
-</svg>
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-			</div>
-			<div class="modal-body text-center">
-				<h4>Oops!</h4>	
-				<p>Quelque chose s'est mal passé réessayer plus tard
-        </p>
-			</div>
-		</div>
-	</div>
-</div>     
-    <script>
-	$(document).ready(function(){
-		$("#error").modal('show');
-	});
-</script>
-{{/if}}
-
-  </body>
 </html>

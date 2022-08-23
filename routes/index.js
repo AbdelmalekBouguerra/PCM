@@ -20,6 +20,12 @@ router.get("/get/structure", auth, structures.sh);
 router.get("/get/act", auth, data.actType);
 router.get("/get/act/:actCode", auth, data.actCode);
 router.get("/get/structure/tp/:designation", auth, structures.tiersPayant);
+router.get("/get/structure/medecinTravailAct", auth, structures.medecinTravail);
+router.get(
+  "/get/structure/mt/:designation",
+  auth,
+  structures.medecinTravailStr
+);
 
 router
   .route("/accueil")

@@ -3,7 +3,10 @@ const { QueryTypes } = require("sequelize");
 const db = require("../../config/sequelize");
 
 const structure = require("../../models/structure")(db, DataTypes);
-
+const medecinTravailModel = require("../../models/medecin_travail_act")(
+  db,
+  DataTypes
+);
 module.exports = {
   sh: async (req, res, next) => {
     try {
@@ -28,6 +31,38 @@ module.exports = {
         .then((result) => {
           result = result.map((resultItem) => resultItem.libelle);
           result.length > 0 ? res.status(200).json(result) : res.status(404);
+        })
+        .catch((err) => res.status(500).json(err));
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  },
+  medecinTravail: (req, res, next) => {
+    try {
+      medecinTravailModel
+        .findAll({ group: "acte", attributes: ["acte"] })
+        .then((results) => {
+          results = results.map((result) => result.acte);
+          results.length > 0 ? res.status(200).json(results) : res.status(404);
+        })
+        .catch((err) => res.status(500).json(err));
+    } catch (error) {
+      console.log(error);
+      next(error);
+    }
+  },
+  medecinTravailStr: (req, res, next) => {
+    try {
+      medecinTravailModel
+        .findAll({
+          attributes: ["structure"],
+          where: { acte: req.params.designation },
+        })
+        .then((results) => {
+          console.log(results);
+          results = results.map((result) => result.structure);
+          results.length > 0 ? res.status(200).json(results) : res.status(404);
         })
         .catch((err) => res.status(500).json(err));
     } catch (error) {

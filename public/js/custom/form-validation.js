@@ -11,6 +11,12 @@ codeMethode = $("#codeMethode");
 structure = $("#structure");
 Employeur = $("#Employeur");
 structure_select = $("#structure_select");
+TiersPayant = $("#TiersPayant");
+MedecinesDeSoins = $("#MedecinesDeSoins");
+PrisesEnCharge100 = $("#PrisesEnCharge100");
+let isEmailValid = false;
+let isMobilePhoneValid = false;
+
 $(document).ready(function () {
   /* Un appel ajax au serveur pour obtenir les structures. ================== */
   $.ajax({
@@ -32,40 +38,24 @@ $(document).ready(function () {
       Employeur.selectpicker("refresh");
     },
     error: function (error) {
-      alert("There was an error. ", error);
+      console.log("There was an error. ", error);
     },
   });
   /* ======================================================================== */
   /* Un appel ajax au serveur pour obtenir les type d'act. ================== */
-  $.ajax({
-    url: `${URL}/get/act`,
-    success: function (data) {
-      /* Vider l'élément de sélection. */
-      typeMethode.empty();
-      /* Une fonction jQuery qui itère sur un tableau d'objets. */
-      $.each(data, function (i, item) {
-        /* Créer un élément d'option et l'ajouter à l'élément de sélection. */
-        typeMethode.append(
-          $("<option>", {
-            value: item,
-            text: item,
-          })
-        );
-      });
-      /* Actualisation du sélecteur de sélection. */
-      typeMethode.selectpicker("refresh");
-    },
-    error: function (error) {
-      alert("There was an error. ", error);
-    },
-  });
+
   /* ======================================================================== */
 
   typeMethode.on(
     "changed.bs.select",
     function (e, clickedIndex, isSelected, previousValue) {
+      let getURL;
+      if (TiersPayant.is(":checked"))
+        getURL = `${URL}/get/structure/tp/${e.target.value}`;
+      else if (PrisesEnCharge100.is(":checked"))
+        getURL = `${URL}/get/structure/mt/${e.target.value}`;
       $.ajax({
-        url: `${URL}/get/structure/tp/${e.target.value}`,
+        url: getURL,
         success: function (data) {
           structure_select.empty();
           $.each(data, function (i, item) {
@@ -100,26 +90,9 @@ $(document).ready(function () {
     ayantDroitArea.hide();
   });
 
-  type.on("click", () => {
-    $("#codeInput").prop("required", false);
-    typeMethode.prop("required", true);
+  type.on("click", () => displayType());
 
-    typeMethode.selectpicker("show");
-    structure.css("margin-top", "20px");
-    codeMethode.hide();
-  });
-
-  code.on("click", () => {
-    $("#codeInput").prop("required", true);
-    typeMethode.prop("required", false);
-
-    typeMethode.selectpicker("hide");
-    structure.css("margin-top", "35px");
-    codeMethode.show();
-
-    structure_select.empty();
-    structure_select.selectpicker("refresh");
-  });
+  code.on("click", () => displayCode());
 
   codeMethode.on("input", (evt) => {
     if (evt.target.value.length == 13) {
@@ -161,8 +134,6 @@ $(document).ready(function () {
 
   // validating email and telephone numbers
 
-  let isEmailValid = false;
-  let isMobilePhoneValid = false;
   const email = $("#email");
   const tele = $("#tele");
 
@@ -196,3 +167,98 @@ $(document).ready(function () {
     }
   });
 });
+
+TiersPayant.on("change", (evt) => {
+  $("#codeWrapper").show(200);
+
+  $.ajax({
+    url: `${URL}/get/act`,
+    success: function (data) {
+      /* Vider l'élément de sélection. */
+      typeMethode.empty();
+      /* Une fonction jQuery qui itère sur un tableau d'objets. */
+      $.each(data, function (i, item) {
+        /* Créer un élément d'option et l'ajouter à l'élément de sélection. */
+        typeMethode.append(
+          $("<option>", {
+            value: item,
+            text: item,
+          })
+        );
+      });
+      /* Actualisation du sélecteur de sélection. */
+      typeMethode.selectpicker("refresh");
+    },
+    error: function (error) {
+      console.log("There was an error. ", error);
+    },
+  });
+});
+
+PrisesEnCharge100.on("change", (evt) => {
+  $("#codeWrapper").hide(200);
+  type.prop("checked", true);
+  displayType();
+
+  $.ajax({
+    url: `${URL}/get/structure/medecinTravailAct`,
+    success: function (data) {
+      /* Vider l'élément de sélection. */
+      typeMethode.empty();
+      /* Une fonction jQuery qui itère sur un tableau d'objets. */
+      $.each(data, function (i, item) {
+        /* Créer un élément d'option et l'ajouter à l'élément de sélection. */
+        typeMethode.append(
+          $("<option>", {
+            value: item,
+            text: item,
+          })
+        );
+      });
+      /* Actualisation du sélecteur de sélection. */
+      typeMethode.selectpicker("refresh");
+    },
+    error: function (error) {},
+  });
+});
+
+// form validation
+$(document).on("submit", "#dpcForm", function (e) {
+  e.preventDefault();
+  if (isMobilePhoneValid && isEmailValid) e.currentTarget.submit();
+  else {
+    if (!isEmailValid) $("#emailWarp").effect("shake", { times: 2 }, 1000);
+    if (!isMobilePhoneValid) $("#teleWarp").effect("shake", { times: 2 }, 1000);
+  }
+});
+
+/**
+ * Si l'utilisateur sélectionne l'option 'Type', alors le champ de saisie 'Code' n'est pas requis, le
+ * champ de saisie 'Type' est requis, le champ de saisie 'Type' est affiché, le champ de saisie
+ * 'Structure' est déplacé vers le bas de 20px, et le champ de saisie 'Code' est masqué.
+ */
+function displayType() {
+  $("#codeInput").prop("required", false);
+  typeMethode.prop("required", true);
+
+  typeMethode.selectpicker("show");
+  structure.css("margin-top", "20px");
+  codeMethode.hide();
+}
+
+/**
+ * Si l'utilisateur sélectionne l'option "code", le champ "codeInput" est obligatoire, le champ
+ * "typeMethode" n'est pas obligatoire, le champ "typeMethode" est masqué, le champ "structure" est
+ * déplacé vers le bas, et le champ "codeMethode" est montré.
+ */
+function displayCode() {
+  $("#codeInput").prop("required", true);
+  typeMethode.prop("required", false);
+
+  typeMethode.selectpicker("hide");
+  structure.css("margin-top", "35px");
+  codeMethode.show();
+
+  structure_select.empty();
+  structure_select.selectpicker("refresh");
+}
