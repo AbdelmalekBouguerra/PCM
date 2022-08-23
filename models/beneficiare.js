@@ -1,44 +1,40 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('dpc', {
-    dpc_id: {
+  return sequelize.define('beneficiare', {
+    id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    dpc_number: {
-      type: DataTypes.STRING(45),
-      allowNull: true
-    },
     user_id: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
       references: {
         model: 'user',
         key: 'user_id'
       }
     },
-    id_act: {
-      type: DataTypes.INTEGER,
-      allowNull: false
-    },
-    type_demande: {
+    nom: {
       type: DataTypes.STRING(50),
       allowNull: true
     },
-    date_creation: {
-      type: DataTypes.DATEONLY,
+    prenom: {
+      type: DataTypes.STRING(50),
       allowNull: true
     },
-    date_maj: {
-      type: DataTypes.DATEONLY,
+    lien_parante: {
+      type: DataTypes.STRING(45),
       allowNull: true,
-      comment: "date de mise à jour"
+      comment: "lien parante avec l'adherent"
+    },
+    date_naissance: {
+      type: DataTypes.DATEONLY,
+      allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'dpc',
+    tableName: 'beneficiare',
     timestamps: false,
     indexes: [
       {
@@ -46,7 +42,7 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "dpc_id" },
+          { name: "id" },
         ]
       },
       {
