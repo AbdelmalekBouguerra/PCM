@@ -1,31 +1,35 @@
 const Sequelize = require('sequelize');
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('medecin_travail_act', {
-    medecin_travail_structure_id: {
+  return sequelize.define('medecins_conventionnes', {
+    id: {
       autoIncrement: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
-    acte: {
-      type: DataTypes.TEXT,
+    medecin: {
+      type: DataTypes.STRING(255),
       allowNull: false
     },
-    structure: {
-      type: DataTypes.TEXT,
-      allowNull: false
+    specialite: {
+      type: DataTypes.STRING(50),
+      allowNull: true
     },
     adresse: {
       type: DataTypes.TEXT,
-      allowNull: false
+      allowNull: true
     },
     tele: {
-      type: DataTypes.TEXT,
+      type: DataTypes.STRING(60),
+      allowNull: true
+    },
+    wilaya: {
+      type: DataTypes.STRING(50),
       allowNull: true
     }
   }, {
     sequelize,
-    tableName: 'medecin_travail_act',
+    tableName: 'medecins_conventionnes',
     timestamps: false,
     indexes: [
       {
@@ -33,7 +37,7 @@ module.exports = function(sequelize, DataTypes) {
         unique: true,
         using: "BTREE",
         fields: [
-          { name: "medecin_travail_structure_id" },
+          { name: "id" },
         ]
       },
     ]

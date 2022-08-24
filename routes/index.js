@@ -4,6 +4,7 @@ const DPC = require("../controllers/DPC");
 const auth = require("../middleware/auth");
 const authController = require("../controllers/auth");
 const structures = require("../controllers/form-data/structure");
+const medecins_soin = require("../controllers/form-data/medecins_soin.js");
 const data = require("../controllers/form-data/act");
 
 router.get("/", (req, res) => {
@@ -25,6 +26,23 @@ router.get(
   "/get/structure/mt/:designation",
   auth,
   structures.medecinTravailStr
+);
+
+// medecins_soin
+router.get(
+  "/get/medecins_conventionnes/specialites",
+  auth,
+  medecins_soin.specialite
+);
+router.get(
+  "/get/medecins_conventionnes/:specialite/wilayas",
+  auth,
+  medecins_soin.wilaya
+);
+router.get(
+  "/get/medecins_conventionnes/:specialite/:wilaya/medecin",
+  auth,
+  medecins_soin.medecin
 );
 
 router
