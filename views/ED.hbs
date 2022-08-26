@@ -108,8 +108,8 @@
                 class="form-check-inline" placeholder="Agent" value="Prises en charge 100 %" required />
               <label class="mr-2">Prises en charge 100 %</label>
               <div class="mr-2"></div>
-              <input id="rendevouCMS" name="typePrestation" style="margin-bottom: 5px" type="radio" class="form-check-inline"
-                placeholder="Agent" value="Randevou CMS" required />
+              <input id="rendevouCMS" name="typePrestation" style="margin-bottom: 5px" type="radio"
+                class="form-check-inline" placeholder="Agent" value="Randevou CMS" required />
               <label class="mr-2">Randevou CMS</label>
             </div>
             <br />
@@ -269,6 +269,27 @@
                     <select id="cms" data-live-search="true" class="selectpicker form-control" title="CMS souhaitée">
                     </select>
                   </div>
+                </div>
+              </div>
+            </div>
+            <div class="mb-5">
+              <div class="form-check-inline ali">
+                <br>
+                <h4 class="mr-2 text-black">Veuillez ajouter vos pièces jointes ici :</h4>
+              </div>
+              <div class="form-check-inline ali">
+                <h6>Format acceptee : Document(PDF,MS word), photo(PNG,GPG,GPEG)</h6>
+              </div>
+              <div class="form-check-inline ali">
+                <br>
+                <h6>
+                  Pour Ajoute plus de documents click ici
+                  <input id="addMoreFiles" class="btn btn-primary ml-3 py-1 px-2" type="button" value="+" />
+                </h6>
+              </div>
+              <div id="whereToAddMoreFiles" class="row block-9 ml-1">
+                <div class="form-control">
+                  <input type="file" name="" id="">
                 </div>
               </div>
             </div>

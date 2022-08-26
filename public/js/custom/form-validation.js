@@ -404,6 +404,22 @@ $(document).ready(function () {
     structure_select.empty();
     structure_select.selectpicker("refresh");
   }
-
-  function displayMedecins() {}
 });
+addMoreFiles = $("#addMoreFiles");
+removeButton = $(".icon-times-circle");
+addMoreFiles.on("click", (e) => {
+  $("#whereToAddMoreFiles").append(
+    `<div class="form-control">
+    <input type="file" name="" id="">
+    <i class="icon icon-times-circle" style="font-size: 28px;margin-left: 708px; color: gray;"
+    onclick="addMoreFileInput(this);" aria-hidden="true"></i>
+    </div>`
+  );
+});
+
+const addMoreFileInput = (e) => {
+  console.log(e);
+  // e.parentNode.removeChild(e);
+  e.parentNode.remove(e);
+  console.log("removeButton clicked");
+};
