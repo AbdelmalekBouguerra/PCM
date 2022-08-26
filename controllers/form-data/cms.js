@@ -6,7 +6,7 @@ const cms_act = require("../../models/cms_act")(db, DataTypes);
 module.exports = {
   specialite: async (req, res, next) => {
     try {
-      const specialites = await medecins_conventionnes.findAll({
+      const specialites = await cms_act.findAll({
         group: "specialite",
         attributes: ["specialite"],
       });
@@ -17,27 +17,18 @@ module.exports = {
       next(error);
     }
   },
-  wilaya: async (req, res, next) => {
+  structure: async (req, res, next) => {
     try {
-      const wilayas = await medecins_conventionnes.findAll({
-        attributes: ["wilaya"],
-        group: "wilaya",
+      const cmss = await cms_act.findAll({
+        attributes: ["cms_boumerdes", "cms_tiziouzou"],
+        group: "specialite",
         where: { specialite: req.params.specialite },
       });
-      const result = wilayas.map((item) => item.wilaya);
-      res.status(200).json(result);
-    } catch (error) {
-      console.error(error);
-      next(error);
-    }
-  },
-  medecin: async (req, res, next) => {
-    try {
-      const medecins = await medecins_conventionnes.findAll({
-        where: { specialite: req.params.specialite, wilaya: req.params.wilaya },
-        attributes: ["medecin"],
+      const result = [];
+      cmss.forEach((cms) => {
+        if (cms.cms_boumerdes == 1) result.push("CMS boumerdes");
+        if (cms.cms_tiziouzou == 1) result.push("CMS Tizi Ouzou");
       });
-      const result = medecins.map((item) => item.medecin);
       res.status(200).json(result);
     } catch (error) {
       console.error(error);

@@ -108,7 +108,7 @@
                 class="form-check-inline" placeholder="Agent" value="Prises en charge 100 %" required />
               <label class="mr-2">Prises en charge 100 %</label>
               <div class="mr-2"></div>
-              <input name="typePrestation" style="margin-bottom: 5px" type="radio" class="form-check-inline"
+              <input id="rendevouCMS" name="typePrestation" style="margin-bottom: 5px" type="radio" class="form-check-inline"
                 placeholder="Agent" value="Randevou CMS" required />
               <label class="mr-2">Randevou CMS</label>
             </div>
@@ -243,15 +243,32 @@
                 <div class="col d-flex mb-5">
                   <select name="specialite" id="specialite" class="selectpicker form-control" data-live-search="true"
                     title="Spécialité" data-width="200px">
-                    </select>
+                  </select>
                 </div>
                 <div class="col d-flex mb-5">
-                  <select name="wilaya" id="wilaya" class="selectpicker form-control"
-                    title="Wilaya" data-width="200px"></select>
+                  <select name="wilaya" id="wilaya" class="selectpicker form-control" title="Wilaya"
+                    data-width="200px"></select>
                 </div>
-                  <div class="col d-flex mb-5">
+                <div class="col d-flex mb-5">
                   <select name="medecin" id="medecin" class="selectpicker form-control" data-live-search="true"
                     title="Médecin " data-width="400px"></select>
+                </div>
+              </div>
+            </div>
+            <div id="cmsWrapper" style="display: none;">
+              <div class="row block-9">
+                <div class="rowDPC d-flex mb-5 contact-info">
+                  <div style="margin-top: 20px">
+                    <select id="cmsSpecialite" class="selectpicker form-control" data-live-search="true"
+                      title="Spécialité">
+                    </select>
+                  </div>
+                </div>
+                <div class="rowDPC d-flex mb-5 contact-info">
+                  <div style="margin-top: 20px" id="structure">
+                    <select id="cms" data-live-search="true" class="selectpicker form-control" title="CMS souhaitée">
+                    </select>
+                  </div>
                 </div>
               </div>
             </div>

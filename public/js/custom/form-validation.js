@@ -14,11 +14,16 @@ structure_select = $("#structure_select");
 TiersPayant = $("#TiersPayant");
 MedecinesDeSoins = $("#MedecinesDeSoins");
 PrisesEnCharge100 = $("#PrisesEnCharge100");
+rendevouCMS = $("#rendevouCMS");
 medecinsDeSoinsWrapper = $("#medecinsDeSoinsWrapper");
 tpWrapper = $("#tpWrapper");
 specialite = $("#specialite");
 wilaya = $("#wilaya");
 medecin = $("#medecin");
+
+cmsWrapper = $("#cmsWrapper");
+cmsSpecialite = $("#cmsSpecialite");
+cms = $("#cms");
 let isEmailValid = false;
 let isMobilePhoneValid = false;
 let specialiteSelected;
@@ -180,6 +185,7 @@ $(document).ready(function () {
   TiersPayant.on("change", (evt) => {
     tpWrapper.show();
     medecinsDeSoinsWrapper.hide();
+    cmsWrapper.hide();
     $("#codeWrapper").show(200);
     $("#veuveWrapper").show(200);
     $.ajax({
@@ -209,6 +215,7 @@ $(document).ready(function () {
   PrisesEnCharge100.on("change", (evt) => {
     tpWrapper.show();
     medecinsDeSoinsWrapper.hide();
+    cmsWrapper.hide();
     $("#codeWrapper").hide(200);
     $("#veuveWrapper").hide(200);
     type.prop("checked", true);
@@ -236,7 +243,36 @@ $(document).ready(function () {
     });
   });
 
+  rendevouCMS.on("change", (evt) => {
+    tpWrapper.hide();
+    medecinsDeSoinsWrapper.hide();
+    cmsWrapper.show();
+    $("#codeWrapper").hide(200);
+    $("#veuveWrapper").hide(200);
+    $.ajax({
+      url: `${URL}/get/cms/specialites`,
+      success: function (data) {
+        /* Vider l'élément de sélection. */
+        cmsSpecialite.empty();
+        /* Une fonction jQuery qui itère sur un tableau d'objets. */
+        $.each(data, function (i, item) {
+          /* Créer un élément d'option et l'ajouter à l'élément de sélection. */
+          cmsSpecialite.append(
+            $("<option>", {
+              value: item,
+              text: item,
+            })
+          );
+        });
+        /* Actualisation du sélecteur de sélection. */
+        cmsSpecialite.selectpicker("refresh");
+      },
+      error: function (error) {},
+    });
+  });
+
   MedecinesDeSoins.on("change", (evt) => {
+    cmsWrapper.hide();
     tpWrapper.hide();
     medecinsDeSoinsWrapper.show();
     $("#codeWrapper").hide(200);
@@ -263,6 +299,7 @@ $(document).ready(function () {
       error: function (error) {},
     });
   });
+
   specialite.on(
     "changed.bs.select",
     function (e, clickedIndex, isSelected, previousValue) {
@@ -306,6 +343,26 @@ $(document).ready(function () {
     }
   );
 
+  cmsSpecialite.on(
+    "changed.bs.select",
+    function (e, clickedIndex, isSelected, previousValue) {
+      $.ajax({
+        url: `${URL}/get/cms/${e.target.value}/structure`,
+        success: function (data) {
+          cms.empty();
+          $.each(data, function (i, item) {
+            cms.append(
+              $("<option>", {
+                value: item,
+                text: item,
+              })
+            );
+          });
+          cms.selectpicker("refresh");
+        },
+      });
+    }
+  );
   // form validation
   $(document).on("submit", "#dpcForm", function (e) {
     e.preventDefault();

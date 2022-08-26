@@ -6,7 +6,7 @@ const authController = require("../controllers/auth");
 const structures = require("../controllers/form-data/structure");
 const medecins_soin = require("../controllers/form-data/medecins_soin.js");
 const data = require("../controllers/form-data/act");
-
+const cms = require("../controllers/form-data/cms");
 router.get("/", (req, res) => {
   res.render("index");
 });
@@ -44,6 +44,10 @@ router.get(
   auth,
   medecins_soin.medecin
 );
+
+// cms
+router.get("/get/cms/specialites", auth, cms.specialite);
+router.get("/get/cms/:specialite/structure", auth, cms.structure);
 
 router
   .route("/accueil")
