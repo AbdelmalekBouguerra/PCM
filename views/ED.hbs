@@ -15,6 +15,8 @@
 </head>
 
 <body>
+
+  
   <!-- News ticker -->
 
   {{> news}}
@@ -92,7 +94,7 @@
       <div class="container heading-section">
         <h2 class="text-capitalize text-center">Envoyer un demande :</h2>
         <div class="container">
-          <div id="dpcForm" action="/EspaceDemandeur" method="post">
+          <form id="dpcForm" action="/EspaceDemandeur" method="post">
             <h2 class="text-center">Remplissez le formulaire suivant :</h2>
             <div class="form-check-inline ali">
               <h6 class="mr-2 text-black">Type de demande :</h6>
@@ -207,12 +209,12 @@
                 <br>
                 <h6 class="mr-2 text-black">Méthode de recherche d'acte : </h6>
                 <input id="type" name="methode" style="margin-bottom: 5px" type="radio" class="form-check-inline"
-                  placeholder="Agent" value="L’adhérent" checked required />
+                  placeholder="Agent" value="Type" checked required />
                 <label class="mr-2">Type</label>
                 <div class="mr-2"></div>
                 <div id="codeWrapper">
                   <input id="code" name="methode" style="margin-bottom: 5px" type="radio" class="form-check-inline"
-                    placeholder="Agent" value="Ayant droit" required />
+                    placeholder="Agent" value="Code" required />
                   <label class="mr-2">Code</label>
                 </div>
               </div>
@@ -220,7 +222,7 @@
                 <div class="rowDPC d-flex mb-5 contact-info">
                   <div style="margin-top: 20px">
                     <div class="form-group" id="codeMethode" style="display: none;">
-                      <input type="text" class="form-control" id="codeInput" placeholder="Code d'acte" name="code"
+                      <input type="text" class="form-control" id="codeInput" placeholder="Code d'acte" name="codeAct"
                         maxlength="13" />
                     </div>
                     <select id="typeMethode" class="selectpicker form-control" data-live-search="true"
@@ -260,13 +262,13 @@
                 <div class="rowDPC d-flex mb-5 contact-info">
                   <div style="margin-top: 20px">
                     <select id="cmsSpecialite" class="selectpicker form-control" data-live-search="true"
-                      title="Spécialité">
+                      title="Spécialité" name="cmsSpecialite">
                     </select>
                   </div>
                 </div>
                 <div class="rowDPC d-flex mb-5 contact-info">
                   <div style="margin-top: 20px" id="structure">
-                    <select id="cms" data-live-search="true" class="selectpicker form-control" title="CMS souhaitée">
+                    <select id="cms" name="cms" data-live-search="true" class="selectpicker form-control" title="CMS souhaitée">
                     </select>
                   </div>
                 </div>
@@ -300,8 +302,7 @@
             <div class="form-group">
               <input class="btn btn-primary py-3 px-5" type="submit" value="Envoyer" />
             </div>
-            </form>
-          </div>
+          </form>
         </div>
       </div>
   </section>
@@ -315,91 +316,6 @@
       <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
         stroke="#F96D00" />
     </svg>
-  </div>
-
-  <!-- Modal -->
-  <div class="modal fade" id="modalRequest" tabindex="-1" role="dialog" aria-labelledby="modalRequestLabel"
-    aria-hidden="true">
-    {{!-- <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="modalRequestLabel">
-              Make an Appointment
-            </h5>
-            <button
-              type="button"
-              class="close"
-              data-dismiss="modal"
-              aria-label="Close"
-            >
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <form action="#">
-              <div class="form-group">
-                <!-- <label for="appointment_name" class="text-black">Full Name</label> -->
-                <input
-                  type="text"
-                  class="form-control"
-                  id="appointment_name"
-                  placeholder="Full Name"
-                />
-              </div>
-              <div class="form-group">
-                <!-- <label for="appointment_email" class="text-black">Email</label> -->
-                <input
-                  type="text"
-                  class="form-control"
-                  id="appointment_email"
-                  placeholder="Email"
-                />
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <!-- <label for="appointment_date" class="text-black">Date</label> -->
-                    <input
-                      type="text"
-                      class="form-control appointment_date"
-                      placeholder="Date"
-                    />
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <!-- <label for="appointment_time" class="text-black">Time</label> -->
-                    <input
-                      type="text"
-                      class="form-control appointment_time"
-                      placeholder="Time"
-                    />
-                  </div>
-                </div>
-              </div>
-
-              <div class="form-group">
-                <!-- <label for="appointment_message" class="text-black">Message</label> -->
-                <textarea
-                  name=""
-                  id="appointment_message"
-                  class="form-control"
-                  cols="30"
-                  rows="10"
-                  placeholder="Message"
-                ></textarea>
-              </div>
-              <div class="form-group">
-                <input
-                  class="btn btn-primary"
-                  type="submit"
-                  value="Make an Appointment"
-                />
-              </div>
-            </form>
-          </div>
-        </div>
-      </div> --}}
   </div>
 
 
@@ -424,7 +340,8 @@
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
   <script src="/js/custom/form-validation.js"></script>
-  {{#if success }}
+
+{{#if success }}
   <!-- success Modal  -->
   <div id="success" class="modal fade">
     <div class="modal-dialog modal-confirm">
@@ -450,64 +367,41 @@
   <script>
     $(document).ready(function () {
       $("#success").modal('show');
-    }); <
-    /sc> { { /
-    if
-    }
-    } {
-      {
-        #
-        if error
-      }
-    } <
-    !--error Modal-- >
-    <
-    div id = "error"
-    class = "modal fade" >
-      <
-      div class = "modal-dialog modal-error modal-confirm " >
-      <
-      div class = "modal-content" >
-      <
-      div class = "modal-header justify-content-center"
-    style = "background:  #c94747 !important;" >
-      <
-      svg xmlns = "http://www.w3.org/2000/svg"
-    width = "60"
-    height = "60"
-    fill = "#ffffff"
-    class = "bi bi-x-square"
-    viewBox = "0 0 16 16" >
-      <
-      path d =
-      "M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" /
-      >
-      <
-      path d =
-      "M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" /
-      >
-      <
-      /svg> <
-    button type = "button"
-    class = "close"
-    data - dismiss = "modal"
-    aria - hidden = "true" > & times; < /button> < /
-    div > <
-      div class = "modal-body text-center" >
-      <
-      h4 > Oops! < /h4>	 <
-    p > Quelque chose s 'est mal passé réessayer plus tard < /
-    p > <
-      /div> < /
-    div > <
-      /div> < /
-    div > <
-      script >
-      $(document).ready(function () {
-        $("#error").modal('show');
-      });
+    });
   </script>
   {{/if}}
+  {{#if error}}
+  <!-- error Modal  -->
+  <div id="error" class="modal fade">
+    <div class="modal-dialog modal-error modal-confirm ">
+      <div class="modal-content">
+        <div class="modal-header justify-content-center" style="background:  #c94747 !important;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="#ffffff" class="bi bi-x-square"
+            viewBox="0 0 16 16">
+            <path
+              d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z" />
+            <path
+              d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+          </svg>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        </div>
+        <div class="modal-body text-center">
+          <h4>Oops!</h4>
+          <p>Quelque chose s'est mal passé réessayer plus tard
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- todo fix this should be moved to the end after jquerysc -->
+  <script>
+    $(document).ready(function () {
+      $("#error").modal('show');
+    });
+  </script>
+  {{/if}}
+
+
 
 </body>
 
