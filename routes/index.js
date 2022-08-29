@@ -17,37 +17,37 @@ router.get("/info", auth, (req, res) => {
   res.render("info");
 });
 
-router.get("/get/structure", auth, structures.sh);
-router.get("/get/act", auth, data.actType);
-router.get("/get/act/:actCode", auth, data.actCode);
-router.get("/get/structure/tp/:designation", auth, structures.tiersPayant);
-router.get("/get/structure/medecinTravailAct", auth, structures.medecinTravail);
+router.get("/get/structure", structures.sh);
+router.get("/get/act", data.actType);
+router.get("/get/act/:actCode", data.actCode);
+router.get("/get/structure/tp/:designation", structures.tiersPayant);
+router.get("/get/structure/medecinTravailAct", structures.medecinTravail);
 router.get(
   "/get/structure/mt/:designation",
-  auth,
+
   structures.medecinTravailStr
 );
 
 // medecins_soin
 router.get(
   "/get/medecins_conventionnes/specialites",
-  auth,
+
   medecins_soin.specialite
 );
 router.get(
   "/get/medecins_conventionnes/:specialite/wilayas",
-  auth,
+
   medecins_soin.wilaya
 );
 router.get(
   "/get/medecins_conventionnes/:specialite/:wilaya/medecin",
-  auth,
+
   medecins_soin.medecin
 );
 
 // cms
-router.get("/get/cms/specialites", auth, cms.specialite);
-router.get("/get/cms/:specialite/structure", auth, cms.structure);
+router.get("/get/cms/specialites", cms.specialite);
+router.get("/get/cms/:specialite/structure", cms.structure);
 
 router
   .route("/accueil")

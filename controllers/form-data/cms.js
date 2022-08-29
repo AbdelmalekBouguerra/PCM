@@ -8,10 +8,9 @@ module.exports = {
     try {
       const specialites = await cms_act.findAll({
         group: "specialite",
-        attributes: ["specialite"],
+        attributes: ["id", "specialite"],
       });
-      const result = specialites.map((item) => item.specialite);
-      res.status(200).json(result);
+      res.status(200).json(specialites);
     } catch (error) {
       console.error(error);
       next(error);
@@ -20,14 +19,15 @@ module.exports = {
   structure: async (req, res, next) => {
     try {
       const cmss = await cms_act.findAll({
-        attributes: ["cms_boumerdes", "cms_tiziouzou"],
-        group: "specialite",
-        where: { specialite: req.params.specialite },
+        attributes: ["id", "cms_boumerdes", "cms_tiziouzou"],
+        where: { id: req.params.specialite },
       });
       const result = [];
       cmss.forEach((cms) => {
-        if (cms.cms_boumerdes == 1) result.push("CMS boumerdes");
-        if (cms.cms_tiziouzou == 1) result.push("CMS Tizi Ouzou");
+        if (cms.cms_boumerdes == 1)
+          result.push({ libelle: "CMS boumerdes", id: 1 });
+        if (cms.cms_tiziouzou == 1)
+          result.push({ libelle: "CMS Tizi Ouzou", id: 2 });
       });
       res.status(200).json(result);
     } catch (error) {

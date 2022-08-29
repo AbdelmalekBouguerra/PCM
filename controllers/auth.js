@@ -75,6 +75,7 @@ exports.login = async (req, res) => {
 
       /* Définition du jeton sur l'objet utilisateur. */
       user.token = token;
+      user.username = username;
       req.session.token = token;
       req.session.user_PCM = user;
       /* Rendu de la page d'accueil. */

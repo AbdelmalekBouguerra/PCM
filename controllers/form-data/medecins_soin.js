@@ -38,10 +38,9 @@ module.exports = {
     try {
       const medecins = await medecins_conventionnes.findAll({
         where: { specialite: req.params.specialite, wilaya: req.params.wilaya },
-        attributes: ["medecin"],
+        attributes: ["medecin", "id"],
       });
-      const result = medecins.map((item) => item.medecin);
-      res.status(200).json(result);
+      res.status(200).json(medecins);
     } catch (error) {
       console.error(error);
       next(error);

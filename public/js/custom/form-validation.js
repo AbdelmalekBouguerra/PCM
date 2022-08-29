@@ -72,8 +72,8 @@ $(document).ready(function () {
           $.each(data, function (i, item) {
             structure_select.append(
               $("<option>", {
-                value: item,
-                text: item,
+                value: item.id,
+                text: item.libelle,
               })
             );
           });
@@ -115,13 +115,13 @@ $(document).ready(function () {
           structure_select.empty();
           structure_select.append(
             $("<option>", {
-              value: data,
-              text: data,
+              value: data.id,
+              text: data.libelle,
             })
           );
           structure_select.selectpicker("refresh");
 
-          structure_select.selectpicker("val", data);
+          structure_select.selectpicker("val", data.id);
           $("#codeMessage").remove();
           codeMethode.append(
             `<b id='codeMessage' style ='color : green !important;'>
@@ -245,6 +245,9 @@ $(document).ready(function () {
 
   rendevouCMS.on("change", (evt) => {
     tpWrapper.hide();
+    structure_select.prop("required", false);
+    typeMethode.prop("required", false);
+    structure;
     medecinsDeSoinsWrapper.hide();
     cmsWrapper.show();
     $("#codeWrapper").hide(200);
@@ -259,8 +262,8 @@ $(document).ready(function () {
           /* Créer un élément d'option et l'ajouter à l'élément de sélection. */
           cmsSpecialite.append(
             $("<option>", {
-              value: item,
-              text: item,
+              value: item.id,
+              text: item.specialite,
             })
           );
         });
@@ -274,6 +277,8 @@ $(document).ready(function () {
   MedecinesDeSoins.on("change", (evt) => {
     cmsWrapper.hide();
     tpWrapper.hide();
+    structure_select.prop("required", false);
+    typeMethode.prop("required", false);
     medecinsDeSoinsWrapper.show();
     $("#codeWrapper").hide(200);
     $("#veuveWrapper").hide(200);
@@ -332,8 +337,8 @@ $(document).ready(function () {
           $.each(data, function (i, item) {
             medecin.append(
               $("<option>", {
-                value: item,
-                text: item,
+                value: item.id,
+                text: item.medecin,
               })
             );
           });
@@ -353,8 +358,8 @@ $(document).ready(function () {
           $.each(data, function (i, item) {
             cms.append(
               $("<option>", {
-                value: item,
-                text: item,
+                value: item.id,
+                text: item.libelle,
               })
             );
           });
@@ -423,3 +428,8 @@ const addMoreFileInput = (e) => {
   e.parentNode.remove(e);
   console.log("removeButton clicked");
 };
+
+/* prevent form resubmission when page is refreshed (F5 / CTRL+R) */
+if (window.history.replaceState) {
+  window.history.replaceState(null, null, window.location.href);
+}
