@@ -6,7 +6,10 @@ const session = require("cookie-session");
 const compression = require("compression");
 const cors = require("cors");
 const app = express();
+const fileUpload = require("express-fileupload");
+
 app.use(compression());
+app.use(fileUpload());
 
 const http_port = process.env.PORT || 3031;
 
@@ -78,6 +81,13 @@ app.use(function (err, req, res, next) {
 app.listen(http_port, () => {
   console.log(`Server started : http://localhost:${http_port}`);
 });
+
+var serveIndex = require("serve-index");
+
+app.use(
+  "/dpcFiles",
+  serveIndex(path.join(__dirname, "uploads"), { icons: true })
+);
 
 /* Exportation de l'objet d'application afin qu'il puisse être utilisé dans d'autres fichiers. */
 module.exports = app;

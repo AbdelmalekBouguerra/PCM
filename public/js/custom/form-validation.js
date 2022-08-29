@@ -371,8 +371,18 @@ $(document).ready(function () {
   // form validation
   $(document).on("submit", "#dpcForm", function (e) {
     e.preventDefault();
-    if (isMobilePhoneValid && isEmailValid) e.currentTarget.submit();
-    else {
+    if (isMobilePhoneValid && isEmailValid) {
+      $("#numberOfInputs").remove();
+      $("<input>")
+        .attr({
+          id: "numberOfInputs",
+          type: "hidden",
+          name: "numberOfInputs",
+          value: filesInputsNumber,
+        })
+        .appendTo("#dpcForm");
+      e.currentTarget.submit();
+    } else {
       if (!isEmailValid) $("#emailWarp").effect("shake", { times: 2 }, 1000);
       if (!isMobilePhoneValid)
         $("#teleWarp").effect("shake", { times: 2 }, 1000);
@@ -410,24 +420,27 @@ $(document).ready(function () {
     structure_select.selectpicker("refresh");
   }
 });
-addMoreFiles = $("#addMoreFiles");
-removeButton = $(".icon-times-circle");
-addMoreFiles.on("click", (e) => {
+
+/* -------------------------------- Adding Inputs Files logic -------------------------------- */
+
+let filesInputsNumber = 0;
+$("#addMoreFiles").on("click", (e) => {
+  filesInputsNumber++;
   $("#whereToAddMoreFiles").append(
     `<div class="form-control">
-    <input type="file" name="" id="">
+    <input type="file" name="file${filesInputsNumber}">
     <i class="icon icon-times-circle" style="font-size: 28px;margin-left: 708px; color: gray;"
-    onclick="addMoreFileInput(this);" aria-hidden="true"></i>
+    onclick="removeButton(this);" aria-hidden="true"></i>
     </div>`
   );
 });
 
-const addMoreFileInput = (e) => {
-  console.log(e);
-  // e.parentNode.removeChild(e);
+const removeButton = (e) => {
+  filesInputsNumber--;
   e.parentNode.remove(e);
-  console.log("removeButton clicked");
 };
+
+/* ------------------------------------------------------------------------------------------- */
 
 /* prevent form resubmission when page is refreshed (F5 / CTRL+R) */
 if (window.history.replaceState) {

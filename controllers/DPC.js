@@ -7,6 +7,8 @@ const updateOrCreate = require("../common/updateOrCreate");
 const dpc = require("../models/dpc")(db, DataTypes);
 const User = require("../models/user")(db, DataTypes);
 const Beneficiaire = require("../models/beneficiare")(db, DataTypes);
+const fs = require("fs");
+const path = require("path");
 
 // const cms_act = require("../models/cms_act")(db, DataTypes);
 // const medecins_conventionnes = require("../models/medecins_conventionnes")(
@@ -70,6 +72,7 @@ module.exports = {
         medecin,
         cmsSpecialite,
         cms,
+        numberOfInputs,
         act,
       } = req.body;
 
@@ -119,8 +122,42 @@ module.exports = {
       const userDpcNumber =
         String(user_id).padStart(5, "0") +
         "-" +
-        String(userDpcCount).padStart(5, "0");
+        String(parseInt(userDpcCount) + 1).padStart(5, "0");
 
+      // file upload handler
+      const uploadDir = path.join(__dirname, "../uploads", userDpcNumber);
+      if (numberOfInputs == 0) {
+        fs.mkdir(uploadDir, (err) => {
+          if (err) return res.status(500).send(err);
+          console.log("Directory is created.");
+        });
+        file = req.files.file;
+        let uploadPath = path.join(uploadDir, file.name);
+        file.mv(uploadPath + file.name, (err) => {
+          if (err) return res.status(500).send(err);
+          console.log("File uploaded!");
+        });
+      } else {
+        fs.mkdir(uploadDir, (err) => {
+          if (err) return res.status(500).send(err);
+          console.log("Directory is created.");
+        });
+        file = req.files.file;
+        let uploadPath = path.join(uploadDir, file.name);
+        file.mv(uploadPath + file.name, (err) => {
+          if (err) return res.status(500).send(err);
+          console.log("File uploaded!");
+        });
+        for (let i = 1; i <= numberOfInputs; i++) {
+          eval(`file${i} = req.files.file${i}`);
+          eval(`let uploadPath = path.join(uploadDir, file${i}.name);
+                file${i}.mv(uploadPath + file${i}.name, (err) => {
+                if (err) return res.status(500).send(err);
+                console.log("File uploaded!");
+              });`);
+        }
+        console.log("thers is more then 1 file");
+      }
       // find the id of the act
       let actId;
       if (
@@ -144,7 +181,7 @@ module.exports = {
 
       res.status(200).render("ED", { table: dpcTable, success: "done" });
     } catch (error) {
-      const dpcTable = await dpc.findAll({ where: { user_id: user_id } });
+      // const dpcTable = await dpc.findAll({ where: { user_id } });
       console.clear();
       console.log(
         "============================= error ============================= "
