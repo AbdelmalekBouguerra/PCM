@@ -10,6 +10,7 @@ const verifyToken = (req, res, next) => {
     req.session.token;
 
   if (!token) {
+    console.log("Invalid token: " + req.body.token);
     return res.status(403).render("index");
   }
   try {

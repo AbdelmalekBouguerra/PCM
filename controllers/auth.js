@@ -41,6 +41,11 @@ exports.login = async (req, res) => {
   try {
     /* Déstructuration de l'objet `req.body`. et recuperer username et password */
     const { username, password } = req.body;
+    console.log(
+      "🚀 ~ file: auth.js ~ line 44 ~ exports.login= ~ username, password",
+      username,
+      password
+    );
 
     /* Vérifier si le nom d'utilisateur et le mot de passe ne sont pas vides. */
     if (!(username && password)) {
@@ -53,18 +58,18 @@ exports.login = async (req, res) => {
     }
 
     /* Recherche d'un utilisateur avec le nom d'utilisateur dans la base de données. */
-    const user = await userModel.findOne({ where: { son: username } });
+    // const user = await userModel.findOne({ where: { son: username } });
+    // we need to let new users to access or app only chacking by ldap auth
 
     // am using 0000 cause cnx is LDAP we dont need pass
 
     /* Vérifier si l'utilisateur existe dans la base de données et si l'utilisateur est authentifié
     dans le serveur LDAP. */
     // if (user && authLDAP(username,password,res)) {
-    if (user && password === "0000") {
+    if (password === "0000") {
       /* Création d'un jwt jeton pour l'utilisateur. */
       const token = jwt.sign(
         {
-          user_id: user.dataValues.user_id,
           user_ip: req.ip,
         },
         config.TOKEN_KEY,
@@ -74,10 +79,11 @@ exports.login = async (req, res) => {
       );
 
       /* Définition du jeton sur l'objet utilisateur. */
-      user.token = token;
-      user.username = username;
+      // // user.token = token;
+      // // user.username = username;
       req.session.token = token;
-      req.session.user_PCM = user;
+      req.session.PCM_USERNAME = username;
+      // // req.session.user_PCM = user;
       /* Rendu de la page d'accueil. */
       res.status(200).render("accueil");
     } else {

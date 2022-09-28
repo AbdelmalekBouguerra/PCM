@@ -6,6 +6,7 @@ var _dpc = require("./dpc");
 var _medecin_travail_act = require("./medecin_travail_act");
 var _medecins_conventionnes = require("./medecins_conventionnes");
 var _structure = require("./structure");
+var _sys_flux_confirmation = require("./sys_flux_confirmation");
 var _tiers_payant_structure = require("./tiers_payant_structure");
 var _user = require("./user");
 
@@ -17,6 +18,7 @@ function initModels(sequelize) {
   var medecin_travail_act = _medecin_travail_act(sequelize, DataTypes);
   var medecins_conventionnes = _medecins_conventionnes(sequelize, DataTypes);
   var structure = _structure(sequelize, DataTypes);
+  var sys_flux_confirmation = _sys_flux_confirmation(sequelize, DataTypes);
   var tiers_payant_structure = _tiers_payant_structure(sequelize, DataTypes);
   var user = _user(sequelize, DataTypes);
 
@@ -33,6 +35,7 @@ function initModels(sequelize) {
     medecin_travail_act,
     medecins_conventionnes,
     structure,
+    sys_flux_confirmation,
     tiers_payant_structure,
     user,
   };
