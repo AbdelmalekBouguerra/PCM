@@ -25,6 +25,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.17.2",
+    "express-fileupload": "^1.4.0",
     "express-session": "^1.17.2",
     "hbs": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
@@ -35,6 +36,7 @@
     "pm2": "^5.1.2",
     "sequelize": "^6.21.3",
     "sequelize-auto": "^0.8.8",
+    "serve-index": "^1.9.1",
     "validator": "^13.7.0",
     "winston": "^3.8.1"
   },
