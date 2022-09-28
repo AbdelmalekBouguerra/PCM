@@ -386,8 +386,10 @@
         </div>
         <div class="modal-body text-center">
           <h4>Oops!</h4>
-          <p>Quelque chose s'est mal passé réessayer plus tard
-          </p>
+          <p>Quelque chose s'est mal passé réessayer plus tard</p>
+          {{#if msg}}
+          <p>{{msg}}</p>
+          {{/if}}
         </div>
       </div>
     </div>
