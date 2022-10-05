@@ -11,6 +11,12 @@ module.exports = {
   get: async (req, res, next) => {
     const PCM_USERNAME = req.session.PCM_USERNAME;
     const user = await User.findOne({ where: { son: PCM_USERNAME } });
+
+    if (!user) {
+      res.status(200).render("ED");
+      return;
+    }
+
     try {
       const dpcTable = await dpc.findAll({ where: { user_id: user.user_id } });
       if (dpcTable.length === 0) {

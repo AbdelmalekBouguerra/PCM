@@ -420,6 +420,29 @@ $(document).ready(function () {
     structure_select.selectpicker("refresh");
   }
 });
+// geting date
+let date = null;
+$("#date").on("input", (e) => {
+  date = e.target.value.split("-");
+  if (1900 < date[0] && lien_parentie == "fils") {
+    let now = new Date().getFullYear();
+    console.log(now);
+    if (now - date[0] >= 21) $("#filsMsg").show();
+    else $("#filsMsg").hide();
+  } else $("#filsMsg").hide();
+});
+let lien_parentie = null;
+$("#lienParentie").on("changed.bs.select", (e) => {
+  lien_parentie = e.target.value;
+  if (date == null) {
+    $("#filsMsg").hide();
+  } else if (1900 < date[0] && lien_parentie == "fils") {
+    let now = new Date().getFullYear();
+    console.log(now);
+    if (now - date[0] >= 21) $("#filsMsg").show();
+    else $("#filsMsg").hide();
+  } else $("#filsMsg").hide();
+});
 
 /* -------------------------------- Adding Inputs Files logic -------------------------------- */
 
