@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
-    maxAge: 2 * 60 * 60 * 1000, // 2 hours
+    maxAge: 24 * 60 * 60 * 1000, // 24 hours
   })
 );
 
@@ -68,6 +68,13 @@ if (app.get("env") === "development") {
   });
 }
 
+const serveIndex = require("serve-index");
+app.use(
+  "/dpcFiles",
+  express.static("public/uploads"),
+  serveIndex(path.join(__dirname, "./public/uploads"), { icons: true })
+);
+
 // production error handler
 // no stacktraces leaked to user
 app.use(function (err, req, res, next) {
@@ -81,13 +88,6 @@ app.use(function (err, req, res, next) {
 app.listen(http_port, () => {
   console.log(`Server started : http://localhost:${http_port}`);
 });
-
-var serveIndex = require("serve-index");
-
-app.use(
-  "/dpcFiles",
-  serveIndex(path.join(__dirname, "uploads"), { icons: true })
-);
 
 /* Exportation de l'objet d'application afin qu'il puisse être utilisé dans d'autres fichiers. */
 module.exports = app;

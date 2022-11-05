@@ -105,7 +105,11 @@ module.exports = {
             String(parseInt(userDpcCount) + 1).padStart(5, "0");
 
           // file upload handler
-          const uploadDir = path.join(__dirname, "../uploads", userDpcNumber);
+          const uploadDir = path.join(
+            __dirname,
+            "../public/uploads",
+            userDpcNumber
+          );
           if (numberOfInputs == 0) {
             fs.mkdir(uploadDir, (err) => {
               if (err) return res.status(500).send(err);
@@ -113,7 +117,7 @@ module.exports = {
             });
             file = req.files.file;
             let uploadPath = path.join(uploadDir, file.name);
-            file.mv(uploadPath + file.name, (err) => {
+            file.mv(uploadPath, (err) => {
               if (err) return res.status(500).send(err);
               console.log("File uploaded!");
             });
@@ -124,7 +128,7 @@ module.exports = {
             });
             file = req.files.file;
             let uploadPath = path.join(uploadDir, file.name);
-            file.mv(uploadPath + file.name, (err) => {
+            file.mv(uploadPath, (err) => {
               if (err) return res.status(500).send(err);
               console.log("File uploaded!");
             });
@@ -168,12 +172,11 @@ module.exports = {
           console.log("================================================");
           console.log(err);
           console.log("================================================");
-          console.log(err?.errors[0]);
           //todo add here if whene msg not defined
           res.status(500).render("ED", {
             table: dpcTable,
             error: "done",
-            msg: `Veuillez bien vérifier votre ${err.errors[0].path}`,
+            msg: `Veuillez bien vérifier votre ${err}`,
           });
           return;
         });

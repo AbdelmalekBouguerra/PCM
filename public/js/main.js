@@ -329,6 +329,12 @@ AOS.init({
   $(".appointment_time").timepicker();
 })(jQuery);
 
+$(".btn").click(function () {
+  $(".input").toggleClass("active").focus;
+  $(this).toggleClass("animate");
+  $(".input").val("");
+});
+
 // //this script to only check one checkbox
 // function myFun(checkbox) {
 //   var checkboxes = document.getElementsByName("typeDemande");

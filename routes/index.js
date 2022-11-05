@@ -17,6 +17,10 @@ router.get("/info", auth, (req, res) => {
   res.render("info");
 });
 
+router.get("/structure", auth, (req, res) => {
+  res.render("structure");
+});
+
 router.get("/get/structure", structures.sh);
 router.get("/get/act", data.actType);
 router.get("/get/act/:actCode", data.actCode);
