@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2023-02-21T11:30:19.424Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="PXRcDL7E7StvoMMFTfNI" version="20.8.20" type="github">
+<mxfile host="app.diagrams.net" modified="2023-02-21T11:46:34.336Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36" etag="Nvdq18S8Q0rVaFCZH0y1" version="20.8.20" type="github">
   <diagram name="Page-1" id="e56a1550-8fbb-45ad-956c-1786394a9013">
-    <mxGraphModel dx="1103" dy="1488" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
+    <mxGraphModel dx="1195" dy="1542" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" background="none" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -474,7 +474,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="OxLEWKywHOv-19JCzwFs-69" value="PRESTATION_MÉDICALE" style="swimlane;html=1;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=#e0e0e0;horizontalStack=0;resizeParent=1;resizeLast=0;collapsible=1;marginBottom=0;swimlaneFillColor=#ffffff;align=center;rounded=0;shadow=0;comic=0;labelBackgroundColor=none;strokeWidth=1;fontFamily=Verdana;fontSize=14" parent="1" vertex="1">
-          <mxGeometry x="120" y="1016" width="200" height="136" as="geometry">
+          <mxGeometry x="120" y="1016" width="200" height="134" as="geometry">
             <mxRectangle x="400" y="70" width="120" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
@@ -496,11 +496,11 @@
         <mxCell id="OxLEWKywHOv-19JCzwFs-75" value="" style="shape=partialRectangle;top=0;left=0;bottom=0;html=1;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;part=1;" parent="OxLEWKywHOv-19JCzwFs-74" vertex="1" connectable="0">
           <mxGeometry width="30" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="OxLEWKywHOv-19JCzwFs-217" value="is_active" style="shape=partialRectangle;top=0;left=0;right=0;bottom=0;html=1;align=left;verticalAlign=top;fillColor=none;spacingLeft=34;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;" parent="OxLEWKywHOv-19JCzwFs-69" vertex="1">
-          <mxGeometry y="108" width="200" height="28" as="geometry" />
+        <mxCell id="01VOMUPUEz3-RHZkKi3b-42" value="plafondement_montant" style="shape=partialRectangle;top=0;left=0;right=0;bottom=0;html=1;align=left;verticalAlign=top;fillColor=none;spacingLeft=34;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;dropTarget=0;" vertex="1" parent="OxLEWKywHOv-19JCzwFs-69">
+          <mxGeometry y="108" width="200" height="26" as="geometry" />
         </mxCell>
-        <mxCell id="OxLEWKywHOv-19JCzwFs-218" value="" style="shape=partialRectangle;top=0;left=0;bottom=0;html=1;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;part=1;" parent="OxLEWKywHOv-19JCzwFs-217" vertex="1" connectable="0">
-          <mxGeometry width="30" height="28" as="geometry" />
+        <mxCell id="01VOMUPUEz3-RHZkKi3b-43" value="" style="shape=partialRectangle;top=0;left=0;bottom=0;html=1;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;whiteSpace=wrap;overflow=hidden;rotatable=0;points=[];portConstraint=eastwest;part=1;" vertex="1" connectable="0" parent="01VOMUPUEz3-RHZkKi3b-42">
+          <mxGeometry width="30" height="26" as="geometry" />
         </mxCell>
         <mxCell id="OxLEWKywHOv-19JCzwFs-78" value="" style="group;fontStyle=1" parent="1" vertex="1" connectable="0">
           <mxGeometry x="470" y="1045" width="160" height="80" as="geometry" />
